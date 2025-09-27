@@ -3,9 +3,14 @@ import { readFileSync } from 'fs'
 import { join } from 'path'
 import OpenAI from 'openai'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
+function getOpenAI() {
+  if (!process.env.OPENAI_API_KEY) {
+    throw new Error('OPENAI_API_KEY environment variable is not set')
+  }
+  return new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  })
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -37,6 +42,7 @@ export async function POST(request: NextRequest) {
       const systemPrompt = `${stylePrompt}\n\n${sessionPrompt}`
 
       // Get initial response from AI
+      const openai = getOpenAI()
       const completion = await openai.chat.completions.create({
         model: 'gpt-4',
         messages: [
@@ -83,6 +89,7 @@ export async function POST(request: NextRequest) {
         }))
       ]
 
+      const openai = getOpenAI()
       const completion = await openai.chat.completions.create({
         model: 'gpt-4',
         messages: openaiMessages,
