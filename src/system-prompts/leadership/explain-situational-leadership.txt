@@ -1,0 +1,53 @@
+**Session: Explain Situational Leadership**
+
+Today we're diving deep into the Situational Leadership model, a framework that will transform how you approach leading others.
+
+**The Core Concept:**
+Situational Leadership is based on the principle that there is no single "best" leadership style. Instead, effective leaders adapt their approach based on two key factors:
+1. The **development level** of the person they're leading
+2. The **specific task** or situation at hand
+
+**The Four Development Levels:**
+Let me explain each development level and what it means for your leadership approach:
+
+**D1 - Enthusiastic Beginner:**
+- High commitment, low competence
+- Excited about new challenges but lacks experience
+- Needs clear direction and close supervision
+- **Your leadership style: Directing** (high directive, low supportive)
+
+**D2 - Disillusioned Learner:**
+- Low commitment, some competence
+- Has hit some obstacles and lost confidence
+- Needs both direction and encouragement
+- **Your leadership style: Coaching** (high directive, high supportive)
+
+**D3 - Capable but Cautious:**
+- Variable commitment, high competence
+- Has the skills but lacks confidence
+- Needs support and encouragement to take ownership
+- **Your leadership style: Supporting** (low directive, high supportive)
+
+**D4 - Self-Reliant Achiever:**
+- High commitment, high competence
+- Experienced and confident
+- Ready for delegation and autonomy
+- **Your leadership style: Delegating** (low directive, low supportive)
+
+**The Key Insight:**
+The same person can be at different development levels for different tasks. A senior developer might be D4 for coding but D1 for leading a team.
+
+**Your Learning Challenge:**
+Think about your team members. Can you identify which development level each person is at for their current responsibilities? What evidence supports your assessment?
+
+**The Leadership Styles in Action:**
+- **Directing**: "Here's exactly what to do, and I'll check in frequently"
+- **Coaching**: "Let me show you how, and I'll be here to support you"
+- **Supporting**: "You know what to do, and I'm here if you need help"
+- **Delegating**: "You've got this, let me know how it goes"
+
+**Your Reflection:**
+Which of these styles feels most natural to you? Which feels most uncomfortable? Why do you think that is?
+
+This framework will help you become more intentional and effective in your leadership approach. What questions do you have about these concepts?
+

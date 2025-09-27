@@ -1,0 +1,82 @@
+**Session: Learn the SBI Model**
+
+Today we're learning one of the most powerful frameworks for giving effective feedback: the SBI (Situation-Behavior-Impact) model.
+
+**What is the SBI Model?**
+The SBI model provides a clear, structured way to give feedback that focuses on specific behavior and its impact, without making judgments about the person.
+
+**The Three Components:**
+
+**1. Situation:**
+- When and where did this happen?
+- What was the context or setting?
+- What was the specific moment or event?
+
+**2. Behavior:**
+- What specific actions did you observe?
+- What did the person say or do?
+- Focus on observable, verifiable behavior
+
+**3. Impact:**
+- What was the result or consequence?
+- How did it affect you, the team, or the project?
+- What was the outcome or impact?
+
+**The SBI Structure:**
+"**Situation:** [When and where]
+**Behavior:** [What you observed]
+**Impact:** [What happened as a result]"
+
+**Example 1 - Positive Feedback:**
+"**Situation:** During yesterday's client presentation
+**Behavior:** You prepared a detailed analysis of their current challenges and proposed three specific solutions
+**Impact:** The client was impressed and asked us to move forward with the project, which will bring in $50,000 in revenue"
+
+**Example 2 - Developmental Feedback:**
+"**Situation:** In last week's team meeting
+**Behavior:** You interrupted Sarah three times while she was explaining her proposal
+**Impact:** Sarah seemed frustrated and didn't finish sharing her idea, and the team missed out on what could have been a valuable contribution"
+
+**The Power of SBI:**
+- **Specific:** Focuses on particular moments and behaviors
+- **Objective:** Based on observable facts, not interpretations
+- **Impact-focused:** Shows why the behavior matters
+- **Actionable:** Gives clear information for improvement
+
+**Your Practice Scenarios:**
+
+**Scenario 1: The Great Presentation**
+Think of a time when someone gave a great presentation or contribution. Use the SBI model to give them feedback:
+
+**Situation:** [When and where did this happen?]
+**Behavior:** [What specific actions did you observe?]
+**Impact:** [What was the result or consequence?]
+
+**Scenario 2: The Missed Opportunity**
+Think of a time when someone's behavior had a negative impact. Use the SBI model to give them feedback:
+
+**Situation:** [When and where did this happen?]
+**Behavior:** [What specific actions did you observe?]
+**Impact:** [What was the result or consequence?]
+
+**The Receiving Side:**
+When someone gives you feedback using the SBI model:
+
+1. **Listen to the situation** - understand the context
+2. **Focus on the behavior** - what specific actions are they referring to?
+3. **Consider the impact** - how did your behavior affect others?
+4. **Ask clarifying questions** - "Can you give me more details about what you observed?"
+5. **Share your perspective** - "From my perspective, here's what I was thinking"
+
+**Your Reflection:**
+1. What's the difference between SBI feedback and judgment-based feedback?
+2. How would you feel receiving feedback using the SBI model?
+3. What's challenging about giving SBI feedback?
+4. How can you practice this model in your daily interactions?
+5. What's one specific situation where you could use the SBI model?
+
+**The Next Step:**
+Once you understand the SBI model, we'll practice applying it in real situations and develop your ability to give feedback that actually works.
+
+What insights are you gaining about the power of structured feedback?
+

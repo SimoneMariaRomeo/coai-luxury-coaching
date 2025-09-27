@@ -1,0 +1,125 @@
+{
+  "apiKey": "OPENAI_API_KEY",
+  "model": "gpt-4",
+  "topics": {
+    "leadership": {
+      "title": "Leadership Excellence",
+      "intro": "Master situational leadership to adapt your style to any team member's development stage.",
+      "objectives": [
+        "Understand the four development stages and their characteristics",
+        "Learn to assess team members' current development level",
+        "Apply appropriate leadership styles for each development stage"
+      ],
+      "sessions": [
+        {
+          "id": "reflect-ideal-leader",
+          "title": "Reflect on Your Ideal Leader",
+          "type": "Coaching",
+          "file": "reflect-ideal-leader.txt"
+        },
+        {
+          "id": "explain-situational-leadership",
+          "title": "Explain Situational Leadership",
+          "type": "Socratic",
+          "file": "explain-situational-leadership.txt"
+        },
+        {
+          "id": "spot-stakeholders",
+          "title": "Spot Your Stakeholders",
+          "type": "Coaching",
+          "file": "spot-stakeholders.txt"
+        },
+        {
+          "id": "explore-leadership-styles",
+          "title": "Explore Leadership Styles",
+          "type": "Socratic",
+          "file": "explore-leadership-styles.txt"
+        },
+        {
+          "id": "reflect-strengths-weaknesses",
+          "title": "Reflect on Strengths and Weaknesses",
+          "type": "Coaching",
+          "file": "reflect-strengths-weaknesses.txt"
+        },
+        {
+          "id": "establish-partnership",
+          "title": "Establish Partnership with Team",
+          "type": "Socratic",
+          "file": "establish-partnership.txt"
+        },
+        {
+          "id": "define-action-plan",
+          "title": "Define Your Action Plan",
+          "type": "Coaching",
+          "file": "define-action-plan.txt"
+        }
+      ]
+    },
+    "feedback": {
+      "title": "Feedback Mastery",
+      "intro": "Develop radical candor skills to give and receive feedback that drives growth.",
+      "objectives": [
+        "Master the principles of Radical Candor",
+        "Distinguish between facts and judgments in feedback",
+        "Apply the SBI model for effective feedback delivery"
+      ],
+      "sessions": [
+        {
+          "id": "reflect-feedback-blocks",
+          "title": "Reflect on Feedback Blocks",
+          "type": "Coaching",
+          "file": "reflect-feedback-blocks.txt"
+        },
+        {
+          "id": "rules-radical-candor",
+          "title": "Rules of Radical Candor",
+          "type": "Socratic",
+          "file": "rules-radical-candor.txt"
+        },
+        {
+          "id": "recall-failed-feedback",
+          "title": "Recall Failed Feedback",
+          "type": "Coaching",
+          "file": "recall-failed-feedback.txt"
+        },
+        {
+          "id": "facts-vs-judgments",
+          "title": "Facts vs Judgments",
+          "type": "Socratic",
+          "file": "facts-vs-judgments.txt"
+        },
+        {
+          "id": "practice-facts-judgments",
+          "title": "Practice Facts vs Judgments",
+          "type": "Coaching",
+          "file": "practice-facts-judgments.txt"
+        },
+        {
+          "id": "learn-sbi-model",
+          "title": "Learn the SBI Model",
+          "type": "Socratic",
+          "file": "learn-sbi-model.txt"
+        },
+        {
+          "id": "practice-feedback-delivery",
+          "title": "Practice Feedback Delivery",
+          "type": "Coaching",
+          "file": "practice-feedback-delivery.txt"
+        },
+        {
+          "id": "gear-shifting",
+          "title": "Gear Shifting Techniques",
+          "type": "Socratic",
+          "file": "gear-shifting.txt"
+        },
+        {
+          "id": "define-feedback-action-plan",
+          "title": "Define Feedback Action Plan",
+          "type": "Coaching",
+          "file": "define-feedback-action-plan.txt"
+        }
+      ]
+    }
+  }
+}
+
