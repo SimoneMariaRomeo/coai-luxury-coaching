@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 import { useProgressStore } from '@/lib/store'
 import { useChat } from '@/lib/useChat'
 import { Toaster } from 'react-hot-toast'
-import config from '@/config.json'
+import config from '@/lib/config.json'
 
 export default function SessionPage() {
   const params = useParams()

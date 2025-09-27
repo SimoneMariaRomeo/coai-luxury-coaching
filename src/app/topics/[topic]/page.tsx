@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import config from '@/config.json'
+import config from '@/lib/config.json'
 
 export default function TopicPage() {
   const params = useParams()
