@@ -2,36 +2,37 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const topics = [
   {
     id: 'leadership',
     title: 'Leadership Excellence',
     description: 'Master situational leadership to adapt your style to any team member\'s development stage.',
-    color: 'from-blue-600 to-purple-600'
+    color: 'from-blue-500 to-purple-500'
   },
   {
     id: 'feedback',
     title: 'Feedback Mastery',
     description: 'Develop radical candor skills to give and receive feedback that drives growth.',
-    color: 'from-green-600 to-teal-600'
-  },
-  {
-    id: 'change-management',
-    title: 'Change Management',
-    description: 'Navigate organizational change with confidence and inspire others through transformation.',
-    color: 'from-orange-600 to-red-600'
+    color: 'from-green-500 to-teal-500'
   }
 ]
 
+const exploreTexts = [
+  'Leadership Excellence',
+  'Feedback Mastery'
+]
+
 export default function HomePage() {
-  const [currentTopic, setCurrentTopic] = useState(0)
+  const [currentExploreText, setCurrentExploreText] = useState(0)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [isNavOpen, setIsNavOpen] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTopic((prev) => (prev + 1) % topics.length)
-    }, 4000)
+      setCurrentExploreText((prev) => (prev + 1) % exploreTexts.length)
+    }, 3000)
     return () => clearInterval(interval)
   }, [])
 
@@ -39,10 +40,49 @@ export default function HomePage() {
     <div className="min-h-screen luxury-gradient relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-luxury-gold opacity-10 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-luxury-gold opacity-10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-luxury-gold opacity-5 rounded-full blur-3xl"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-luxury-gold opacity-20 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-luxury-gold opacity-20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-luxury-accent opacity-10 rounded-full blur-3xl"></div>
       </div>
+
+      {/* Navigation Menu */}
+      <motion.nav 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="absolute top-6 right-6 z-50"
+      >
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setIsNavOpen(!isNavOpen)}
+          className="bg-white/80 backdrop-blur-sm text-luxury-text px-4 py-2 rounded-lg font-semibold luxury-shadow"
+        >
+          Menu
+        </motion.button>
+        
+        <AnimatePresence>
+          {isNavOpen && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -10 }}
+              className="absolute top-12 right-0 bg-white/90 backdrop-blur-sm rounded-lg p-4 luxury-shadow min-w-[200px]"
+            >
+              {topics.map((topic) => (
+                <Link key={topic.id} href={`/topics/${topic.id}`}>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    className="py-2 px-3 rounded-md hover:bg-luxury-accent/10 transition-colors cursor-pointer"
+                  >
+                    {topic.title}
+                  </motion.div>
+                </Link>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
 
       {/* Main Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-20">
@@ -56,12 +96,67 @@ export default function HomePage() {
           <h1 className="text-6xl md:text-8xl font-playfair font-bold mb-6">
             <span className="gold-text">CoAI</span>
           </h1>
-          <p className="text-xl md:text-2xl text-luxury-white/80 mb-8 font-light">
+          <p className="text-xl md:text-2xl text-luxury-text/80 mb-8 font-light">
             Transform your leadership and communication skills with personalized AI coaching sessions
           </p>
-          <p className="text-lg text-luxury-white/60 mb-12 max-w-2xl mx-auto">
-            Experience luxury executive coaching powered by AI. Develop your leadership style, master feedback, and accelerate your professional growth.
-          </p>
+          
+          {/* Rotating Explore Section */}
+          <div className="mb-12">
+            <div 
+              className="relative inline-block cursor-pointer"
+              onMouseEnter={() => setIsDropdownOpen(true)}
+              onMouseLeave={() => setIsDropdownOpen(false)}
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-3xl md:text-4xl font-playfair font-semibold"
+              >
+                Explore{' '}
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={currentExploreText}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
+                    className="inline-block bg-gradient-to-r from-luxury-accent to-luxury-accent-light bg-clip-text text-transparent"
+                  >
+                    {exploreTexts[currentExploreText]}
+                  </motion.span>
+                </AnimatePresence>
+              </motion.div>
+              
+              {/* Dropdown Menu */}
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                    className="absolute top-full left-0 mt-4 bg-white/90 backdrop-blur-sm rounded-lg luxury-shadow min-w-[250px] z-10"
+                  >
+                    {topics.map((topic, index) => (
+                      <Link key={topic.id} href={`/topics/${topic.id}`}>
+                        <motion.div
+                          whileHover={{ scale: 1.02 }}
+                          className="p-4 border-b border-luxury-light-gray/20 last:border-b-0 hover:bg-luxury-accent/10 transition-colors cursor-pointer"
+                        >
+                          <h3 className="font-playfair font-semibold text-luxury-text">
+                            {topic.title}
+                          </h3>
+                          <p className="text-sm text-luxury-text-light mt-1">
+                            {topic.description}
+                          </p>
+                        </motion.div>
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
           
           {/* CTA Button */}
           <Link href="/topics/leadership/sessions/reflect-ideal-leader">
@@ -75,60 +170,12 @@ export default function HomePage() {
           </Link>
         </motion.div>
 
-        {/* Topic Carousel */}
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="w-full max-w-6xl mx-auto"
-        >
-          <h2 className="text-3xl font-playfair font-semibold text-center mb-12 text-luxury-white/90">
-            Explore Learning Journeys
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {topics.map((topic, index) => (
-              <motion.div
-                key={topic.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                className={`glass-effect rounded-2xl p-8 luxury-shadow hover:shadow-2xl transition-all duration-300 ${
-                  currentTopic === index ? 'ring-2 ring-luxury-gold' : ''
-                }`}
-              >
-                <div className={`w-16 h-16 rounded-lg bg-gradient-to-r ${topic.color} mb-6 flex items-center justify-center`}>
-                  <span className="text-2xl font-bold text-white">
-                    {topic.id === 'leadership' ? '👑' : topic.id === 'feedback' ? '💬' : '🔄'}
-                  </span>
-                </div>
-                <h3 className="text-2xl font-playfair font-semibold mb-4 text-luxury-white">
-                  {topic.title}
-                </h3>
-                <p className="text-luxury-white/70 mb-6 leading-relaxed">
-                  {topic.description}
-                </p>
-                <Link href={`/topics/${topic.id}`}>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-full bg-luxury-gold/20 text-luxury-gold border border-luxury-gold px-6 py-3 rounded-lg font-semibold hover:bg-luxury-gold hover:text-luxury-dark transition-all duration-300"
-                  >
-                    Explore Journey
-                  </motion.button>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
         {/* Footer */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-20 text-center text-luxury-white/50"
+          className="mt-20 text-center text-luxury-text-light"
         >
           <p className="text-sm">
             Powered by advanced AI • Designed for executive excellence

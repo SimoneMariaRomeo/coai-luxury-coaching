@@ -13,18 +13,22 @@ module.exports = {
       },
       colors: {
         'luxury': {
-          'dark': '#0a0a0a',
-          'gray': '#1a1a1a',
-          'light-gray': '#2a2a2a',
+          'dark': '#f8fafc',
+          'gray': '#f1f5f9',
+          'light-gray': '#e2e8f0',
           'gold': '#d4af37',
           'gold-light': '#f4e4bc',
           'white': '#ffffff',
+          'text': '#334155',
+          'text-light': '#64748b',
+          'accent': '#3b82f6',
+          'accent-light': '#60a5fa',
         }
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'luxury-gradient': 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%)',
+        'luxury-gradient': 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)',
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-in-out',

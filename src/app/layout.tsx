@@ -8,7 +8,7 @@ const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfa
 
 export const metadata: Metadata = {
   title: 'CoAI',
-  description: 'Transform your leadership and communication skills with personalized AI coaching sessions.',
+  description: 'Transform your leadership and communication skills with personalized AI coaching and learning sessions.',
 }
 
 export default function RootLayout({
@@ -18,14 +18,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="bg-luxury-dark text-luxury-white min-h-screen">
+      <body className="bg-luxury-dark text-luxury-text min-h-screen">
         {children}
         <Toaster 
           position="top-right"
           toastOptions={{
             style: {
-              background: '#1a1a1a',
-              color: '#ffffff',
+              background: '#f1f5f9',
+              color: '#334155',
               border: '1px solid #d4af37',
             },
           }}
