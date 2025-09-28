@@ -38,7 +38,7 @@ export default function SessionPage() {
       <div className="min-h-screen luxury-gradient flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-luxury-gold mx-auto mb-4"></div>
-          <p className="text-luxury-white/70">Loading session...</p>
+          <p className="text-luxury-text-light">Loading session...</p>
         </div>
       </div>
     )
@@ -62,21 +62,21 @@ export default function SessionPage() {
             <Link href="/" className="text-luxury-gold hover:text-luxury-gold-light transition-colors">
               Home
             </Link>
-            <span className="mx-2 text-luxury-white/50">›</span>
+            <span className="mx-2 text-luxury-text-muted">›</span>
             <Link href={`/topics/${topicId}`} className="text-luxury-gold hover:text-luxury-gold-light transition-colors">
               {topic.title}
             </Link>
-            <span className="mx-2 text-luxury-white/50">›</span>
-            <span className="text-luxury-white/70">{session.title}</span>
+            <span className="mx-2 text-luxury-text-muted">›</span>
+            <span className="text-luxury-text-light">{session.title}</span>
           </nav>
 
           {/* Progress Bar */}
           <div className="mb-8">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-luxury-white/70">Session {sessionIndex + 1} of {topic.sessions.length}</span>
+              <span className="text-sm text-luxury-text-light">Session {sessionIndex + 1} of {topic.sessions.length}</span>
               <span className="text-sm text-luxury-gold">{Math.round(progressPercentage)}%</span>
             </div>
-            <div className="w-full bg-luxury-white/10 rounded-full h-2">
+            <div className="w-full bg-luxury-text-muted/10 rounded-full h-2">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${progressPercentage}%` }}
@@ -91,7 +91,7 @@ export default function SessionPage() {
             <h1 className="text-4xl md:text-6xl font-playfair font-bold mb-4">
               <span className="gold-text">{session.title}</span>
             </h1>
-            <p className="text-lg text-luxury-white/70 capitalize">
+            <p className="text-lg text-luxury-text-light capitalize">
               {session.type} Session
             </p>
           </div>
@@ -115,7 +115,7 @@ export default function SessionPage() {
                   <div className={`max-w-[80%] p-4 rounded-2xl ${
                     message.role === 'user' 
                       ? 'bg-luxury-gold text-luxury-dark' 
-                      : 'bg-luxury-white/10 text-luxury-white'
+                      : 'bg-luxury-text-muted/10 text-luxury-text'
                   }`}>
                     <p className="whitespace-pre-wrap">{message.content}</p>
                   </div>
@@ -128,7 +128,7 @@ export default function SessionPage() {
                   animate={{ opacity: 1 }}
                   className="flex justify-start"
                 >
-                  <div className="bg-luxury-white/10 text-luxury-white p-4 rounded-2xl">
+                  <div className="bg-luxury-text-muted/10 text-luxury-text p-4 rounded-2xl">
                     <div className="flex space-x-2">
                       <div className="w-2 h-2 bg-luxury-gold rounded-full animate-bounce"></div>
                       <div className="w-2 h-2 bg-luxury-gold rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
@@ -144,7 +144,7 @@ export default function SessionPage() {
               <input
                 type="text"
                 placeholder="Type your response..."
-                className="flex-1 bg-luxury-white/10 border border-luxury-white/20 rounded-lg px-4 py-3 text-luxury-white placeholder-luxury-white/50 focus:outline-none focus:ring-2 focus:ring-luxury-gold"
+                className="flex-1 bg-luxury-text-muted/10 border border-luxury-text-muted/20 rounded-lg px-4 py-3 text-luxury-text placeholder-luxury-text-muted focus:outline-none focus:ring-2 focus:ring-luxury-gold"
                 onKeyPress={(e) => {
                   if (e.key === 'Enter' && !isLoading) {
                     sendMessage(e.currentTarget.value)

@@ -111,21 +111,25 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-3xl md:text-4xl font-playfair font-semibold"
+                className="text-3xl md:text-4xl font-playfair font-semibold text-center"
               >
-                Explore{' '}
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={currentExploreText}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5 }}
-                    className="inline-block bg-gradient-to-r from-luxury-accent to-luxury-accent-light bg-clip-text text-transparent"
-                  >
-                    {exploreTexts[currentExploreText]}
-                  </motion.span>
-                </AnimatePresence>
+                <div className="flex items-center justify-center gap-2">
+                  <span className="text-luxury-text">Explore</span>
+                  <div className="w-48 md:w-64 text-center">
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={currentExploreText}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.5 }}
+                        className="inline-block bg-gradient-to-r from-luxury-accent to-luxury-accent-light bg-clip-text text-transparent"
+                      >
+                        {exploreTexts[currentExploreText]}
+                      </motion.span>
+                    </AnimatePresence>
+                  </div>
+                </div>
               </motion.div>
               
               {/* Dropdown Menu */}

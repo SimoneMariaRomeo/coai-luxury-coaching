@@ -22,7 +22,7 @@ export default function TopicPage() {
       <div className="min-h-screen luxury-gradient flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-luxury-gold mx-auto mb-4"></div>
-          <p className="text-luxury-white/70">Loading...</p>
+          <p className="text-luxury-text-light">Loading...</p>
         </div>
       </div>
     )
@@ -42,8 +42,8 @@ export default function TopicPage() {
           <Link href="/" className="text-luxury-gold hover:text-luxury-gold-light transition-colors">
             Home
           </Link>
-          <span className="mx-2 text-luxury-white/50">›</span>
-          <span className="text-luxury-white/70 capitalize">{topicId}</span>
+          <span className="mx-2 text-luxury-text-muted">›</span>
+          <span className="text-luxury-text-light capitalize">{topicId}</span>
         </nav>
       </div>
 
@@ -58,7 +58,7 @@ export default function TopicPage() {
           <h1 className="text-5xl md:text-7xl font-playfair font-bold mb-6">
             <span className="gold-text">{topic.title}</span>
           </h1>
-          <p className="text-xl md:text-2xl text-luxury-white/80 mb-8 font-light">
+          <p className="text-xl md:text-2xl text-luxury-text-light mb-8 font-light">
             {topic.intro}
           </p>
         </motion.div>
@@ -70,7 +70,7 @@ export default function TopicPage() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="w-full max-w-4xl mx-auto mb-16"
         >
-          <h2 className="text-3xl font-playfair font-semibold text-center mb-8 text-luxury-white/90">
+          <h2 className="text-3xl font-playfair font-semibold text-center mb-8 text-luxury-text">
             Learning Objectives
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -85,7 +85,7 @@ export default function TopicPage() {
                 <div className="w-12 h-12 rounded-lg bg-luxury-gold/20 text-luxury-gold flex items-center justify-center mb-4">
                   <span className="text-xl font-bold">{index + 1}</span>
                 </div>
-                <p className="text-luxury-white/80 leading-relaxed">
+                <p className="text-luxury-text-light leading-relaxed">
                   {objective}
                 </p>
               </motion.div>
@@ -100,7 +100,7 @@ export default function TopicPage() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="w-full max-w-4xl mx-auto mb-16"
         >
-          <h2 className="text-3xl font-playfair font-semibold text-center mb-8 text-luxury-white/90">
+          <h2 className="text-3xl font-playfair font-semibold text-center mb-8 text-luxury-text">
             Your Learning Journey
           </h2>
           <div className="space-y-4">
@@ -118,10 +118,10 @@ export default function TopicPage() {
                       <span className="text-lg font-bold">{index + 1}</span>
                     </div>
                     <div>
-                      <h3 className="text-xl font-playfair font-semibold text-luxury-white">
+                      <h3 className="text-xl font-playfair font-semibold text-luxury-text">
                         {session.title}
                       </h3>
-                      <p className="text-luxury-white/60 capitalize">
+                      <p className="text-luxury-text-muted capitalize">
                         {session.type} Session
                       </p>
                     </div>

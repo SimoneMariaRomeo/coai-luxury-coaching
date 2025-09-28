@@ -21,8 +21,12 @@ module.exports = {
           'white': '#ffffff',
           'text': '#334155',
           'text-light': '#64748b',
+          'text-muted': '#94a3b8',
           'accent': '#3b82f6',
           'accent-light': '#60a5fa',
+          'success': '#10b981',
+          'warning': '#f59e0b',
+          'error': '#ef4444',
         }
       },
       backgroundImage: {
