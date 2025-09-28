@@ -28,6 +28,7 @@ export default function HomePage() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isNavOpen, setIsNavOpen] = useState(false)
   const measurementContainerRef = useRef<HTMLDivElement | null>(null)
+  const heroContainerRef = useRef<HTMLDivElement | null>(null)
   const [dropdownWidth, setDropdownWidth] = useState<number | null>(null)
 
   useEffect(() => {
@@ -44,18 +45,35 @@ export default function HomePage() {
       return
     }
 
-    const spans = Array.from(
-      measurementContainer.querySelectorAll<HTMLSpanElement>('span')
+    const measurementItems = Array.from(
+      measurementContainer.querySelectorAll<HTMLDivElement>('[data-dropdown-measure]')
     )
 
-    const widestLabel = spans.reduce((maxWidth, span) => {
-      const spanWidth = span.getBoundingClientRect().width
-      return spanWidth > maxWidth ? spanWidth : maxWidth
+    const widestItem = measurementItems.reduce((maxWidth, item) => {
+      const itemWidth = item.getBoundingClientRect().width
+      return itemWidth > maxWidth ? itemWidth : maxWidth
     }, 0)
 
-    if (widestLabel > 0) {
-      const paddedWidth = Math.ceil(widestLabel + DROPDOWN_HORIZONTAL_PADDING)
-      setDropdownWidth((currentWidth) => (currentWidth === paddedWidth ? currentWidth : paddedWidth))
+    if (widestItem > 0) {
+      const paddedWidth = Math.ceil(widestItem + DROPDOWN_HORIZONTAL_PADDING)
+      const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : null
+      const heroContainerWidth = heroContainerRef.current?.getBoundingClientRect().width ?? null
+
+      const constraints = [paddedWidth]
+
+      if (viewportWidth) {
+        constraints.push(Math.max(viewportWidth - 32, 0))
+      }
+
+      if (heroContainerWidth) {
+        constraints.push(heroContainerWidth)
+      }
+
+      const clampedWidth = Math.min(...constraints)
+
+      setDropdownWidth((currentWidth) =>
+        currentWidth === clampedWidth ? currentWidth : clampedWidth
+      )
     }
   }, [])
 
@@ -69,17 +87,26 @@ export default function HomePage() {
 
     if (typeof ResizeObserver !== 'undefined') {
       const measurementContainer = measurementContainerRef.current
+      const heroContainer = heroContainerRef.current
 
-      if (measurementContainer) {
+      if (measurementContainer || heroContainer) {
         resizeObserver = new ResizeObserver(() => {
           updateDropdownWidth()
         })
 
-        resizeObserver.observe(measurementContainer)
+        if (measurementContainer) {
+          resizeObserver.observe(measurementContainer)
 
-        Array.from(measurementContainer.querySelectorAll('span')).forEach((span) => {
-          resizeObserver?.observe(span)
-        })
+          Array.from(
+            measurementContainer.querySelectorAll('[data-dropdown-measure], [data-dropdown-measure] *')
+          ).forEach((element) => {
+            resizeObserver?.observe(element)
+          })
+        }
+
+        if (heroContainer) {
+          resizeObserver.observe(heroContainer)
+        }
       }
     }
 
@@ -109,14 +136,20 @@ export default function HomePage() {
         className="fixed top-0 left-0 -z-10 opacity-0 pointer-events-none select-none"
         aria-hidden="true"
       >
-        {exploreTexts.map((label) => (
-          <span
-            key={label}
-            className="text-3xl md:text-4xl font-playfair font-semibold whitespace-nowrap"
-          >
-            {label}
-          </span>
-        ))}
+        <div
+          data-dropdown-measure
+          className="inline-block bg-white/90 backdrop-blur-sm rounded-lg luxury-shadow text-left"
+        >
+          {topics.map((topic) => (
+            <div
+              key={topic.id}
+              className="p-4 border-b border-luxury-light-gray/20 last:border-b-0"
+            >
+              <h3 className="font-playfair font-semibold text-lg text-center">{topic.title}</h3>
+              <p className="text-sm text-center mt-1">{topic.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Background Elements */}
@@ -168,11 +201,12 @@ export default function HomePage() {
       {/* Main Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-20">
         {/* Hero Section */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center max-w-4xl mx-auto mb-16"
+          ref={heroContainerRef}
         >
           <h1 className="text-6xl md:text-8xl font-playfair font-bold mb-6">
             <span className="gold-text">CoAI</span>
@@ -196,8 +230,9 @@ export default function HomePage() {
           
           {/* Rotating Explore Section */}
           <div className="mb-12">
-            <div 
-              className="relative inline-block cursor-pointer"
+            <div
+              data-testid="explore-dropdown-trigger"
+              className="relative flex w-full flex-col items-center cursor-pointer"
               onMouseEnter={() => setIsDropdownOpen(true)}
               onMouseLeave={() => setIsDropdownOpen(false)}
             >
@@ -231,28 +266,34 @@ export default function HomePage() {
                     initial={{ opacity: 0, scale: 0.95, y: -10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                    className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white/90 backdrop-blur-sm rounded-lg luxury-shadow z-10 text-left"
-                    style={
-                      dropdownWidth
-                        ? { width: `${dropdownWidth}px`, minWidth: `${dropdownWidth}px` }
-                        : undefined
-                    }
+                    className="absolute top-full left-0 right-0 mt-4 flex justify-center z-10"
                   >
-                    {topics.map((topic, index) => (
-                      <Link key={topic.id} href={`/topics/${topic.id}`}>
-                        <motion.div
-                          whileHover={{ scale: 1.02 }}
-                          className="p-4 border-b border-luxury-light-gray/20 last:border-b-0 hover:bg-luxury-accent/10 transition-colors cursor-pointer text-center"
-                        >
-                          <h3 className="font-playfair font-semibold text-luxury-text text-center">
-                            {topic.title}
-                          </h3>
-                          <p className="text-sm text-luxury-text-light mt-1 text-center">
-                            {topic.description}
-                          </p>
-                        </motion.div>
-                      </Link>
-                    ))}
+                    <motion.div
+                      layout
+                      data-testid="explore-dropdown"
+                      className="bg-white/90 backdrop-blur-sm rounded-lg luxury-shadow text-left"
+                      style={
+                        dropdownWidth
+                          ? { width: `${dropdownWidth}px`, minWidth: `${dropdownWidth}px` }
+                          : undefined
+                      }
+                    >
+                      {topics.map((topic) => (
+                        <Link key={topic.id} href={`/topics/${topic.id}`}>
+                          <motion.div
+                            whileHover={{ scale: 1.02 }}
+                            className="p-4 border-b border-luxury-light-gray/20 last:border-b-0 hover:bg-luxury-accent/10 transition-colors cursor-pointer text-center"
+                          >
+                            <h3 className="font-playfair font-semibold text-luxury-text text-center">
+                              {topic.title}
+                            </h3>
+                            <p className="text-sm text-luxury-text-light mt-1 text-center">
+                              {topic.description}
+                            </p>
+                          </motion.div>
+                        </Link>
+                      ))}
+                    </motion.div>
                   </motion.div>
                 )}
               </AnimatePresence>
