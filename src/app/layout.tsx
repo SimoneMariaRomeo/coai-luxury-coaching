@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
 
 export const metadata: Metadata = {
-  title: 'CoAI - Luxury AI Coaching Platform',
+  title: 'CoAI',
   description: 'Transform your leadership and communication skills with personalized AI coaching sessions.',
 }
 
