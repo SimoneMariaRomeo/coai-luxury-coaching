@@ -24,18 +24,13 @@ const exploreTexts = [
   'Feedback Mastery'
 ]
 
-const longestExploreText = exploreTexts.reduce(
-  (longest, text) => (text.length > longest.length ? text : longest),
-  exploreTexts[0]
-)
-
 const DROPDOWN_HORIZONTAL_PADDING = 32
 
 export default function HomePage() {
   const [currentExploreText, setCurrentExploreText] = useState(0)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isNavOpen, setIsNavOpen] = useState(false)
-  const exploreTextMeasureRef = useRef<HTMLSpanElement>(null)
+  const exploreMeasureContainerRef = useRef<HTMLDivElement>(null)
   const [dropdownWidth, setDropdownWidth] = useState<number | null>(null)
 
   useEffect(() => {
@@ -46,9 +41,43 @@ export default function HomePage() {
   }, [])
 
   useLayoutEffect(() => {
-    if (exploreTextMeasureRef.current) {
-      const measuredWidth = exploreTextMeasureRef.current.getBoundingClientRect().width
-      setDropdownWidth(measuredWidth + DROPDOWN_HORIZONTAL_PADDING)
+    const updateDropdownWidth = () => {
+      const measureContainer = exploreMeasureContainerRef.current
+
+      if (!measureContainer) {
+        return
+      }
+
+      const childWidths = Array.from(measureContainer.children).map((child) =>
+        (child as HTMLElement).getBoundingClientRect().width
+      )
+      const maxWidth = childWidths.reduce((max, width) => Math.max(max, width), 0)
+
+      if (maxWidth > 0) {
+        const measuredWidth = Math.ceil(maxWidth + DROPDOWN_HORIZONTAL_PADDING)
+
+        setDropdownWidth((currentWidth) => {
+          if (currentWidth === null) {
+            return measuredWidth
+          }
+
+          return Math.max(currentWidth, measuredWidth)
+        })
+      }
+    }
+
+    updateDropdownWidth()
+
+    window.addEventListener('resize', updateDropdownWidth)
+
+    if (typeof document !== 'undefined' && document.fonts) {
+      document.fonts.ready.then(updateDropdownWidth).catch(() => {
+        /* ignore font loading errors */
+      })
+    }
+
+    return () => {
+      window.removeEventListener('resize', updateDropdownWidth)
     }
   }, [])
 
@@ -159,13 +188,17 @@ export default function HomePage() {
                         {exploreTexts[currentExploreText]}
                       </motion.span>
                     </AnimatePresence>
-                    <span
-                      ref={exploreTextMeasureRef}
+                    <div
+                      ref={exploreMeasureContainerRef}
                       aria-hidden
-                      className="absolute opacity-0 pointer-events-none select-none whitespace-nowrap text-3xl md:text-4xl font-playfair font-semibold"
+                      className="absolute left-0 top-0 opacity-0 pointer-events-none select-none text-3xl md:text-4xl font-playfair font-semibold"
                     >
-                      {longestExploreText}
-                    </span>
+                      {exploreTexts.map((text) => (
+                        <span key={text} className="block whitespace-nowrap">
+                          {text}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
