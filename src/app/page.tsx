@@ -24,6 +24,8 @@ const exploreTexts = [
   'Feedback Mastery'
 ]
 
+const dropdownWidth = `${Math.max(...topics.map((topic) => topic.title.length)) + 4}ch`
+
 export default function HomePage() {
   const [currentExploreText, setCurrentExploreText] = useState(0)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
@@ -108,7 +110,7 @@ export default function HomePage() {
                 whileTap={{ scale: 0.95 }}
                 className="bg-luxury-gold text-luxury-dark px-12 py-4 rounded-lg text-xl font-semibold luxury-shadow hover:shadow-2xl transition-all duration-300"
               >
-                Start Coaching
+                Get Coached
               </motion.button>
             </Link>
           </div>
@@ -154,18 +156,19 @@ export default function HomePage() {
                     initial={{ opacity: 0, scale: 0.95, y: -10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                    className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white/90 backdrop-blur-sm rounded-lg luxury-shadow min-w-[250px] z-10"
+                    className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white/90 backdrop-blur-sm rounded-lg luxury-shadow z-10"
+                    style={{ width: dropdownWidth }}
                   >
                     {topics.map((topic, index) => (
                       <Link key={topic.id} href={`/topics/${topic.id}`}>
                         <motion.div
                           whileHover={{ scale: 1.02 }}
-                          className="p-4 border-b border-luxury-light-gray/20 last:border-b-0 hover:bg-luxury-accent/10 transition-colors cursor-pointer"
+                          className="p-4 border-b border-luxury-light-gray/20 last:border-b-0 hover:bg-luxury-accent/10 transition-colors cursor-pointer text-left"
                         >
-                          <h3 className="font-playfair font-semibold text-luxury-text">
+                          <h3 className="font-playfair font-semibold text-luxury-text text-left">
                             {topic.title}
                           </h3>
-                          <p className="text-sm text-luxury-text-light mt-1">
+                          <p className="text-sm text-luxury-text-light mt-1 text-left">
                             {topic.description}
                           </p>
                         </motion.div>
