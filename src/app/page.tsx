@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -24,18 +24,39 @@ const exploreTexts = [
   'Feedback Mastery'
 ]
 
-const dropdownWidth = `${Math.max(...topics.map((topic) => topic.title.length)) + 4}ch`
+const longestExploreText = exploreTexts.reduce(
+  (longest, text) => (text.length > longest.length ? text : longest),
+  exploreTexts[0]
+)
+
+const DROPDOWN_HORIZONTAL_PADDING = 32
 
 export default function HomePage() {
   const [currentExploreText, setCurrentExploreText] = useState(0)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isNavOpen, setIsNavOpen] = useState(false)
+  const exploreTextMeasureRef = useRef<HTMLSpanElement>(null)
+  const [dropdownWidth, setDropdownWidth] = useState<number | null>(null)
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentExploreText((prev) => (prev + 1) % exploreTexts.length)
     }, 3000)
     return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    const updateDropdownWidth = () => {
+      if (exploreTextMeasureRef.current) {
+        const measuredWidth = exploreTextMeasureRef.current.getBoundingClientRect().width
+        setDropdownWidth(measuredWidth + DROPDOWN_HORIZONTAL_PADDING)
+      }
+    }
+
+    updateDropdownWidth()
+    window.addEventListener('resize', updateDropdownWidth)
+
+    return () => window.removeEventListener('resize', updateDropdownWidth)
   }, [])
 
   return (
@@ -145,10 +166,17 @@ export default function HomePage() {
                         {exploreTexts[currentExploreText]}
                       </motion.span>
                     </AnimatePresence>
+                    <span
+                      ref={exploreTextMeasureRef}
+                      aria-hidden
+                      className="absolute opacity-0 pointer-events-none select-none whitespace-nowrap text-3xl md:text-4xl font-playfair font-semibold"
+                    >
+                      {longestExploreText}
+                    </span>
                   </div>
                 </div>
               </motion.div>
-              
+
               {/* Dropdown Menu */}
               <AnimatePresence>
                 {isDropdownOpen && (
@@ -157,7 +185,7 @@ export default function HomePage() {
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: -10 }}
                     className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white/90 backdrop-blur-sm rounded-lg luxury-shadow z-10"
-                    style={{ width: dropdownWidth }}
+                    style={{ width: dropdownWidth ? `${dropdownWidth}px` : undefined }}
                   >
                     {topics.map((topic, index) => (
                       <Link key={topic.id} href={`/topics/${topic.id}`}>
