@@ -243,3 +243,7 @@ For support and questions, please contact the development team.
 ---
 
 **Built with ❤️ for executive excellence**
+
+## Branch consolidation
+
+If you find multiple branches floating around after previous iterations, run `./scripts/merge-branches.sh` to fast-forward them to the latest `work` branch and delete the duplicates. See [docs/branch-maintenance.md](docs/branch-maintenance.md) for details.
