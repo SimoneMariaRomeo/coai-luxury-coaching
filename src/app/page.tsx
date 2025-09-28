@@ -19,10 +19,7 @@ const topics = [
   }
 ]
 
-const exploreTexts = [
-  'Leadership Excellence',
-  'Feedback Mastery'
-]
+const exploreTexts = topics.map((topic) => topic.title)
 
 const DROPDOWN_HORIZONTAL_PADDING = 32
 
@@ -30,8 +27,7 @@ export default function HomePage() {
   const [currentExploreText, setCurrentExploreText] = useState(0)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isNavOpen, setIsNavOpen] = useState(false)
-  const exploreVisibleTextRef = useRef<HTMLSpanElement | null>(null)
-  const dropdownTextResizeObserver = useRef<ResizeObserver | null>(null)
+  const measurementContainerRef = useRef<HTMLDivElement | null>(null)
   const [dropdownWidth, setDropdownWidth] = useState<number | null>(null)
 
   useEffect(() => {
@@ -42,24 +38,24 @@ export default function HomePage() {
   }, []);
 
   const updateDropdownWidth = useCallback(() => {
-    const exploreTextElement = exploreVisibleTextRef.current
+    const measurementContainer = measurementContainerRef.current
 
-    if (!exploreTextElement) {
+    if (!measurementContainer) {
       return
     }
 
-    const measuredWidth = Math.ceil(
-      exploreTextElement.getBoundingClientRect().width + DROPDOWN_HORIZONTAL_PADDING
+    const spans = Array.from(
+      measurementContainer.querySelectorAll<HTMLSpanElement>('span')
     )
 
-    if (measuredWidth > 0) {
-      setDropdownWidth((currentWidth) => {
-        if (currentWidth === null) {
-          return measuredWidth
-        }
+    const widestLabel = spans.reduce((maxWidth, span) => {
+      const spanWidth = span.getBoundingClientRect().width
+      return spanWidth > maxWidth ? spanWidth : maxWidth
+    }, 0)
 
-        return Math.max(currentWidth, measuredWidth)
-      })
+    if (widestLabel > 0) {
+      const paddedWidth = Math.ceil(widestLabel + DROPDOWN_HORIZONTAL_PADDING)
+      setDropdownWidth((currentWidth) => (currentWidth === paddedWidth ? currentWidth : paddedWidth))
     }
   }, [])
 
@@ -67,14 +63,34 @@ export default function HomePage() {
     updateDropdownWidth()
 
     const handleResize = () => updateDropdownWidth()
-
     window.addEventListener('resize', handleResize)
 
-    if (typeof document !== 'undefined' && document.fonts) {
-        document.fonts.ready
-          .then(() => {
-            updateDropdownWidth()
-          })
+    let resizeObserver: ResizeObserver | null = null
+
+    if (typeof ResizeObserver !== 'undefined') {
+      const measurementContainer = measurementContainerRef.current
+
+      if (measurementContainer) {
+        resizeObserver = new ResizeObserver(() => {
+          updateDropdownWidth()
+        })
+
+        resizeObserver.observe(measurementContainer)
+
+        Array.from(measurementContainer.querySelectorAll('span')).forEach((span) => {
+          resizeObserver?.observe(span)
+        })
+      }
+    }
+
+    if (typeof document !== 'undefined') {
+      const fontSet = (document as Document & { fonts?: FontFaceSet }).fonts
+
+      fontSet
+        ?.ready
+        .then(() => {
+          updateDropdownWidth()
+        })
         .catch(() => {
           /* ignore font loading errors */
         })
@@ -82,39 +98,27 @@ export default function HomePage() {
 
     return () => {
       window.removeEventListener('resize', handleResize)
+      resizeObserver?.disconnect()
     }
-    }, [updateDropdownWidth])
-
-  const handleExploreTextRef = useCallback(
-    (node: HTMLSpanElement | null) => {
-      dropdownTextResizeObserver.current?.disconnect()
-
-      if (node) {
-        exploreVisibleTextRef.current = node
-
-        if (typeof ResizeObserver !== 'undefined') {
-          dropdownTextResizeObserver.current = new ResizeObserver(() => {
-            updateDropdownWidth()
-          })
-          dropdownTextResizeObserver.current.observe(node)
-        }
-
-        if (typeof window !== 'undefined' && typeof window.requestAnimationFrame === 'function') {
-          window.requestAnimationFrame(() => {
-            updateDropdownWidth()
-          })
-        } else {
-          updateDropdownWidth()
-        }
-      } else {
-        exploreVisibleTextRef.current = null
-      }
-    },
-    [updateDropdownWidth]
-  );
+  }, [updateDropdownWidth])
 
   return (
     <div className="min-h-screen luxury-gradient relative overflow-hidden">
+      <div
+        ref={measurementContainerRef}
+        className="fixed top-0 left-0 -z-10 opacity-0 pointer-events-none select-none"
+        aria-hidden="true"
+      >
+        {exploreTexts.map((label) => (
+          <span
+            key={label}
+            className="text-3xl md:text-4xl font-playfair font-semibold whitespace-nowrap"
+          >
+            {label}
+          </span>
+        ))}
+      </div>
+
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-luxury-gold opacity-20 rounded-full blur-3xl"></div>
@@ -216,7 +220,6 @@ export default function HomePage() {
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.5 }}
                         className="inline-block bg-gradient-to-r from-luxury-accent to-luxury-accent-light bg-clip-text text-transparent whitespace-nowrap"
-                        ref={handleExploreTextRef}
                       >
                         {exploreTexts[currentExploreText]}
                       </motion.span>
@@ -233,10 +236,11 @@ export default function HomePage() {
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: -10 }}
                     className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white/90 backdrop-blur-sm rounded-lg luxury-shadow z-10 text-left"
-                    style=
+                    style={
                       dropdownWidth
                         ? { width: `${dropdownWidth}px`, minWidth: `${dropdownWidth}px` }
                         : undefined
+                    }
                   >
                     {topics.map((topic, index) => (
                       <Link key={topic.id} href={`/topics/${topic.id}`}>
