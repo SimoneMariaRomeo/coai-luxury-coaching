@@ -96,9 +96,22 @@ export default function HomePage() {
           <h1 className="text-6xl md:text-8xl font-playfair font-bold mb-6">
             <span className="gold-text">CoAI</span>
           </h1>
-          <p className="text-xl md:text-2xl text-luxury-text/80 mb-8 font-light">
+          <p className="text-xl md:text-2xl text-luxury-text-light mb-8 font-light">
             Transform your leadership and communication skills with personalized AI coaching sessions
           </p>
+          
+          {/* CTA Button */}
+          <div className="mb-12">
+            <Link href="/topics/leadership/sessions/reflect-ideal-leader">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-luxury-gold text-luxury-dark px-12 py-4 rounded-lg text-xl font-semibold luxury-shadow hover:shadow-2xl transition-all duration-300"
+              >
+                Start Coaching
+              </motion.button>
+            </Link>
+          </div>
           
           {/* Rotating Explore Section */}
           <div className="mb-12">
@@ -111,11 +124,13 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-3xl md:text-4xl font-playfair font-semibold text-center"
+                className="text-3xl md:text-4xl font-playfair font-semibold"
               >
-                <div className="flex items-center justify-center gap-2">
-                  <span className="text-luxury-text">Explore</span>
-                  <div className="w-48 md:w-64 text-center">
+                <div className="grid grid-cols-2 gap-8 items-center">
+                  <div className="text-right">
+                    <span className="text-luxury-text">Or explore</span>
+                  </div>
+                  <div className="text-left">
                     <AnimatePresence mode="wait">
                       <motion.span
                         key={currentExploreText}
@@ -123,7 +138,7 @@ export default function HomePage() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.5 }}
-                        className="inline-block bg-gradient-to-r from-luxury-accent to-luxury-accent-light bg-clip-text text-transparent"
+                        className="inline-block bg-gradient-to-r from-luxury-accent to-luxury-accent-light bg-clip-text text-transparent whitespace-nowrap"
                       >
                         {exploreTexts[currentExploreText]}
                       </motion.span>
@@ -161,17 +176,6 @@ export default function HomePage() {
               </AnimatePresence>
             </div>
           </div>
-          
-          {/* CTA Button */}
-          <Link href="/topics/leadership/sessions/reflect-ideal-leader">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-luxury-gold text-luxury-dark px-12 py-4 rounded-lg text-xl font-semibold luxury-shadow hover:shadow-2xl transition-all duration-300"
-            >
-              Start Coaching
-            </motion.button>
-          </Link>
         </motion.div>
 
         {/* Footer */}
