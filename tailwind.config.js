@@ -8,8 +8,22 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'playfair': ['Playfair Display', 'serif'],
-        'inter': ['Inter', 'sans-serif'],
+        playfair: [
+          'Playfair Display',
+          'Georgia',
+          'Cambria',
+          'Times New Roman',
+          'serif',
+        ],
+        inter: [
+          'Inter',
+          'ui-sans-serif',
+          'system-ui',
+          'Segoe UI',
+          'Helvetica Neue',
+          'Arial',
+          'sans-serif',
+        ],
       },
       colors: {
         'luxury': {

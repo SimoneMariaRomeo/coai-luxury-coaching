@@ -17,7 +17,10 @@ export default function SessionPage() {
   const [session, setSession] = useState<any>(null)
   const [sessionIndex, setSessionIndex] = useState(0)
   
-  const { progress, updateProgress } = useProgressStore()
+  const markSessionStarted = useProgressStore((state) => state.markSessionStarted)
+  const markSessionCompleted = useProgressStore((state) => state.markSessionCompleted)
+  const completed = useProgressStore((state) => state.isSessionCompleted(topicId, sessionId))
+  const started = useProgressStore((state) => state.hasStartedSession(topicId, sessionId))
   const { messages, sendMessage, isLoading } = useChat(topicId, sessionId)
 
   useEffect(() => {
@@ -33,6 +36,12 @@ export default function SessionPage() {
     }
   }, [topicId, sessionId])
 
+  useEffect(() => {
+    if (topicId && sessionId) {
+      markSessionStarted(topicId, sessionId)
+    }
+  }, [topicId, sessionId, markSessionStarted])
+
   if (!topic || !session) {
     return (
       <div className="min-h-screen luxury-gradient flex items-center justify-center">
@@ -45,6 +54,12 @@ export default function SessionPage() {
   }
 
   const progressPercentage = ((sessionIndex + 1) / topic.sessions.length) * 100
+
+  const toggleCompletion = () => {
+    if (!topic || !session) return
+
+    markSessionCompleted(topicId, sessionId, !completed)
+  }
 
   return (
     <div className="min-h-screen luxury-gradient relative overflow-hidden">
@@ -164,6 +179,26 @@ export default function SessionPage() {
                 className="bg-luxury-gold text-luxury-dark px-6 py-3 rounded-lg font-semibold hover:bg-luxury-gold-light transition-colors disabled:opacity-50"
               >
                 Send
+              </button>
+            </div>
+
+            <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <p className="text-sm text-luxury-text-muted">
+                {completed
+                  ? 'Session marked as complete. You can revisit any time.'
+                  : started
+                    ? 'Mark this session as complete when you are ready to unlock the next one.'
+                    : 'Start the conversation to begin this session.'}
+              </p>
+              <button
+                onClick={toggleCompletion}
+                className={`px-6 py-3 rounded-lg font-semibold transition-colors ${
+                  completed
+                    ? 'bg-luxury-text-muted/20 text-luxury-text hover:bg-luxury-text-muted/30'
+                    : 'bg-luxury-gold text-luxury-dark hover:bg-luxury-gold-light'
+                }`}
+              >
+                {completed ? 'Mark as Incomplete' : 'Mark Session Complete'}
               </button>
             </div>
           </div>
