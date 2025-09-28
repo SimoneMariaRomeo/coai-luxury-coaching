@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, useLayoutEffect } from 'react'
+import { useState, useEffect, useRef, useLayoutEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -30,7 +30,8 @@ export default function HomePage() {
   const [currentExploreText, setCurrentExploreText] = useState(0)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isNavOpen, setIsNavOpen] = useState(false)
-  const exploreMeasureContainerRef = useRef<HTMLDivElement>(null)
+  const exploreVisibleTextRef = useRef<HTMLSpanElement | null>(null)
+  const dropdownTextResizeObserver = useRef<ResizeObserver | null>(null)
   const [dropdownWidth, setDropdownWidth] = useState<number | null>(null)
 
   useEffect(() => {
@@ -38,48 +39,79 @@ export default function HomePage() {
       setCurrentExploreText((prev) => (prev + 1) % exploreTexts.length)
     }, 3000)
     return () => clearInterval(interval)
+  }, []);
+
+  const updateDropdownWidth = useCallback(() => {
+    const exploreTextElement = exploreVisibleTextRef.current
+
+    if (!exploreTextElement) {
+      return
+    }
+
+    const measuredWidth = Math.ceil(
+      exploreTextElement.getBoundingClientRect().width + DROPDOWN_HORIZONTAL_PADDING
+    )
+
+    if (measuredWidth > 0) {
+      setDropdownWidth((currentWidth) => {
+        if (currentWidth === null) {
+          return measuredWidth
+        }
+
+        return Math.max(currentWidth, measuredWidth)
+      })
+    }
   }, [])
 
   useLayoutEffect(() => {
-    const updateDropdownWidth = () => {
-      const measureContainer = exploreMeasureContainerRef.current
-
-      if (!measureContainer) {
-        return
-      }
-
-      const childWidths = Array.from(measureContainer.children).map((child) =>
-        (child as HTMLElement).getBoundingClientRect().width
-      )
-      const maxWidth = childWidths.reduce((max, width) => Math.max(max, width), 0)
-
-      if (maxWidth > 0) {
-        const measuredWidth = Math.ceil(maxWidth + DROPDOWN_HORIZONTAL_PADDING)
-
-        setDropdownWidth((currentWidth) => {
-          if (currentWidth === null) {
-            return measuredWidth
-          }
-
-          return Math.max(currentWidth, measuredWidth)
-        })
-      }
-    }
-
     updateDropdownWidth()
 
-    window.addEventListener('resize', updateDropdownWidth)
+    const handleResize = () => updateDropdownWidth()
+
+    window.addEventListener('resize', handleResize)
 
     if (typeof document !== 'undefined' && document.fonts) {
-      document.fonts.ready.then(updateDropdownWidth).catch(() => {
-        /* ignore font loading errors */
-      })
+        document.fonts.ready
+          .then(() => {
+            updateDropdownWidth()
+          })
+        .catch(() => {
+          /* ignore font loading errors */
+        })
     }
 
     return () => {
-      window.removeEventListener('resize', updateDropdownWidth)
+      window.removeEventListener('resize', handleResize)
     }
-  }, [])
+    }, [updateDropdownWidth])
+
+  const handleExploreTextRef = useCallback(
+    (node: HTMLSpanElement | null) => {
+      dropdownTextResizeObserver.current?.disconnect()
+
+      if (node) {
+        exploreVisibleTextRef.current = node
+
+        if (typeof ResizeObserver !== 'undefined') {
+          dropdownTextResizeObserver.current = new ResizeObserver(() => {
+            updateDropdownWidth()
+          })
+          dropdownTextResizeObserver.current.observe(node)
+        }
+
+        if (typeof window !== 'undefined' && typeof window.requestAnimationFrame === 'function') {
+          window.requestAnimationFrame(() => {
+            updateDropdownWidth()
+          })
+        } else {
+          updateDropdownWidth()
+        }
+      } else {
+        exploreVisibleTextRef.current = null
+      }
+    },
+    [updateDropdownWidth]
+  );
 
   return (
     <div className="min-h-screen luxury-gradient relative overflow-hidden">
@@ -184,21 +216,11 @@ export default function HomePage() {
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.5 }}
                         className="inline-block bg-gradient-to-r from-luxury-accent to-luxury-accent-light bg-clip-text text-transparent whitespace-nowrap"
+                        ref={handleExploreTextRef}
                       >
                         {exploreTexts[currentExploreText]}
                       </motion.span>
                     </AnimatePresence>
-                    <div
-                      ref={exploreMeasureContainerRef}
-                      aria-hidden
-                      className="absolute left-0 top-0 opacity-0 pointer-events-none select-none text-3xl md:text-4xl font-playfair font-semibold"
-                    >
-                      {exploreTexts.map((text) => (
-                        <span key={text} className="block whitespace-nowrap">
-                          {text}
-                        </span>
-                      ))}
-                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -210,7 +232,7 @@ export default function HomePage() {
                     initial={{ opacity: 0, scale: 0.95, y: -10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                    className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white/90 backdrop-blur-sm rounded-lg luxury-shadow z-10"
+                    className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white/90 backdrop-blur-sm rounded-lg luxury-shadow z-10 text-left"
                     style=
                       dropdownWidth
                         ? { width: `${dropdownWidth}px`, minWidth: `${dropdownWidth}px` }
