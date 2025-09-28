@@ -196,8 +196,8 @@ export default function HomePage() {
           
           {/* Rotating Explore Section */}
           <div className="mb-12">
-            <div 
-              className="relative inline-block cursor-pointer"
+            <div
+              className="relative flex w-full flex-col items-center cursor-pointer"
               onMouseEnter={() => setIsDropdownOpen(true)}
               onMouseLeave={() => setIsDropdownOpen(false)}
             >
