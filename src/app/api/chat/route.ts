@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
       // Get initial response from AI
       const openai = getOpenAI()
       const completion = await openai.chat.completions.create({
-        model: 'gpt-4',
+        model: 'gpt-5-nano',
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: 'Hello, I\'m ready to start this session.' }
@@ -101,7 +101,7 @@ export async function POST(request: NextRequest) {
 
       const openai = getOpenAI()
       const completion = await openai.chat.completions.create({
-        model: 'gpt-4',
+        model: 'gpt-5-nano',
         messages: openaiMessages,
         max_tokens: 1000,
         temperature: 0.7,
