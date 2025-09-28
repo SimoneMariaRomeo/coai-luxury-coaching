@@ -8,7 +8,7 @@ const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfa
 
 export const metadata: Metadata = {
   title: 'CoAI',
-  description: 'Transform your leadership and communication skills with personalized AI coaching and learning sessions.',
+  description: 'Transform your leadership with personalized AI coaching and learning sessions.',
 }
 
 export default function RootLayout({
