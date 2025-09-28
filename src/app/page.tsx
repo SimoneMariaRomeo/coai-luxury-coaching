@@ -97,12 +97,12 @@ export default function HomePage() {
             <span className="gold-text">CoAI</span>
           </h1>
           <p className="text-xl md:text-2xl text-luxury-text-light mb-8 font-light">
-            Transform your leadership and communication skills with personalized AI coaching sessions
+            Transform your leadership with personalized AI coaching and learning sessions
           </p>
           
           {/* CTA Button */}
           <div className="mb-12">
-            <Link href="/topics/leadership/sessions/reflect-ideal-leader">
+            <Link href="/generic-coaching">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -154,7 +154,7 @@ export default function HomePage() {
                     initial={{ opacity: 0, scale: 0.95, y: -10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                    className="absolute top-full left-0 mt-4 bg-white/90 backdrop-blur-sm rounded-lg luxury-shadow min-w-[250px] z-10"
+                    className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white/90 backdrop-blur-sm rounded-lg luxury-shadow min-w-[250px] z-10"
                   >
                     {topics.map((topic, index) => (
                       <Link key={topic.id} href={`/topics/${topic.id}`}>
@@ -178,17 +178,6 @@ export default function HomePage() {
           </div>
         </motion.div>
 
-        {/* Footer */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-20 text-center text-luxury-text-light"
-        >
-          <p className="text-sm">
-            Powered by advanced AI • Designed for executive excellence
-          </p>
-        </motion.div>
       </div>
     </div>
   )

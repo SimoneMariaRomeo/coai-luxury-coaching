@@ -18,7 +18,12 @@ export async function POST(request: NextRequest) {
 
     if (action === 'start') {
       // Load session prompt
-      const sessionPromptPath = join(process.cwd(), 'src', 'system-prompts', topicId, `${sessionId}.txt`)
+      let sessionPromptPath
+      if (topicId === 'generic-coaching') {
+        sessionPromptPath = join(process.cwd(), 'src', 'system-prompts', 'general-coaching.txt')
+      } else {
+        sessionPromptPath = join(process.cwd(), 'src', 'system-prompts', topicId, `${sessionId}.txt`)
+      }
       const stylePromptPath = join(process.cwd(), 'src', 'styles', 'coaching.txt') // Default to coaching
       
       let sessionPrompt = ''
@@ -59,7 +64,12 @@ export async function POST(request: NextRequest) {
 
     } else if (action === 'message') {
       // Continue conversation
-      const sessionPromptPath = join(process.cwd(), 'src', 'system-prompts', topicId, `${sessionId}.txt`)
+      let sessionPromptPath
+      if (topicId === 'generic-coaching') {
+        sessionPromptPath = join(process.cwd(), 'src', 'system-prompts', 'general-coaching.txt')
+      } else {
+        sessionPromptPath = join(process.cwd(), 'src', 'system-prompts', topicId, `${sessionId}.txt`)
+      }
       const stylePromptPath = join(process.cwd(), 'src', 'styles', 'coaching.txt')
       
       let sessionPrompt = ''
