@@ -154,7 +154,7 @@ export default function HomePage() {
                 <Link key={topic.id} href={`/topics/${topic.id}`}>
                   <motion.div
                     whileHover={{ scale: 1.02 }}
-                    className="py-2 px-3 rounded-md hover:bg-luxury-accent/10 transition-colors cursor-pointer"
+                    className="py-2 px-3 rounded-md hover:bg-luxury-accent/10 transition-colors cursor-pointer text-center"
                   >
                     {topic.title}
                   </motion.div>
@@ -207,24 +207,20 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="text-3xl md:text-4xl font-playfair font-semibold"
               >
-                <div className="grid grid-cols-2 gap-8 items-center">
-                  <div className="text-right">
-                    <span className="text-luxury-text">Or explore</span>
-                  </div>
-                  <div className="text-left">
-                    <AnimatePresence mode="wait">
-                      <motion.span
-                        key={currentExploreText}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.5 }}
-                        className="inline-block bg-gradient-to-r from-luxury-accent to-luxury-accent-light bg-clip-text text-transparent whitespace-nowrap"
-                      >
-                        {exploreTexts[currentExploreText]}
-                      </motion.span>
-                    </AnimatePresence>
-                  </div>
+                <div className="flex flex-col items-center gap-4 text-center">
+                  <span className="text-luxury-text">Or explore</span>
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={currentExploreText}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.5 }}
+                      className="inline-block bg-gradient-to-r from-luxury-accent to-luxury-accent-light bg-clip-text text-transparent whitespace-nowrap"
+                    >
+                      {exploreTexts[currentExploreText]}
+                    </motion.span>
+                  </AnimatePresence>
                 </div>
               </motion.div>
 
@@ -246,12 +242,12 @@ export default function HomePage() {
                       <Link key={topic.id} href={`/topics/${topic.id}`}>
                         <motion.div
                           whileHover={{ scale: 1.02 }}
-                          className="p-4 border-b border-luxury-light-gray/20 last:border-b-0 hover:bg-luxury-accent/10 transition-colors cursor-pointer text-left"
+                          className="p-4 border-b border-luxury-light-gray/20 last:border-b-0 hover:bg-luxury-accent/10 transition-colors cursor-pointer text-center"
                         >
-                          <h3 className="font-playfair font-semibold text-luxury-text text-left">
+                          <h3 className="font-playfair font-semibold text-luxury-text text-center">
                             {topic.title}
                           </h3>
-                          <p className="text-sm text-luxury-text-light mt-1 text-left">
+                          <p className="text-sm text-luxury-text-light mt-1 text-center">
                             {topic.description}
                           </p>
                         </motion.div>
