@@ -1,6 +1,6 @@
 {
   "apiKey": "OPENAI_API_KEY",
-  "model": "gpt-5-nano",
+  "model": "gpt-4o-mini",
   "topics": {
     "leadership": {
       "title": "Leadership Excellence",

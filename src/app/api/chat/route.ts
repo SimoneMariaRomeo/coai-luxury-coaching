@@ -5,6 +5,57 @@ import OpenAI from 'openai'
 
 const FALLBACK_NOTE = 'Offline mode: live coaching responses are temporarily unavailable.'
 
+let cachedApiKey: string | null | undefined
+const RETRYABLE_ERROR_CODES = new Set(['ETIMEDOUT', 'ECONNRESET', 'EAI_AGAIN'])
+const MAX_COMPLETION_RETRIES = 2
+const RETRY_DELAY_MS = 600
+
+const DEFAULT_CHAT_MODEL = process.env.OPENAI_CHAT_MODEL?.trim()
+  || process.env.OPENAI_MODEL?.trim()
+  || process.env.NEXT_PUBLIC_OPENAI_CHAT_MODEL?.trim()
+  || 'gpt-4o-mini'
+
+
+function resolveOpenAIKey() {
+  if (typeof cachedApiKey !== 'undefined') {
+    return cachedApiKey
+  }
+
+  const directKey = process.env.OPENAI_API_KEY?.trim()
+  if (directKey) {
+    cachedApiKey = directKey
+    return cachedApiKey
+  }
+
+  try {
+    const secretsPath = join(process.cwd(), 'secrets.env')
+    const file = readFileSync(secretsPath, 'utf-8')
+    const lines = file.split(/\r?\n/)
+
+    for (const line of lines) {
+      const match = line.match(/^\s*([A-Za-z0-9_]+)\s*=\s*(.+)\s*$/)
+      if (!match) {
+        continue
+      }
+      const [, key, rawValue] = match
+      if (key !== 'OPENAI_API_KEY') {
+        continue
+      }
+      const cleaned = rawValue.replace(/^['"]|['"]$/g, '').trim()
+      if (cleaned) {
+        cachedApiKey = cleaned
+        return cachedApiKey
+      }
+    }
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'unknown error'
+    console.warn(`Unable to read secrets.env for OPENAI_API_KEY: ${message}`)
+  }
+
+  cachedApiKey = null
+  return cachedApiKey
+}
+
 function extractGuidance(prompt: string) {
   const bulletPattern = /^[-*]\s+/
   const numberedPattern = /^\d+[.)]?\s+/
@@ -46,7 +97,7 @@ function buildFallbackFollowUpResponse(sessionPrompt: string, userMessage: strin
   ].join('\n\n')
 }
 
-async function createCompletion(openai: OpenAI | null, payload: Parameters<OpenAI['chat']['completions']['create']>[0]) {
+async function createCompletion(openai: OpenAI | null, payload: Parameters<OpenAI['chat']['completions']['create']>[0], attempt = 0): Promise<string | null> {
   if (!openai) {
     return null
   }
@@ -60,22 +111,35 @@ async function createCompletion(openai: OpenAI | null, payload: Parameters<OpenA
     const choice = (completion as { choices?: Array<{ message?: { content?: string } }> }).choices?.[0]
     return choice?.message?.content ?? null
   } catch (error) {
+    const errorCode = typeof error === 'object' && error !== null && 'code' in error ? String((error as any).code) : undefined
+
+    if (errorCode && RETRYABLE_ERROR_CODES.has(errorCode) && attempt < MAX_COMPLETION_RETRIES) {
+      console.warn(`OpenAI completion attempt ${attempt + 1} failed with ${errorCode}. Retrying...`)
+      await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS * (attempt + 1)))
+      return createCompletion(openai, payload, attempt + 1)
+    }
+
     console.error('OpenAI completion failed:', error)
     return null
   }
 }
 
 function getOpenAI() {
-  const apiKey = process.env.OPENAI_API_KEY
+  const apiKey = resolveOpenAIKey()
 
   if (!apiKey) {
-    console.warn('OPENAI_API_KEY environment variable is not set. Falling back to offline prompts.')
+    console.warn('OPENAI_API_KEY is not configured. Falling back to offline prompts.')
     return null
   }
 
-  return new OpenAI({
-    apiKey,
-  })
+  const baseURL = process.env.OPENAI_BASE_URL?.trim()
+  const clientOptions: ConstructorParameters<typeof OpenAI>[0] = { apiKey }
+
+  if (baseURL) {
+    clientOptions.baseURL = baseURL
+  }
+
+  return new OpenAI(clientOptions)
 }
 
 export async function POST(request: NextRequest) {
@@ -114,7 +178,7 @@ export async function POST(request: NextRequest) {
 
       const openai = getOpenAI()
       const aiResponse = await createCompletion(openai, {
-        model: 'gpt-5-nano',
+        model: DEFAULT_CHAT_MODEL,
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: "Hello, I'm ready to start this session." },
@@ -169,7 +233,7 @@ export async function POST(request: NextRequest) {
 
       const openai = getOpenAI()
       const aiResponse = await createCompletion(openai, {
-        model: 'gpt-5-nano',
+        model: DEFAULT_CHAT_MODEL,
         messages: openaiMessages,
         max_tokens: 1000,
         temperature: 0.7,
