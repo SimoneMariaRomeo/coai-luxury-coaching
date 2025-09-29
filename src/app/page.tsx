@@ -26,9 +26,9 @@ const DROPDOWN_HORIZONTAL_PADDING = 32
 export default function HomePage() {
   const [currentExploreText, setCurrentExploreText] = useState(0)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const [isNavOpen, setIsNavOpen] = useState(false)
   const measurementContainerRef = useRef<HTMLDivElement | null>(null)
   const [dropdownWidth, setDropdownWidth] = useState<number | null>(null)
+  const dropdownCardWidth = dropdownWidth ? Math.min(Math.max(dropdownWidth, 320), 420) : 320
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -126,45 +126,6 @@ export default function HomePage() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-luxury-accent opacity-10 rounded-full blur-3xl"></div>
       </div>
 
-      {/* Navigation Menu */}
-      <motion.nav 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="absolute top-6 right-6 z-50"
-      >
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => setIsNavOpen(!isNavOpen)}
-          className="bg-white/80 backdrop-blur-sm text-luxury-text px-4 py-2 rounded-lg font-semibold luxury-shadow"
-        >
-          Menu
-        </motion.button>
-        
-        <AnimatePresence>
-          {isNavOpen && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: -10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: -10 }}
-              className="absolute top-12 right-0 bg-white/90 backdrop-blur-sm rounded-lg p-4 luxury-shadow min-w-[200px]"
-            >
-              {topics.map((topic) => (
-                <Link key={topic.id} href={`/topics/${topic.id}`}>
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    className="py-2 px-3 rounded-md hover:bg-luxury-accent/10 transition-colors cursor-pointer text-center"
-                  >
-                    {topic.title}
-                  </motion.div>
-                </Link>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
-
       {/* Main Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-20">
         {/* Hero Section */}
@@ -231,28 +192,31 @@ export default function HomePage() {
                     initial={{ opacity: 0, scale: 0.95, y: -10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                    className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white/90 backdrop-blur-sm rounded-lg luxury-shadow z-10 text-left"
-                    style={
-                      dropdownWidth
-                        ? { width: `${dropdownWidth}px`, minWidth: `${dropdownWidth}px` }
-                        : undefined
-                    }
+                    className="absolute top-full left-0 right-0 mt-6 flex justify-center z-10"
                   >
-                    {topics.map((topic, index) => (
-                      <Link key={topic.id} href={`/topics/${topic.id}`}>
-                        <motion.div
-                          whileHover={{ scale: 1.02 }}
-                          className="p-4 border-b border-luxury-light-gray/20 last:border-b-0 hover:bg-luxury-accent/10 transition-colors cursor-pointer text-center"
-                        >
-                          <h3 className="font-playfair font-semibold text-luxury-text text-center">
-                            {topic.title}
-                          </h3>
-                          <p className="text-sm text-luxury-text-light mt-1 text-center">
-                            {topic.description}
-                          </p>
-                        </motion.div>
-                      </Link>
-                    ))}
+                    <div
+                      className="w-full max-w-[420px] bg-white/95 backdrop-blur-sm rounded-xl luxury-shadow text-center"
+                      style={{
+                        width: `${dropdownCardWidth}px`,
+                        maxWidth: 'calc(100vw - 3rem)',
+                      }}
+                    >
+                      {topics.map((topic, index) => (
+                        <Link key={topic.id} href={`/topics/${topic.id}`}>
+                          <motion.div
+                            whileHover={{ scale: 1.02 }}
+                            className="p-4 border-b border-luxury-light-gray/20 last:border-b-0 hover:bg-luxury-accent/10 transition-colors cursor-pointer text-center"
+                          >
+                            <h3 className="font-playfair font-semibold text-luxury-text text-center">
+                              {topic.title}
+                            </h3>
+                            <p className="text-sm text-luxury-text-light mt-1 text-center">
+                              {topic.description}
+                            </p>
+                          </motion.div>
+                        </Link>
+                      ))}
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>

@@ -3,12 +3,78 @@ import { readFileSync } from 'fs'
 import { join } from 'path'
 import OpenAI from 'openai'
 
-function getOpenAI() {
-  if (!process.env.OPENAI_API_KEY) {
-    throw new Error('OPENAI_API_KEY environment variable is not set')
+const FALLBACK_NOTE = 'Offline mode: live coaching responses are temporarily unavailable.'
+
+function extractGuidance(prompt: string) {
+  const bulletPattern = /^[-*]\s+/
+  const numberedPattern = /^\d+[.)]?\s+/
+
+  const lines = prompt
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+
+  const candidate =
+    lines.find((line) => bulletPattern.test(line)) ||
+    lines.find((line) => numberedPattern.test(line)) ||
+    lines.find((line) => line.length > 25) ||
+    lines[0] ||
+    'Take a moment to note what you hope to gain from this session.'
+
+  let cleaned = candidate.replace(bulletPattern, '')
+  cleaned = cleaned.replace(numberedPattern, '')
+
+  return cleaned.trim()
+}
+
+function buildFallbackStartResponse(sessionPrompt: string) {
+  const guidance = extractGuidance(sessionPrompt)
+  return [
+    "Let's get started while we reconnect.",
+    `Focus for now: ${guidance}`,
+    FALLBACK_NOTE,
+  ].join('\n\n')
+}
+
+function buildFallbackFollowUpResponse(sessionPrompt: string, userMessage: string) {
+  const guidance = extractGuidance(sessionPrompt)
+  return [
+    "Thanks for sharing that insight.",
+    `Keep reflecting on: ${guidance}`,
+    "Capture your thoughts locally and we'll sync once the connection returns.",
+    FALLBACK_NOTE,
+  ].join('\n\n')
+}
+
+async function createCompletion(openai: OpenAI | null, payload: Parameters<OpenAI['chat']['completions']['create']>[0]) {
+  if (!openai) {
+    return null
   }
+
+  try {
+    const completion = await openai.chat.completions.create({
+      ...payload,
+      stream: false,
+    })
+
+    const choice = (completion as { choices?: Array<{ message?: { content?: string } }> }).choices?.[0]
+    return choice?.message?.content ?? null
+  } catch (error) {
+    console.error('OpenAI completion failed:', error)
+    return null
+  }
+}
+
+function getOpenAI() {
+  const apiKey = process.env.OPENAI_API_KEY
+
+  if (!apiKey) {
+    console.warn('OPENAI_API_KEY environment variable is not set. Falling back to offline prompts.')
+    return null
+  }
+
   return new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey,
   })
 }
 
@@ -46,20 +112,22 @@ export async function POST(request: NextRequest) {
       // Combine prompts
       const systemPrompt = `${stylePrompt}\n\n${sessionPrompt}`
 
-      // Get initial response from AI
       const openai = getOpenAI()
-      const completion = await openai.chat.completions.create({
+      const aiResponse = await createCompletion(openai, {
         model: 'gpt-5-nano',
         messages: [
           { role: 'system', content: systemPrompt },
-          { role: 'user', content: 'Hello, I\'m ready to start this session.' }
+          { role: 'user', content: "Hello, I'm ready to start this session." },
         ],
         max_tokens: 1000,
         temperature: 0.7,
       })
 
+      const messageText = aiResponse ?? buildFallbackStartResponse(sessionPrompt)
+
       return NextResponse.json({
-        message: completion.choices[0].message.content
+        message: messageText,
+        fallback: aiResponse === null,
       })
 
     } else if (action === 'message') {
@@ -100,15 +168,18 @@ export async function POST(request: NextRequest) {
       ]
 
       const openai = getOpenAI()
-      const completion = await openai.chat.completions.create({
+      const aiResponse = await createCompletion(openai, {
         model: 'gpt-5-nano',
         messages: openaiMessages,
         max_tokens: 1000,
         temperature: 0.7,
       })
 
+      const messageText = aiResponse ?? buildFallbackFollowUpResponse(sessionPrompt, message ?? '')
+
       return NextResponse.json({
-        message: completion.choices[0].message.content
+        message: messageText,
+        fallback: aiResponse === null,
       })
     }
 

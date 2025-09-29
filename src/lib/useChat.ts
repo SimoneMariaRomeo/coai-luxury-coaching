@@ -37,14 +37,14 @@ export function useChat(topicId: string, sessionId: string) {
       }
 
       const data = await response.json()
-      
-      // Add the initial message from the AI
+      const isFallback = data.fallback === true
+
       setMessages([{
         role: 'assistant',
         content: data.message
       }])
 
-      toast.success('Session loaded successfully')
+      toast.success(isFallback ? 'Session loaded in offline mode' : 'Session loaded successfully')
     } catch (error) {
       console.error('Error loading session:', error)
       toast.error('Failed to load session. Please try again.')
@@ -81,12 +81,16 @@ export function useChat(topicId: string, sessionId: string) {
       }
 
       const data = await response.json()
-      
-      // Add AI response
+      const isFallback = data.fallback === true
+
       setMessages(prev => [...prev, {
         role: 'assistant',
         content: data.message
       }])
+
+      if (isFallback) {
+        toast((t) => 'Connection dropped. Sharing offline reflection cues so you can keep going.', { icon: '!' })
+      }
 
     } catch (error) {
       console.error('Error sending message:', error)

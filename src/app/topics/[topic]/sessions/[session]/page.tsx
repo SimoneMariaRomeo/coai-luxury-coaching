@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -17,7 +17,7 @@ export default function SessionPage() {
   const [session, setSession] = useState<any>(null)
   const [sessionIndex, setSessionIndex] = useState(0)
   
-  const { progress, updateProgress } = useProgressStore()
+  const markSessionStarted = useProgressStore((state) => state.markSessionStarted)
   const { messages, sendMessage, isLoading } = useChat(topicId, sessionId)
 
   useEffect(() => {
@@ -32,6 +32,29 @@ export default function SessionPage() {
       }
     }
   }, [topicId, sessionId])
+
+
+  const hasMarkedStarted = useRef(false)
+
+  useEffect(() => {
+    if (hasMarkedStarted.current) {
+      return
+    }
+
+    if (!topic || !session) {
+      return
+    }
+
+    if (messages.length === 0) {
+      return
+    }
+
+    markSessionStarted(topicId, sessionId, {
+      sessionTitle: session.title,
+      topicTitle: topic.title,
+    })
+    hasMarkedStarted.current = true
+  }, [topicId, sessionId, topic, session, messages, markSessionStarted])
 
   if (!topic || !session) {
     return (
@@ -62,11 +85,11 @@ export default function SessionPage() {
             <Link href="/" className="text-luxury-gold hover:text-luxury-gold-light transition-colors">
               Home
             </Link>
-            <span className="mx-2 text-luxury-text-muted">›</span>
+            <span className="mx-2 text-luxury-text-muted">&rsaquo;</span>
             <Link href={`/topics/${topicId}`} className="text-luxury-gold hover:text-luxury-gold-light transition-colors">
               {topic.title}
             </Link>
-            <span className="mx-2 text-luxury-text-muted">›</span>
+            <span className="mx-2 text-luxury-text-muted">&rsaquo;</span>
             <span className="text-luxury-text-light">{session.title}</span>
           </nav>
 

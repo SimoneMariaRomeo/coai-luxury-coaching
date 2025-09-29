@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
+import NavMenu from '@/components/NavMenu'
 
 export const metadata: Metadata = {
   title: 'CoAI',
@@ -15,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-luxury-dark text-luxury-text min-h-screen font-inter">
+        <NavMenu />
         {children}
         <Toaster
           position="top-right"
@@ -30,4 +32,3 @@ export default function RootLayout({
     </html>
   )
 }
-
