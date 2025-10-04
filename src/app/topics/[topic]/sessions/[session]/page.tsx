@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef, useMemo } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -9,35 +9,50 @@ import { useProgressStore } from '@/lib/store'
 import { useChat } from '@/lib/useChat'
 import { Toaster } from 'react-hot-toast'
 import config from '@/lib/config.json'
+import { useLanguageStore } from '@/lib/language'
+import { UI_COPY, getLocalizedTopic, getSessionTypeLabel } from '@/lib/translations'
+
+type TopicKey = keyof typeof config.topics
 
 export default function SessionPage() {
   const params = useParams()
   const router = useRouter()
-  const topicId = params.topic as string
+  const topicId = params.topic as TopicKey
   const sessionId = params.session as string
-  const [topic, setTopic] = useState<any>(null)
-  const [session, setSession] = useState<any>(null)
-  const [sessionIndex, setSessionIndex] = useState(0)
-
   const authSession = useSession()
   const isAuthenticated = Boolean(authSession?.user)
   const destinationPath = `/topics/${topicId}/sessions/${sessionId}`
-
   const markSessionStarted = useProgressStore((state) => state.markSessionStarted)
   const { messages, sendMessage, isLoading } = useChat(topicId, sessionId, { enabled: isAuthenticated })
+  const language = useLanguageStore((state) => state.language)
+  const copy = UI_COPY[language]
 
-  useEffect(() => {
-    if (topicId && config.topics[topicId as keyof typeof config.topics]) {
-      const topicData = config.topics[topicId as keyof typeof config.topics]
-      setTopic(topicData)
-
-      const sessionData = topicData.sessions.find((s: any) => s.id === sessionId)
-      if (sessionData) {
-        setSession(sessionData)
-        setSessionIndex(topicData.sessions.findIndex((s: any) => s.id === sessionId))
-      }
+  const topic = useMemo(() => {
+    if (!topicId) {
+      return null
     }
-  }, [topicId, sessionId])
+    return getLocalizedTopic(topicId, language)
+  }, [topicId, language])
+
+  const session = useMemo(() => {
+    if (!topic) {
+      return null
+    }
+    return topic.sessions.find((entry) => entry.id === sessionId) ?? null
+  }, [topic, sessionId])
+
+  const sessionIndex = useMemo(() => {
+    if (!topic) {
+      return -1
+    }
+    return topic.sessions.findIndex((entry) => entry.id === sessionId)
+  }, [topic, sessionId])
+
+  const totalSessions = topic?.sessions.length ?? 0
+  const currentSessionNumber = sessionIndex >= 0 ? sessionIndex + 1 : 0
+  const progressPercentage = totalSessions > 0 && currentSessionNumber > 0
+    ? (currentSessionNumber / totalSessions) * 100
+    : 0
 
   const hasMarkedStarted = useRef(false)
 
@@ -65,18 +80,18 @@ export default function SessionPage() {
     router.push(`/login?redirect=${encodeURIComponent(destinationPath)}`)
   }
 
-  if (!topic || !session) {
+  if (!topic || !session || sessionIndex === -1) {
     return (
       <div className="min-h-screen luxury-gradient flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-luxury-gold mx-auto mb-4"></div>
-          <p className="text-luxury-text-light">Loading session...</p>
+          <p className="text-luxury-text-light">{copy.common.loadingSession}</p>
         </div>
       </div>
     )
   }
 
-  const progressPercentage = ((sessionIndex + 1) / topic.sessions.length) * 100
+  const sessionTypeLabel = getSessionTypeLabel(session.type, language)
 
   return (
     <div className="min-h-screen luxury-gradient relative overflow-hidden">
@@ -92,20 +107,20 @@ export default function SessionPage() {
           {/* Breadcrumbs */}
           <nav className="mb-6">
             <Link href="/" className="text-luxury-gold hover:text-luxury-gold-light transition-colors">
-              Home
+              {copy.common.home}
             </Link>
-            <span className="mx-2 text-luxury-text-muted">&rsaquo;</span>
+            <span className="mx-2 text-luxury-text-muted">›</span>
             <Link href={`/topics/${topicId}`} className="text-luxury-gold hover:text-luxury-gold-light transition-colors">
               {topic.title}
             </Link>
-            <span className="mx-2 text-luxury-text-muted">&rsaquo;</span>
+            <span className="mx-2 text-luxury-text-muted">›</span>
             <span className="text-luxury-text-light">{session.title}</span>
           </nav>
 
           {/* Progress Bar */}
           <div className="mb-8">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-luxury-text-light">Session {sessionIndex + 1} of {topic.sessions.length}</span>
+              <span className="text-sm text-luxury-text-light">{copy.session.progress(currentSessionNumber, totalSessions)}</span>
               <span className="text-sm text-luxury-gold">{Math.round(progressPercentage)}%</span>
             </div>
             <div className="w-full bg-luxury-text-muted/10 rounded-full h-2">
@@ -123,8 +138,8 @@ export default function SessionPage() {
             <h1 className="text-4xl md:text-6xl font-playfair font-bold mb-4">
               <span className="gold-text">{session.title}</span>
             </h1>
-            <p className="text-lg text-luxury-text-light capitalize">
-              {session.type} Session
+            <p className="text-lg text-luxury-text-light">
+              {sessionTypeLabel}
             </p>
           </div>
         </div>
@@ -136,16 +151,16 @@ export default function SessionPage() {
           <div className="glass-effect rounded-2xl p-8 luxury-shadow min-h-[600px] flex flex-col">
             {!isAuthenticated && (
               <div className="mb-6 rounded-xl border border-luxury-text-muted/30 bg-white/70 px-5 py-4 text-luxury-text">
-                <p className="text-base font-medium">Sign in to start this coaching session.</p>
+                <p className="text-base font-medium">{copy.common.signInToStartSpecific}</p>
                 <p className="text-sm text-luxury-text-muted mt-2">
-                  Your progress and conversation history stay synced once you are logged in.
+                  {copy.common.signInSyncHistory}
                 </p>
                 <button
                   type="button"
                   className="mt-4 inline-flex items-center gap-2 rounded-lg bg-luxury-gold px-4 py-2 text-sm font-semibold text-luxury-dark hover:bg-luxury-gold-light transition-colors"
                   onClick={handleRequireAuth}
                 >
-                  Go to sign in
+                  {copy.common.goToSignIn}
                 </button>
               </div>
             )}
@@ -191,7 +206,7 @@ export default function SessionPage() {
             <div className="flex space-x-4">
               <input
                 type="text"
-                placeholder={isAuthenticated ? 'Type your response...' : 'Sign in to respond...'}
+                placeholder={isAuthenticated ? copy.common.typeResponse : copy.common.signInToRespond}
                 className="flex-1 bg-luxury-text-muted/10 border border-luxury-text-muted/20 rounded-lg px-4 py-3 text-luxury-text placeholder-luxury-text-muted focus:outline-none focus:ring-2 focus:ring-luxury-gold disabled:cursor-not-allowed"
                 disabled={!isAuthenticated || isLoading}
                 onKeyPress={(e) => {
@@ -228,7 +243,7 @@ export default function SessionPage() {
                 disabled={!isAuthenticated || isLoading}
                 className="bg-luxury-gold text-luxury-dark px-6 py-3 rounded-lg font-semibold hover:bg-luxury-gold-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send
+                {copy.common.send}
               </button>
             </div>
           </div>

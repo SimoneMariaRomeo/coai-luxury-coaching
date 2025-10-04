@@ -1,28 +1,18 @@
 'use client'
 
-import { useState, useEffect, useRef, useLayoutEffect, useCallback } from 'react'
+import { useState, useEffect, useRef, useLayoutEffect, useCallback, useMemo } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import { useSession } from '@supabase/auth-helpers-react'
 import toast from 'react-hot-toast'
+import config from '@/lib/config.json'
+import { useLanguageStore } from '@/lib/language'
+import { UI_COPY, getLocalizedTopic, getHomeTopicDescription } from '@/lib/translations'
 
-const topics = [
-  {
-    id: 'leadership',
-    title: 'Leadership Excellence',
-    description: 'Master situational leadership to adapt your style to any team member\'s development stage.',
-    color: 'from-blue-500 to-purple-500'
-  },
-  {
-    id: 'feedback',
-    title: 'Feedback Mastery',
-    description: 'Develop radical candor skills to give and receive feedback that drives growth.',
-    color: 'from-green-500 to-teal-500'
-  }
-]
+type TopicKey = keyof typeof config.topics
 
-const exploreTexts = topics.map((topic) => topic.title)
+const HERO_TOPIC_IDS: TopicKey[] = ['leadership', 'feedback']
 
 const DROPDOWN_HORIZONTAL_PADDING = 32
 
@@ -34,14 +24,40 @@ export default function HomePage() {
   const router = useRouter()
   const session = useSession()
   const isAuthenticated = Boolean(session?.user)
+  const language = useLanguageStore((state) => state.language)
+  const copy = UI_COPY[language]
   const dropdownCardWidth = dropdownWidth ? Math.min(Math.max(dropdownWidth, 320), 420) : 320
 
+  const heroTopics = useMemo(() => {
+    return HERO_TOPIC_IDS.map((topicId) => {
+      const topic = getLocalizedTopic(topicId, language)
+      return {
+        id: topicId,
+        title: topic?.title ?? config.topics[topicId].title,
+        description:
+          getHomeTopicDescription(topicId, language)
+            ?? topic?.intro
+            ?? config.topics[topicId].intro,
+      }
+    })
+  }, [language])
+
+  const exploreTexts = useMemo(() => heroTopics.map((topic) => topic.title), [heroTopics])
+
   useEffect(() => {
+    setCurrentExploreText(0)
+  }, [language])
+
+  useEffect(() => {
+    if (exploreTexts.length === 0) {
+      return
+    }
+
     const interval = setInterval(() => {
       setCurrentExploreText((prev) => (prev + 1) % exploreTexts.length)
     }, 3000)
     return () => clearInterval(interval)
-  }, []);
+  }, [exploreTexts])
 
   const updateDropdownWidth = useCallback(() => {
     const measurementContainer = measurementContainerRef.current
@@ -106,7 +122,7 @@ export default function HomePage() {
       window.removeEventListener('resize', handleResize)
       resizeObserver?.disconnect()
     }
-  }, [updateDropdownWidth])
+  }, [updateDropdownWidth, exploreTexts])
 
   return (
     <div className="min-h-screen luxury-gradient relative overflow-hidden">
@@ -145,7 +161,7 @@ export default function HomePage() {
             <span className="gold-text">CoAI</span>
           </h1>
           <p className="text-xl md:text-2xl text-luxury-text-light mb-8 font-light">
-            Transform your leadership with personalized AI coaching and learning sessions
+            {copy.home.subtitle}
           </p>
           
           {/* CTA Button */}
@@ -157,7 +173,7 @@ export default function HomePage() {
               className="bg-luxury-gold text-luxury-dark px-12 py-4 rounded-lg text-xl font-semibold luxury-shadow hover:shadow-2xl transition-all duration-300"
               onClick={() => {
                 if (!isAuthenticated) {
-                  toast.error('Sign in to start a coaching session.')
+                  toast.error(copy.home.signInToast)
                   router.push(`/login?redirect=${encodeURIComponent('/generic-coaching')}`)
                   return
                 }
@@ -165,7 +181,7 @@ export default function HomePage() {
                 router.push('/generic-coaching')
               }}
             >
-              Get Coached
+              {copy.home.getCoached}
             </motion.button>
           </div>
           
@@ -183,10 +199,10 @@ export default function HomePage() {
                 className="text-3xl md:text-4xl font-playfair font-semibold"
               >
                 <div className="flex flex-col items-center gap-4 text-center">
-                  <span className="text-luxury-text">Or explore</span>
+                  <span className="text-luxury-text">{copy.home.explorePrefix}</span>
                   <AnimatePresence mode="wait">
                     <motion.span
-                      key={currentExploreText}
+                      key={exploreTexts[currentExploreText] ?? currentExploreText}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
@@ -215,7 +231,7 @@ export default function HomePage() {
                         maxWidth: 'calc(100vw - 3rem)',
                       }}
                     >
-                      {topics.map((topic, index) => (
+                      {heroTopics.map((topic) => (
                         <Link key={topic.id} href={`/topics/${topic.id}`}>
                           <motion.div
                             whileHover={{ scale: 1.02 }}
@@ -242,4 +258,5 @@ export default function HomePage() {
     </div>
   )
 }
+
 

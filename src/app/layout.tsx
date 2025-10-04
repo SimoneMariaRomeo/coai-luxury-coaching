@@ -4,6 +4,7 @@ import type { ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
 import NavMenu from '@/components/NavMenu'
 import SupabaseProvider from '@/components/providers/SupabaseProvider'
+import LanguageHydrator from '@/components/LanguageHydrator'
 
 export const metadata: Metadata = {
   title: 'CoAI',
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-luxury-dark text-luxury-text min-h-screen font-inter">
         <SupabaseProvider>
+          <LanguageHydrator />
           <NavMenu />
           {children}
           <Toaster

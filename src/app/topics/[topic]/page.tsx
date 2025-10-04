@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useMemo } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -9,21 +9,27 @@ import { useSession } from '@supabase/auth-helpers-react'
 import toast from 'react-hot-toast'
 import config from '@/lib/config.json'
 import { useProgressStore } from '@/lib/store'
+import { useLanguageStore } from '@/lib/language'
+import { UI_COPY, getLocalizedTopic, getSessionTypeLabel } from '@/lib/translations'
+
+type TopicKey = keyof typeof config.topics
 
 export default function TopicPage() {
   const params = useParams()
-  const topicId = params.topic as string
-  const [topic, setTopic] = useState<any>(null)
+  const topicId = params.topic as TopicKey
   const topicProgress = useProgressStore((state) => state.progress[topicId] ?? {})
   const router = useRouter()
   const session = useSession()
   const isAuthenticated = Boolean(session?.user)
+  const language = useLanguageStore((state) => state.language)
+  const copy = UI_COPY[language]
 
-  useEffect(() => {
-    if (topicId && config.topics[topicId as keyof typeof config.topics]) {
-      setTopic(config.topics[topicId as keyof typeof config.topics])
+  const topic = useMemo(() => {
+    if (!topicId) {
+      return null
     }
-  }, [topicId])
+    return getLocalizedTopic(topicId, language)
+  }, [topicId, language])
 
   const handleSessionNavigation = (targetSessionId: string) => {
     if (!topic) {
@@ -33,7 +39,7 @@ export default function TopicPage() {
     const destination = `/topics/${topicId}/sessions/${targetSessionId}`
 
     if (!isAuthenticated) {
-      toast.error('Sign in to start this coaching session.')
+      toast.error(copy.common.signInToStartSpecific)
       router.push(`/login?redirect=${encodeURIComponent(destination)}`)
       return
     }
@@ -46,7 +52,7 @@ export default function TopicPage() {
       <div className="min-h-screen luxury-gradient flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-luxury-gold mx-auto mb-4"></div>
-          <p className="text-luxury-text-light">Loading...</p>
+          <p className="text-luxury-text-light">{copy.common.loading}</p>
         </div>
       </div>
     )
@@ -64,10 +70,10 @@ export default function TopicPage() {
       <div className="relative z-10 pt-8 px-4">
         <nav className="max-w-6xl mx-auto">
           <Link href="/" className="text-luxury-gold hover:text-luxury-gold-light transition-colors">
-            Home
+            {copy.common.home}
           </Link>
-          <span className="mx-2 text-luxury-text-muted">&rsaquo;</span>
-          <span className="text-luxury-text-light capitalize">{topicId}</span>
+          <span className="mx-2 text-luxury-text-muted">›</span>
+          <span className="text-luxury-text-light">{topic.title}</span>
         </nav>
       </div>
 
@@ -95,7 +101,7 @@ export default function TopicPage() {
           className="w-full max-w-3xl mx-auto mb-16"
         >
           <h2 className="text-3xl font-playfair font-semibold text-center mb-8 text-luxury-text">
-            Learning Objectives
+            {copy.topic.learningObjectives}
           </h2>
           <motion.ol
             initial={{ opacity: 0, y: 20 }}
@@ -140,11 +146,11 @@ export default function TopicPage() {
               }
             }}
           >
-            Start Your Journey
+            {copy.topic.startJourney}
           </motion.button>
           {!isAuthenticated && (
             <p className="mt-4 text-sm text-luxury-text-light">
-              Sign in to begin personalized coaching sessions.
+              {copy.topic.signInHint}
             </p>
           )}
         </motion.div>
@@ -157,7 +163,7 @@ export default function TopicPage() {
           className="w-full max-w-4xl mx-auto mb-16"
         >
           <h2 className="text-3xl font-playfair font-semibold text-center mb-8 text-luxury-text">
-            Your Learning Journey
+            {copy.topic.journeyTitle}
           </h2>
           <div className="space-y-4">
             {topic.sessions.map((sessionItem: any, index: number) => {
@@ -171,10 +177,11 @@ export default function TopicPage() {
               const primaryButtonClass = isStarted || isCompleted
                 ? 'bg-luxury-gold text-luxury-dark border border-luxury-gold px-6 py-3 rounded-lg font-semibold luxury-shadow hover:shadow-2xl transition-all duration-300'
                 : 'bg-luxury-gold/20 text-luxury-gold border border-luxury-gold px-6 py-3 rounded-lg font-semibold hover:bg-luxury-gold hover:text-luxury-dark transition-all duration-300'
-              const buttonLabel = isCompleted ? 'Review Session' : isStarted ? 'Continue Session' : 'Start Session'
+              const buttonLabel = isCompleted ? copy.topic.review : isStarted ? copy.topic.continue : copy.topic.start
               const actionableButtonClass = isAuthenticated
                 ? primaryButtonClass
                 : 'bg-luxury-gold/20 text-luxury-gold border border-luxury-gold px-6 py-3 rounded-lg font-semibold transition-all duration-300 opacity-80'
+              const sessionTypeLabel = getSessionTypeLabel(sessionItem.type, language)
 
               return (
                 <motion.div
@@ -193,8 +200,8 @@ export default function TopicPage() {
                         <h3 className={`text-xl font-playfair font-semibold ${isUnlocked ? 'text-luxury-text' : 'text-luxury-text-muted'}`}>
                           {sessionItem.title}
                         </h3>
-                        <p className={`text-sm capitalize ${isUnlocked ? 'text-luxury-text-muted' : 'text-luxury-text-muted/70'}`}>
-                          {sessionItem.type} Session
+                        <p className={`text-sm ${isUnlocked ? 'text-luxury-text-muted' : 'text-luxury-text-muted/70'}`}>
+                          {sessionTypeLabel}
                         </p>
                       </div>
                     </div>
@@ -210,7 +217,7 @@ export default function TopicPage() {
                       </motion.button>
                     ) : (
                       <span className="inline-flex items-center px-6 py-3 rounded-lg font-semibold border border-dashed border-luxury-text-muted/40 text-luxury-text-muted/80 cursor-not-allowed">
-                        Locked
+                        {copy.topic.locked}
                       </span>
                     )}
                   </div>

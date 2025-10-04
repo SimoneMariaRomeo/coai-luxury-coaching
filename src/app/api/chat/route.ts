@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import OpenAI from 'openai'
-
-const FALLBACK_NOTE = 'Offline mode: live coaching responses are temporarily unavailable.'
+import { LANGUAGE_PROMPT_LABELS, type Language } from '@/lib/language-constants'
+import { UI_COPY } from '@/lib/translations'
 
 let cachedApiKey: string | null | undefined
 const RETRYABLE_ERROR_CODES = new Set(['ETIMEDOUT', 'ECONNRESET', 'EAI_AGAIN'])
@@ -15,6 +15,9 @@ const DEFAULT_CHAT_MODEL = process.env.OPENAI_CHAT_MODEL?.trim()
   || process.env.NEXT_PUBLIC_OPENAI_CHAT_MODEL?.trim()
   || 'gpt-4o-mini'
 
+function normalizeLanguage(input: unknown): Language {
+  return input === 'zh' ? 'zh' : 'en'
+}
 
 function resolveOpenAIKey() {
   if (typeof cachedApiKey !== 'undefined') {
@@ -78,23 +81,38 @@ function extractGuidance(prompt: string) {
   return cleaned.trim()
 }
 
-function buildFallbackStartResponse(sessionPrompt: string) {
+function buildFallbackStartResponse(sessionPrompt: string, language: Language) {
+  const copy = UI_COPY[language] ?? UI_COPY.en
   const guidance = extractGuidance(sessionPrompt)
   return [
-    "Let's get started while we reconnect.",
-    `Focus for now: ${guidance}`,
-    FALLBACK_NOTE,
+    copy.fallback.startIntro,
+    `${copy.fallback.focusPrefix} ${guidance}`,
+    copy.fallback.offlineNote,
   ].join('\n\n')
 }
 
-function buildFallbackFollowUpResponse(sessionPrompt: string, userMessage: string) {
+function buildFallbackFollowUpResponse(sessionPrompt: string, _userMessage: string, language: Language) {
+  const copy = UI_COPY[language] ?? UI_COPY.en
   const guidance = extractGuidance(sessionPrompt)
   return [
-    "Thanks for sharing that insight.",
-    `Keep reflecting on: ${guidance}`,
-    "Capture your thoughts locally and we'll sync once the connection returns.",
-    FALLBACK_NOTE,
+    copy.fallback.followThanks,
+    `${copy.fallback.followFocusPrefix} ${guidance}`,
+    copy.fallback.followCapture,
+    copy.fallback.offlineNote,
   ].join('\n\n')
+}
+
+function buildSystemPrompt(stylePrompt: string, sessionPrompt: string, language: Language) {
+  const promptLanguage = LANGUAGE_PROMPT_LABELS[language] ?? LANGUAGE_PROMPT_LABELS.en
+  const cleanedStyle = stylePrompt.trim()
+  const cleanedSession = sessionPrompt.trim()
+  const parts = [
+    cleanedStyle,
+    cleanedSession,
+    `Write in ${promptLanguage} unless the user asks differently.`,
+  ].filter(Boolean)
+
+  return parts.join('\n\n')
 }
 
 async function createCompletion(openai: OpenAI | null, payload: Parameters<OpenAI['chat']['completions']['create']>[0], attempt = 0): Promise<string | null> {
@@ -126,7 +144,6 @@ async function createCompletion(openai: OpenAI | null, payload: Parameters<OpenA
 
 function getOpenAI() {
   const apiKey = resolveOpenAIKey()
-
   if (!apiKey) {
     console.warn('OPENAI_API_KEY is not configured. Falling back to offline prompts.')
     return null
@@ -144,7 +161,8 @@ function getOpenAI() {
 
 export async function POST(request: NextRequest) {
   try {
-    const { topicId, sessionId, action, message, messages } = await request.json()
+    const { topicId, sessionId, action, message, messages, language } = await request.json()
+    const normalizedLanguage = normalizeLanguage(language)
 
     if (action === 'start') {
       // Load session prompt
@@ -173,8 +191,7 @@ export async function POST(request: NextRequest) {
         // Continue without style prompt
       }
 
-      // Combine prompts
-      const systemPrompt = `${stylePrompt}\n\n${sessionPrompt}`
+      const systemPrompt = buildSystemPrompt(stylePrompt, sessionPrompt, normalizedLanguage)
 
       const openai = getOpenAI()
       const aiResponse = await createCompletion(openai, {
@@ -187,7 +204,7 @@ export async function POST(request: NextRequest) {
         temperature: 0.7,
       })
 
-      const messageText = aiResponse ?? buildFallbackStartResponse(sessionPrompt)
+      const messageText = aiResponse ?? buildFallbackStartResponse(sessionPrompt, normalizedLanguage)
 
       return NextResponse.json({
         message: messageText,
@@ -220,15 +237,15 @@ export async function POST(request: NextRequest) {
         console.error('Error reading style prompt:', error)
       }
 
-      const systemPrompt = `${stylePrompt}\n\n${sessionPrompt}`
+      const systemPrompt = buildSystemPrompt(stylePrompt, sessionPrompt, normalizedLanguage)
 
-      // Convert messages to OpenAI format
+      const safeMessages = Array.isArray(messages) ? messages : []
       const openaiMessages = [
         { role: 'system', content: systemPrompt },
-        ...messages.map((msg: any) => ({
+        ...safeMessages.map((msg: any) => ({
           role: msg.role,
-          content: msg.content
-        }))
+          content: msg.content,
+        })),
       ]
 
       const openai = getOpenAI()
@@ -239,7 +256,7 @@ export async function POST(request: NextRequest) {
         temperature: 0.7,
       })
 
-      const messageText = aiResponse ?? buildFallbackFollowUpResponse(sessionPrompt, message ?? '')
+      const messageText = aiResponse ?? buildFallbackFollowUpResponse(sessionPrompt, message ?? '', normalizedLanguage)
 
       return NextResponse.json({
         message: messageText,
@@ -254,4 +271,3 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
-

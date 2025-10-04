@@ -6,6 +6,8 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useChat } from '@/lib/useChat'
 import { Toaster } from 'react-hot-toast'
+import { useLanguageStore } from '@/lib/language'
+import { UI_COPY } from '@/lib/translations'
 
 export default function GenericCoachingPage() {
   const session = useSession()
@@ -13,6 +15,8 @@ export default function GenericCoachingPage() {
   const isAuthenticated = Boolean(session?.user)
   const destinationPath = '/generic-coaching'
   const { messages, sendMessage, isLoading } = useChat('generic-coaching', 'general-coaching', { enabled: isAuthenticated })
+  const language = useLanguageStore((state) => state.language)
+  const copy = UI_COPY[language]
 
   const handleRequireAuth = () => {
     router.push(`/login?redirect=${encodeURIComponent(destinationPath)}`)
@@ -33,19 +37,19 @@ export default function GenericCoachingPage() {
           {/* Breadcrumbs */}
           <nav className="mb-6">
             <Link href="/" className="text-luxury-gold hover:text-luxury-gold-light transition-colors">
-              Home
+              {copy.common.home}
             </Link>
-            <span className="mx-2 text-luxury-text-muted">â€º</span>
-            <span className="text-luxury-text-light">Generic Coaching Session</span>
+            <span className="mx-2 text-luxury-text-muted">›</span>
+            <span className="text-luxury-text-light">{copy.generic.title}</span>
           </nav>
 
           {/* Session Header */}
           <div className="text-center mb-8">
             <h1 className="text-4xl md:text-6xl font-playfair font-bold mb-4">
-              <span className="gold-text">Generic Coaching Session</span>
+              <span className="gold-text">{copy.generic.title}</span>
             </h1>
             <p className="text-lg text-luxury-text-muted">
-              Personalized AI coaching session
+              {copy.generic.subtitle}
             </p>
           </div>
         </div>
@@ -57,16 +61,16 @@ export default function GenericCoachingPage() {
           <div className="glass-effect rounded-2xl p-8 luxury-shadow min-h-[600px] flex flex-col">
             {!isAuthenticated && (
               <div className="mb-6 rounded-xl border border-luxury-text-muted/30 bg-white/70 px-5 py-4 text-luxury-text">
-                <p className="text-base font-medium">Sign in to start a coaching session.</p>
+                <p className="text-base font-medium">{copy.common.signInToStart}</p>
                 <p className="text-sm text-luxury-text-muted mt-2">
-                  Sign in so we can keep your reflections and follow-ups synced.
+                  {copy.common.signInSyncNote}
                 </p>
                 <button
                   type="button"
                   className="mt-4 inline-flex items-center gap-2 rounded-lg bg-luxury-gold px-4 py-2 text-sm font-semibold text-luxury-dark hover:bg-luxury-gold-light transition-colors"
                   onClick={handleRequireAuth}
                 >
-                  Go to sign in
+                  {copy.common.goToSignIn}
                 </button>
               </div>
             )}
@@ -112,7 +116,7 @@ export default function GenericCoachingPage() {
             <div className="flex space-x-4">
               <input
                 type="text"
-                placeholder={isAuthenticated ? 'Type your response...' : 'Sign in to respond...'}
+                placeholder={isAuthenticated ? copy.common.typeResponse : copy.common.signInToRespond}
                 className="flex-1 bg-luxury-text-muted/10 border border-luxury-text-muted/20 rounded-lg px-4 py-3 text-luxury-text placeholder-luxury-text-muted focus:outline-none focus:ring-2 focus:ring-luxury-gold disabled:cursor-not-allowed"
                 disabled={!isAuthenticated || isLoading}
                 onKeyPress={(e) => {
@@ -149,7 +153,7 @@ export default function GenericCoachingPage() {
                 disabled={!isAuthenticated || isLoading}
                 className="bg-luxury-gold text-luxury-dark px-6 py-3 rounded-lg font-semibold hover:bg-luxury-gold-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send
+                {copy.common.send}
               </button>
             </div>
           </div>
@@ -160,3 +164,4 @@ export default function GenericCoachingPage() {
     </div>
   )
 }
+

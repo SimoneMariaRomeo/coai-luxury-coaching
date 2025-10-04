@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import toast from 'react-hot-toast'
+import { useLanguageStore } from './language'
+import { UI_COPY } from './translations'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -14,6 +16,8 @@ export function useChat(topicId: string, sessionId: string, options?: UseChatOpt
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const enabled = options?.enabled ?? true
+  const language = useLanguageStore((state) => state.language)
+  const copy = UI_COPY[language]
 
   useEffect(() => {
     if (!enabled) {
@@ -24,7 +28,7 @@ export function useChat(topicId: string, sessionId: string, options?: UseChatOpt
     loadSessionPrompt()
     // intentionally disable exhaustive-deps because loadSessionPrompt is stable within this scope
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [topicId, sessionId, enabled])
+  }, [topicId, sessionId, enabled, language])
 
   const loadSessionPrompt = async () => {
     if (!enabled) {
@@ -43,6 +47,7 @@ export function useChat(topicId: string, sessionId: string, options?: UseChatOpt
           topicId,
           sessionId,
           action: 'start',
+          language,
         }),
       })
 
@@ -60,10 +65,10 @@ export function useChat(topicId: string, sessionId: string, options?: UseChatOpt
         },
       ])
 
-      toast.success(isFallback ? 'Session loaded in offline mode' : 'Session loaded successfully')
+      toast.success(isFallback ? copy.chat.offlineLoaded : copy.chat.loaded)
     } catch (error) {
       console.error('Error loading session:', error)
-      toast.error('Failed to load session. Please try again.')
+      toast.error(copy.chat.loadFailed)
     } finally {
       setIsLoading(false)
     }
@@ -71,7 +76,7 @@ export function useChat(topicId: string, sessionId: string, options?: UseChatOpt
 
   const sendMessage = async (content: string) => {
     if (!enabled) {
-      toast.error('Please sign in to start a session.')
+      toast.error(copy.chat.signInRequired)
       return
     }
 
@@ -95,6 +100,7 @@ export function useChat(topicId: string, sessionId: string, options?: UseChatOpt
           action: 'message',
           message: content,
           messages: [...messages, userMessage],
+          language,
         }),
       })
 
@@ -114,11 +120,11 @@ export function useChat(topicId: string, sessionId: string, options?: UseChatOpt
       ])
 
       if (isFallback) {
-        toast((t) => 'Connection dropped. Sharing offline reflection cues so you can keep going.', { icon: '!' })
+        toast(copy.chat.offlineFallbackToast, { icon: '!' })
       }
     } catch (error) {
       console.error('Error sending message:', error)
-      toast.error('Failed to send message. Please try again.')
+      toast.error(copy.chat.sendFailed)
     } finally {
       setIsLoading(false)
     }
@@ -130,3 +136,4 @@ export function useChat(topicId: string, sessionId: string, options?: UseChatOpt
     isLoading,
   }
 }
+

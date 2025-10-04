@@ -1,32 +1,20 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import toast from 'react-hot-toast'
 import config from '@/lib/config.json'
 import { useProgressStore } from '@/lib/store'
+import { useLanguageStore, LANGUAGE_LOCALES } from '@/lib/language'
+import { UI_COPY, getLocalizedTopic, getSessionTitle } from '@/lib/translations'
+import type { Language } from '@/lib/language'
 
-const topics = Object.entries(config.topics).map(([id, topic]) => ({
-  id,
-  title: topic.title,
-}))
 
-const formatDate = (isoDate?: string) => {
-  if (!isoDate) {
-    return ''
-  }
+type TopicKey = keyof typeof config.topics
 
-  try {
-    return new Intl.DateTimeFormat('en-US', {
-      month: 'short',
-      day: 'numeric',
-    }).format(new Date(isoDate))
-  } catch (error) {
-    return ''
-  }
-}
+const topicKeys = Object.keys(config.topics) as TopicKey[]
 
 export function NavMenu() {
   const [isOpen, setIsOpen] = useState(false)
@@ -35,6 +23,35 @@ export function NavMenu() {
   const supabase = useSupabaseClient()
   const session = useSession()
   const recentSessions = useProgressStore((state) => state.recentSessions)
+  const language = useLanguageStore((state) => state.language)
+  const setLanguage = useLanguageStore((state) => state.setLanguage)
+  const locale = LANGUAGE_LOCALES[language]
+  const copy = UI_COPY[language]
+
+  const localizedTopics = useMemo(() => {
+    return topicKeys.map((topicId) => {
+      const topic = getLocalizedTopic(topicId, language)
+      return {
+        id: topicId,
+        title: topic?.title ?? config.topics[topicId].title,
+      }
+    })
+  }, [language])
+
+  const formatDate = (isoDate?: string) => {
+    if (!isoDate) {
+      return ''
+    }
+
+    try {
+      return new Intl.DateTimeFormat(locale, {
+        month: 'short',
+        day: 'numeric',
+      }).format(new Date(isoDate))
+    } catch (error) {
+      return ''
+    }
+  }
 
   useEffect(() => {
     const handleClickAway = (event: MouseEvent) => {
@@ -71,9 +88,9 @@ export function NavMenu() {
       if (error) {
         throw error
       }
-      toast.success('Signed out successfully.')
+      toast.success(copy.nav.signOutSuccess)
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Unable to sign out.'
+      const message = error instanceof Error ? error.message : copy.nav.signOutError
       toast.error(message)
     } finally {
       setSigningOut(false)
@@ -82,6 +99,11 @@ export function NavMenu() {
   }
 
   const closeMenu = () => setIsOpen(false)
+
+  const languageOptions: Array<{ value: Language; label: string }> = [
+    { value: 'en', label: copy.language.english },
+    { value: 'zh', label: copy.language.chinese },
+  ]
 
   return (
     <motion.nav
@@ -99,7 +121,7 @@ export function NavMenu() {
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
-        Menu
+        {copy.nav.menu}
       </motion.button>
 
       <AnimatePresence>
@@ -112,7 +134,7 @@ export function NavMenu() {
             className="absolute top-12 right-0 w-[320px] max-w-[90vw] bg-white/95 backdrop-blur-lg rounded-xl luxury-shadow overflow-hidden"
           >
             <div className="px-5 py-4 border-b border-luxury-light-gray/30">
-              <p className="text-xs uppercase tracking-wide text-luxury-text-muted mb-3">Account</p>
+              <p className="text-xs uppercase tracking-wide text-luxury-text-muted mb-3">{copy.nav.account}</p>
               {session?.user ? (
                 <div className="space-y-3">
                   <div className="rounded-lg bg-white px-3 py-2 text-sm font-medium text-luxury-text truncate">
@@ -124,19 +146,19 @@ export function NavMenu() {
                     disabled={signingOut}
                     className="w-full rounded-lg border border-luxury-light-gray/40 bg-white/70 px-3 py-2 text-sm font-medium text-luxury-text transition hover:bg-luxury-accent/10 disabled:cursor-not-allowed disabled:opacity-70"
                   >
-                    {signingOut ? 'Signing out...' : 'Sign out'}
+                    {signingOut ? copy.nav.signingOut : copy.nav.signOut}
                   </button>
                 </div>
               ) : (
                 <div className="space-y-2">
                   <Link href="/login" onClick={closeMenu}>
                     <div className="rounded-lg px-3 py-2 text-sm font-medium text-luxury-text hover:bg-luxury-accent/10 transition-colors">
-                      Sign in
+                      {copy.nav.signIn}
                     </div>
                   </Link>
                   <Link href="/signup" onClick={closeMenu}>
                     <div className="rounded-lg px-3 py-2 text-sm font-medium text-luxury-text hover:bg-luxury-accent/10 transition-colors">
-                      Create account
+                      {copy.nav.createAccount}
                     </div>
                   </Link>
                 </div>
@@ -144,13 +166,33 @@ export function NavMenu() {
             </div>
 
             <div className="px-5 py-4 border-b border-luxury-light-gray/30">
-              <p className="text-xs uppercase tracking-wide text-luxury-text-muted mb-3">Learning Journeys</p>
+              <p className="text-xs uppercase tracking-wide text-luxury-text-muted mb-3">{copy.language.label}</p>
+              <div className="grid grid-cols-2 gap-2">
+                {languageOptions.map((option) => {
+                  const isActive = option.value === language
+                  return (
+                    <button
+                      key={option.value}
+                      type="button"
+                      onClick={() => setLanguage(option.value)}
+                      className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${isActive ? 'bg-luxury-gold text-luxury-dark luxury-shadow' : 'bg-white/70 text-luxury-text hover:bg-luxury-accent/10'}`}
+                      aria-pressed={isActive}
+                    >
+                      {option.label}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+
+            <div className="px-5 py-4 border-b border-luxury-light-gray/30">
+              <p className="text-xs uppercase tracking-wide text-luxury-text-muted mb-3">{copy.nav.learningJourneys}</p>
               <div className="space-y-2">
-                {topics.map((topic) => (
+                {localizedTopics.map((topic) => (
                   <Link key={topic.id} href={`/topics/${topic.id}`} onClick={closeMenu}>
                     <div className="flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium text-luxury-text hover:bg-luxury-accent/10 transition-colors">
                       <span>{topic.title}</span>
-                      <span className="text-luxury-gold text-xs">Explore</span>
+                      <span className="text-luxury-gold text-xs">{copy.nav.explore}</span>
                     </div>
                   </Link>
                 ))}
@@ -158,26 +200,30 @@ export function NavMenu() {
             </div>
 
             <div className="px-5 py-4">
-              <p className="text-xs uppercase tracking-wide text-luxury-text-muted mb-3">My Latest Sessions</p>
+              <p className="text-xs uppercase tracking-wide text-luxury-text-muted mb-3">{copy.nav.latestSessions}</p>
               {recentSessions.length === 0 ? (
-                <p className="text-sm text-luxury-text-muted">Start a session to see it appear here.</p>
+                <p className="text-sm text-luxury-text-muted">{copy.nav.emptySessions}</p>
               ) : (
                 <div className="space-y-2">
-                  {recentSessions.map((sessionItem) => (
-                    <Link
-                      key={`${sessionItem.topicId}-${sessionItem.sessionId}`}
-                      href={`/topics/${sessionItem.topicId}/sessions/${sessionItem.sessionId}`}
-                      onClick={closeMenu}
-                    >
-                      <div className="rounded-lg px-3 py-2 text-sm text-luxury-text hover:bg-luxury-accent/10 transition-colors">
-                        <p className="font-medium leading-tight">{sessionItem.sessionTitle}</p>
-                        <p className="text-xs text-luxury-text-muted mt-1 flex items-center justify-between">
-                          <span>{sessionItem.topicTitle}</span>
-                          <span>{formatDate(sessionItem.startedAt)}</span>
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
+                  {recentSessions.map((sessionItem) => {
+                    const topicTitle = getLocalizedTopic(sessionItem.topicId, language)?.title ?? sessionItem.topicTitle
+                    const sessionTitle = getSessionTitle(sessionItem.topicId, sessionItem.sessionId, language)
+                    return (
+                      <Link
+                        key={`${sessionItem.topicId}-${sessionItem.sessionId}`}
+                        href={`/topics/${sessionItem.topicId}/sessions/${sessionItem.sessionId}`}
+                        onClick={closeMenu}
+                      >
+                        <div className="rounded-lg px-3 py-2 text-sm text-luxury-text hover:bg-luxury-accent/10 transition-colors">
+                          <p className="font-medium leading-tight">{sessionTitle}</p>
+                          <p className="text-xs text-luxury-text-muted mt-1 flex items-center justify-between">
+                            <span>{topicTitle}</span>
+                            <span>{formatDate(sessionItem.startedAt)}</span>
+                          </p>
+                        </div>
+                      </Link>
+                    )
+                  })}
                 </div>
               )}
             </div>
