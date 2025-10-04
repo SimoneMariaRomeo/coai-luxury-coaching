@@ -1,9 +1,10 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useSession } from '@supabase/auth-helpers-react'
 import { useProgressStore } from '@/lib/store'
 import { useChat } from '@/lib/useChat'
 import { Toaster } from 'react-hot-toast'
@@ -11,20 +12,25 @@ import config from '@/lib/config.json'
 
 export default function SessionPage() {
   const params = useParams()
+  const router = useRouter()
   const topicId = params.topic as string
   const sessionId = params.session as string
   const [topic, setTopic] = useState<any>(null)
   const [session, setSession] = useState<any>(null)
   const [sessionIndex, setSessionIndex] = useState(0)
-  
+
+  const authSession = useSession()
+  const isAuthenticated = Boolean(authSession?.user)
+  const destinationPath = `/topics/${topicId}/sessions/${sessionId}`
+
   const markSessionStarted = useProgressStore((state) => state.markSessionStarted)
-  const { messages, sendMessage, isLoading } = useChat(topicId, sessionId)
+  const { messages, sendMessage, isLoading } = useChat(topicId, sessionId, { enabled: isAuthenticated })
 
   useEffect(() => {
     if (topicId && config.topics[topicId as keyof typeof config.topics]) {
       const topicData = config.topics[topicId as keyof typeof config.topics]
       setTopic(topicData)
-      
+
       const sessionData = topicData.sessions.find((s: any) => s.id === sessionId)
       if (sessionData) {
         setSession(sessionData)
@@ -32,7 +38,6 @@ export default function SessionPage() {
       }
     }
   }, [topicId, sessionId])
-
 
   const hasMarkedStarted = useRef(false)
 
@@ -55,6 +60,10 @@ export default function SessionPage() {
     })
     hasMarkedStarted.current = true
   }, [topicId, sessionId, topic, session, messages, markSessionStarted])
+
+  const handleRequireAuth = () => {
+    router.push(`/login?redirect=${encodeURIComponent(destinationPath)}`)
+  }
 
   if (!topic || !session) {
     return (
@@ -125,6 +134,22 @@ export default function SessionPage() {
       <div className="relative z-10 flex-1 px-4 pb-8">
         <div className="max-w-4xl mx-auto">
           <div className="glass-effect rounded-2xl p-8 luxury-shadow min-h-[600px] flex flex-col">
+            {!isAuthenticated && (
+              <div className="mb-6 rounded-xl border border-luxury-text-muted/30 bg-white/70 px-5 py-4 text-luxury-text">
+                <p className="text-base font-medium">Sign in to start this coaching session.</p>
+                <p className="text-sm text-luxury-text-muted mt-2">
+                  Your progress and conversation history stay synced once you are logged in.
+                </p>
+                <button
+                  type="button"
+                  className="mt-4 inline-flex items-center gap-2 rounded-lg bg-luxury-gold px-4 py-2 text-sm font-semibold text-luxury-dark hover:bg-luxury-gold-light transition-colors"
+                  onClick={handleRequireAuth}
+                >
+                  Go to sign in
+                </button>
+              </div>
+            )}
+
             {/* Messages */}
             <div className="flex-1 space-y-6 mb-8 overflow-y-auto">
               {messages.map((message, index) => (
@@ -136,15 +161,15 @@ export default function SessionPage() {
                   className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div className={`max-w-[80%] p-4 rounded-2xl ${
-                    message.role === 'user' 
-                      ? 'bg-luxury-gold text-luxury-dark' 
+                    message.role === 'user'
+                      ? 'bg-luxury-gold text-luxury-dark'
                       : 'bg-luxury-text-muted/10 text-luxury-text'
                   }`}>
                     <p className="whitespace-pre-wrap">{message.content}</p>
                   </div>
                 </motion.div>
               ))}
-              
+
               {isLoading && (
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -166,10 +191,16 @@ export default function SessionPage() {
             <div className="flex space-x-4">
               <input
                 type="text"
-                placeholder="Type your response..."
-                className="flex-1 bg-luxury-text-muted/10 border border-luxury-text-muted/20 rounded-lg px-4 py-3 text-luxury-text placeholder-luxury-text-muted focus:outline-none focus:ring-2 focus:ring-luxury-gold"
+                placeholder={isAuthenticated ? 'Type your response...' : 'Sign in to respond...'}
+                className="flex-1 bg-luxury-text-muted/10 border border-luxury-text-muted/20 rounded-lg px-4 py-3 text-luxury-text placeholder-luxury-text-muted focus:outline-none focus:ring-2 focus:ring-luxury-gold disabled:cursor-not-allowed"
+                disabled={!isAuthenticated || isLoading}
                 onKeyPress={(e) => {
                   if (e.key === 'Enter' && !isLoading) {
+                    if (!isAuthenticated) {
+                      handleRequireAuth()
+                      return
+                    }
+
                     sendMessage(e.currentTarget.value)
                     e.currentTarget.value = ''
                   }
@@ -177,14 +208,25 @@ export default function SessionPage() {
               />
               <button
                 onClick={() => {
-                  const input = document.querySelector('input')
-                  if (input && !isLoading) {
-                    sendMessage(input.value)
-                    input.value = ''
+                  const input = document.querySelector<HTMLInputElement>('input[type="text"]')
+                  if (!input) {
+                    return
                   }
+
+                  if (!isAuthenticated) {
+                    handleRequireAuth()
+                    return
+                  }
+
+                  if (isLoading) {
+                    return
+                  }
+
+                  sendMessage(input.value)
+                  input.value = ''
                 }}
-                disabled={isLoading}
-                className="bg-luxury-gold text-luxury-dark px-6 py-3 rounded-lg font-semibold hover:bg-luxury-gold-light transition-colors disabled:opacity-50"
+                disabled={!isAuthenticated || isLoading}
+                className="bg-luxury-gold text-luxury-dark px-6 py-3 rounded-lg font-semibold hover:bg-luxury-gold-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Send
               </button>
@@ -197,4 +239,3 @@ export default function SessionPage() {
     </div>
   )
 }
-

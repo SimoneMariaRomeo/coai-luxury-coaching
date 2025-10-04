@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
+import { useSession } from '@supabase/auth-helpers-react'
+import toast from 'react-hot-toast'
 import config from '@/lib/config.json'
 import { useProgressStore } from '@/lib/store'
 
@@ -12,12 +15,31 @@ export default function TopicPage() {
   const topicId = params.topic as string
   const [topic, setTopic] = useState<any>(null)
   const topicProgress = useProgressStore((state) => state.progress[topicId] ?? {})
+  const router = useRouter()
+  const session = useSession()
+  const isAuthenticated = Boolean(session?.user)
 
   useEffect(() => {
     if (topicId && config.topics[topicId as keyof typeof config.topics]) {
       setTopic(config.topics[topicId as keyof typeof config.topics])
     }
   }, [topicId])
+
+  const handleSessionNavigation = (targetSessionId: string) => {
+    if (!topic) {
+      return
+    }
+
+    const destination = `/topics/${topicId}/sessions/${targetSessionId}`
+
+    if (!isAuthenticated) {
+      toast.error('Sign in to start this coaching session.')
+      router.push(`/login?redirect=${encodeURIComponent(destination)}`)
+      return
+    }
+
+    router.push(destination)
+  }
 
   if (!topic) {
     return (
@@ -51,7 +73,7 @@ export default function TopicPage() {
 
       {/* Main Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-20">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -66,7 +88,7 @@ export default function TopicPage() {
         </motion.div>
 
         {/* Learning Objectives */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -100,25 +122,35 @@ export default function TopicPage() {
         </motion.div>
 
         {/* Start Journey CTA */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-center w-full max-w-4xl mx-auto mb-12"
         >
-          <Link href={`/topics/${topicId}/sessions/${topic.sessions[0].id}`}>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-luxury-gold text-luxury-dark px-12 py-4 rounded-lg text-xl font-semibold luxury-shadow hover:shadow-2xl transition-all duration-300"
-            >
-              Start Your Journey
-            </motion.button>
-          </Link>
+          <motion.button
+            type="button"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-luxury-gold text-luxury-dark px-12 py-4 rounded-lg text-xl font-semibold luxury-shadow hover:shadow-2xl transition-all duration-300"
+            onClick={() => {
+              const firstSessionId = topic.sessions[0]?.id
+              if (firstSessionId) {
+                handleSessionNavigation(firstSessionId)
+              }
+            }}
+          >
+            Start Your Journey
+          </motion.button>
+          {!isAuthenticated && (
+            <p className="mt-4 text-sm text-luxury-text-light">
+              Sign in to begin personalized coaching sessions.
+            </p>
+          )}
         </motion.div>
 
         {/* Sessions Overview */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -128,22 +160,25 @@ export default function TopicPage() {
             Your Learning Journey
           </h2>
           <div className="space-y-4">
-            {topic.sessions.map((session: any, index: number) => {
+            {topic.sessions.map((sessionItem: any, index: number) => {
               const previousSessionId = index > 0 ? topic.sessions[index - 1].id : null
               const previousProgress = previousSessionId ? topicProgress[previousSessionId] : undefined
-              const sessionProgress = topicProgress[session.id] ?? { started: false, completed: false }
+              const sessionProgress = topicProgress[sessionItem.id] ?? { started: false, completed: false }
               const isUnlocked = index === 0 || Boolean(previousProgress?.started || previousProgress?.completed)
               const isStarted = Boolean(sessionProgress.started)
               const isCompleted = Boolean(sessionProgress.completed)
               const cardClasses = `glass-effect rounded-xl p-6 transition-all duration-300 border border-transparent ${isUnlocked ? 'luxury-shadow hover:shadow-2xl bg-white/80' : 'bg-white/60 opacity-60 saturate-50'}`
-              const buttonClass = isStarted || isCompleted
+              const primaryButtonClass = isStarted || isCompleted
                 ? 'bg-luxury-gold text-luxury-dark border border-luxury-gold px-6 py-3 rounded-lg font-semibold luxury-shadow hover:shadow-2xl transition-all duration-300'
                 : 'bg-luxury-gold/20 text-luxury-gold border border-luxury-gold px-6 py-3 rounded-lg font-semibold hover:bg-luxury-gold hover:text-luxury-dark transition-all duration-300'
               const buttonLabel = isCompleted ? 'Review Session' : isStarted ? 'Continue Session' : 'Start Session'
+              const actionableButtonClass = isAuthenticated
+                ? primaryButtonClass
+                : 'bg-luxury-gold/20 text-luxury-gold border border-luxury-gold px-6 py-3 rounded-lg font-semibold transition-all duration-300 opacity-80'
 
               return (
                 <motion.div
-                  key={session.id}
+                  key={sessionItem.id}
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 * index }}
@@ -156,23 +191,23 @@ export default function TopicPage() {
                       </div>
                       <div>
                         <h3 className={`text-xl font-playfair font-semibold ${isUnlocked ? 'text-luxury-text' : 'text-luxury-text-muted'}`}>
-                          {session.title}
+                          {sessionItem.title}
                         </h3>
                         <p className={`text-sm capitalize ${isUnlocked ? 'text-luxury-text-muted' : 'text-luxury-text-muted/70'}`}>
-                          {session.type} Session
+                          {sessionItem.type} Session
                         </p>
                       </div>
                     </div>
                     {isUnlocked ? (
-                      <Link href={`/topics/${topicId}/sessions/${session.id}`}>
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className={buttonClass}
-                        >
-                          {buttonLabel}
-                        </motion.button>
-                      </Link>
+                      <motion.button
+                        type="button"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={actionableButtonClass}
+                        onClick={() => handleSessionNavigation(sessionItem.id)}
+                      >
+                        {buttonLabel}
+                      </motion.button>
                     ) : (
                       <span className="inline-flex items-center px-6 py-3 rounded-lg font-semibold border border-dashed border-luxury-text-muted/40 text-luxury-text-muted/80 cursor-not-allowed">
                         Locked
@@ -189,4 +224,3 @@ export default function TopicPage() {
     </div>
   )
 }
-

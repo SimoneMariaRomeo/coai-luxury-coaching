@@ -6,20 +6,34 @@ interface Message {
   content: string
 }
 
-export function useChat(topicId: string, sessionId: string) {
+interface UseChatOptions {
+  enabled?: boolean
+}
+
+export function useChat(topicId: string, sessionId: string, options?: UseChatOptions) {
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(false)
+  const enabled = options?.enabled ?? true
 
   useEffect(() => {
-    // Load session prompt and start conversation
+    if (!enabled) {
+      setMessages([])
+      return
+    }
+
     loadSessionPrompt()
-  }, [topicId, sessionId])
+    // intentionally disable exhaustive-deps because loadSessionPrompt is stable within this scope
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [topicId, sessionId, enabled])
 
   const loadSessionPrompt = async () => {
+    if (!enabled) {
+      return
+    }
+
     try {
       setIsLoading(true)
-      
-      // Load the session prompt
+
       const response = await fetch(`/api/chat`, {
         method: 'POST',
         headers: {
@@ -28,8 +42,8 @@ export function useChat(topicId: string, sessionId: string) {
         body: JSON.stringify({
           topicId,
           sessionId,
-          action: 'start'
-        })
+          action: 'start',
+        }),
       })
 
       if (!response.ok) {
@@ -39,10 +53,12 @@ export function useChat(topicId: string, sessionId: string) {
       const data = await response.json()
       const isFallback = data.fallback === true
 
-      setMessages([{
-        role: 'assistant',
-        content: data.message
-      }])
+      setMessages([
+        {
+          role: 'assistant',
+          content: data.message,
+        },
+      ])
 
       toast.success(isFallback ? 'Session loaded in offline mode' : 'Session loaded successfully')
     } catch (error) {
@@ -54,11 +70,17 @@ export function useChat(topicId: string, sessionId: string) {
   }
 
   const sendMessage = async (content: string) => {
-    if (!content.trim()) return
+    if (!enabled) {
+      toast.error('Please sign in to start a session.')
+      return
+    }
 
-    // Add user message
+    if (!content.trim()) {
+      return
+    }
+
     const userMessage: Message = { role: 'user', content }
-    setMessages(prev => [...prev, userMessage])
+    setMessages((prev) => [...prev, userMessage])
     setIsLoading(true)
 
     try {
@@ -72,8 +94,8 @@ export function useChat(topicId: string, sessionId: string) {
           sessionId,
           action: 'message',
           message: content,
-          messages: [...messages, userMessage]
-        })
+          messages: [...messages, userMessage],
+        }),
       })
 
       if (!response.ok) {
@@ -83,15 +105,17 @@ export function useChat(topicId: string, sessionId: string) {
       const data = await response.json()
       const isFallback = data.fallback === true
 
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        content: data.message
-      }])
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: data.message,
+        },
+      ])
 
       if (isFallback) {
         toast((t) => 'Connection dropped. Sharing offline reflection cues so you can keep going.', { icon: '!' })
       }
-
     } catch (error) {
       console.error('Error sending message:', error)
       toast.error('Failed to send message. Please try again.')
@@ -103,7 +127,6 @@ export function useChat(topicId: string, sessionId: string) {
   return {
     messages,
     sendMessage,
-    isLoading
+    isLoading,
   }
 }
-

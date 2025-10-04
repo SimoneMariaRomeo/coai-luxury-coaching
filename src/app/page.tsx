@@ -3,6 +3,9 @@
 import { useState, useEffect, useRef, useLayoutEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useRouter } from 'next/navigation'
+import { useSession } from '@supabase/auth-helpers-react'
+import toast from 'react-hot-toast'
 
 const topics = [
   {
@@ -28,6 +31,9 @@ export default function HomePage() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const measurementContainerRef = useRef<HTMLDivElement | null>(null)
   const [dropdownWidth, setDropdownWidth] = useState<number | null>(null)
+  const router = useRouter()
+  const session = useSession()
+  const isAuthenticated = Boolean(session?.user)
   const dropdownCardWidth = dropdownWidth ? Math.min(Math.max(dropdownWidth, 320), 420) : 320
 
   useEffect(() => {
@@ -144,15 +150,23 @@ export default function HomePage() {
           
           {/* CTA Button */}
           <div className="mb-12">
-            <Link href="/generic-coaching">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-luxury-gold text-luxury-dark px-12 py-4 rounded-lg text-xl font-semibold luxury-shadow hover:shadow-2xl transition-all duration-300"
-              >
-                Get Coached
-              </motion.button>
-            </Link>
+            <motion.button
+              type="button"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-luxury-gold text-luxury-dark px-12 py-4 rounded-lg text-xl font-semibold luxury-shadow hover:shadow-2xl transition-all duration-300"
+              onClick={() => {
+                if (!isAuthenticated) {
+                  toast.error('Sign in to start a coaching session.')
+                  router.push(`/login?redirect=${encodeURIComponent('/generic-coaching')}`)
+                  return
+                }
+
+                router.push('/generic-coaching')
+              }}
+            >
+              Get Coached
+            </motion.button>
           </div>
           
           {/* Rotating Explore Section */}
