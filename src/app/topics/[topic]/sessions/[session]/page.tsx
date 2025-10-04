@@ -23,6 +23,8 @@ export default function SessionPage() {
   const isAuthenticated = Boolean(authSession?.user)
   const destinationPath = `/topics/${topicId}/sessions/${sessionId}`
   const markSessionStarted = useProgressStore((state) => state.markSessionStarted)
+  const markSessionCompleted = useProgressStore((state) => state.markSessionCompleted)
+  const sessionProgress = useProgressStore((state) => state.progress[topicId]?.[sessionId])
   const { messages, sendMessage, isLoading } = useChat(topicId, sessionId, { enabled: isAuthenticated })
   const language = useLanguageStore((state) => state.language)
   const copy = UI_COPY[language]
@@ -53,6 +55,23 @@ export default function SessionPage() {
   const progressPercentage = totalSessions > 0 && currentSessionNumber > 0
     ? (currentSessionNumber / totalSessions) * 100
     : 0
+
+  const isSessionCompleted = Boolean(sessionProgress?.completed)
+
+  const handleMarkSessionDone = () => {
+    if (!topic || !session) {
+      return
+    }
+
+    markSessionCompleted(topicId, sessionId)
+
+    const nextSession = topic.sessions[sessionIndex + 1]
+    if (nextSession) {
+      router.push(`/topics/${topicId}/sessions/${nextSession.id}`)
+    } else {
+      router.push(`/topics/${topicId}`)
+    }
+  }
 
   const hasMarkedStarted = useRef(false)
 
@@ -167,23 +186,49 @@ export default function SessionPage() {
 
             {/* Messages */}
             <div className="flex-1 space-y-6 mb-8 overflow-y-auto">
-              {messages.map((message, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div className={`max-w-[80%] p-4 rounded-2xl ${
-                    message.role === 'user'
-                      ? 'bg-luxury-gold text-luxury-dark'
-                      : 'bg-luxury-text-muted/10 text-luxury-text'
-                  }`}>
-                    <p className="whitespace-pre-wrap">{message.content}</p>
-                  </div>
-                </motion.div>
-              ))}
+              {messages.map((message, index) => {
+                const isUser = message.role === 'user'
+                const alignmentClass = isUser ? 'justify-end' : 'justify-start'
+                const columnAlignment = isUser ? 'items-end' : 'items-start'
+                const bubbleClasses = isUser
+                  ? 'bg-luxury-gold text-luxury-dark'
+                  : 'bg-luxury-text-muted/10 text-luxury-text'
+                const hasText = Boolean(message.content?.trim())
+                const command = !isUser ? message.command : undefined
+                const shouldShowMarkButton =
+                  !isUser &&
+                  command?.command === 'render_mark_session_done_button' &&
+                  !isSessionCompleted
+                const commandLabel = (command?.labels && command.labels[language]) ?? copy.session.markAsDone
+
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className={`flex ${alignmentClass}`}
+                  >
+                    <div className={`flex flex-col gap-3 max-w-[80%] ${columnAlignment}`}>
+                      {hasText && (
+                        <div className={`p-4 rounded-2xl ${bubbleClasses}`}>
+                          <p className="whitespace-pre-wrap">{message.content}</p>
+                        </div>
+                      )}
+                      {shouldShowMarkButton && (
+                        <button
+                          type="button"
+                          onClick={handleMarkSessionDone}
+                          className="inline-flex items-center gap-2 self-start rounded-lg bg-luxury-gold px-4 py-2 text-sm font-semibold text-luxury-dark transition-colors hover:bg-luxury-gold-light focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:ring-offset-2 focus:ring-offset-white disabled:opacity-60"
+                          disabled={isSessionCompleted}
+                        >
+                          {commandLabel}
+                        </button>
+                      )}
+                    </div>
+                  </motion.div>
+                )
+              })}
 
               {isLoading && (
                 <motion.div

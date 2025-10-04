@@ -6,7 +6,7 @@ A premium AI-powered coaching platform designed for executive development and le
 
 - **Luxury Design System**: Dark modern theme with gold accents and premium typography
 - **AI-Powered Coaching**: Personalized coaching sessions using OpenAI GPT-4
-- **Two Learning Styles**: Coaching and Socratic methodologies
+- **Unified Coaching Style**: Coaching methodology applied across all sessions (legacy Socratic prompt archived as socratc-inactive)
 - **Progress Tracking**: Session completion tracking with persistent state
 - **Responsive Design**: Optimized for desktop, tablet, and mobile
 - **Toast Notifications**: Real-time feedback and status updates
@@ -22,7 +22,7 @@ coai/
 │   │   └── globals.css        # Global styles
 │   ├── components/            # Reusable components
 │   ├── lib/                   # Utilities and stores
-│   ├── styles/                # Style prompts (coaching/socratic)
+│   ├── styles/                # Style prompts (coaching + legacy socratc-inactive)
 │   └── system-prompts/        # Session prompts
 │       ├── leadership/        # Leadership session prompts
 │       ├── feedback/          # Feedback session prompts
@@ -69,7 +69,7 @@ coai/
 
 ### Leadership Excellence
 - **Focus**: Situational Leadership
-- **Sessions**: 7 sessions alternating between Coaching and Socratic styles
+- **Sessions**: 7 coaching-led sessions (legacy Socratic material now delivered with the coaching style)
 - **Objectives**: 
   - Understand development stages and characteristics
   - Learn to assess team members' development level
@@ -77,7 +77,7 @@ coai/
 
 ### Feedback Mastery  
 - **Focus**: Radical Candor and feedback practice
-- **Sessions**: 9 sessions alternating between Coaching and Socratic styles
+- **Sessions**: 9 coaching-led sessions (legacy Socratic material now delivered with the coaching style)
 - **Objectives**:
   - Master Radical Candor principles
   - Distinguish between facts and judgments
@@ -103,7 +103,7 @@ Add your topic to `config.json`:
         {
           "id": "session-1",
           "title": "Session Title",
-          "type": "Coaching", // or "Socratic"
+          "type": "Coaching", // use "Coaching"
           "file": "session-1.txt"
         }
       ]
@@ -150,7 +150,7 @@ Each session prompt should include:
 ## 🔄 How Topics + Style Prompts Combine
 
 The system automatically combines:
-1. **Style Prompt** (`src/styles/coaching.txt` or `src/styles/socratic.txt`)
+1. **Style Prompt** (`src/styles/coaching.txt`; legacy prompt retained at `src/styles/socratc-inactive.txt`)
 2. **Session Prompt** (`src/system-prompts/[topic]/[session].txt`)
 
 **Combined System Prompt:**
@@ -243,3 +243,5 @@ For support and questions, please contact the development team.
 ---
 
 **Built with ❤️ for executive excellence**
+
+

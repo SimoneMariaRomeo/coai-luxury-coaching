@@ -72,7 +72,7 @@ export default function TopicPage() {
           <Link href="/" className="text-luxury-gold hover:text-luxury-gold-light transition-colors">
             {copy.common.home}
           </Link>
-          <span className="mx-2 text-luxury-text-muted">›</span>
+          <span className="mx-2 text-luxury-text-muted">{'>'}</span>
           <span className="text-luxury-text-light">{topic.title}</span>
         </nav>
       </div>
@@ -173,7 +173,11 @@ export default function TopicPage() {
               const isUnlocked = index === 0 || Boolean(previousProgress?.started || previousProgress?.completed)
               const isStarted = Boolean(sessionProgress.started)
               const isCompleted = Boolean(sessionProgress.completed)
-              const cardClasses = `glass-effect rounded-xl p-6 transition-all duration-300 border border-transparent ${isUnlocked ? 'luxury-shadow hover:shadow-2xl bg-white/80' : 'bg-white/60 opacity-60 saturate-50'}`
+              const cardClasses = [
+                'glass-effect rounded-xl p-6 transition-all duration-300 border',
+                isUnlocked ? 'luxury-shadow hover:shadow-2xl bg-white/80' : 'bg-white/60 opacity-60 saturate-50',
+                isCompleted ? 'border-luxury-gold bg-white/90' : 'border-transparent',
+              ].join(' ')
               const primaryButtonClass = isStarted || isCompleted
                 ? 'bg-luxury-gold text-luxury-dark border border-luxury-gold px-6 py-3 rounded-lg font-semibold luxury-shadow hover:shadow-2xl transition-all duration-300'
                 : 'bg-luxury-gold/20 text-luxury-gold border border-luxury-gold px-6 py-3 rounded-lg font-semibold hover:bg-luxury-gold hover:text-luxury-dark transition-all duration-300'
@@ -182,6 +186,10 @@ export default function TopicPage() {
                 ? primaryButtonClass
                 : 'bg-luxury-gold/20 text-luxury-gold border border-luxury-gold px-6 py-3 rounded-lg font-semibold transition-all duration-300 opacity-80'
               const sessionTypeLabel = getSessionTypeLabel(sessionItem.type, language)
+              const indicatorClasses = isCompleted
+                ? 'w-12 h-12 rounded-lg bg-luxury-gold text-luxury-dark flex items-center justify-center'
+                : 'w-12 h-12 rounded-lg bg-luxury-gold/20 text-luxury-gold flex items-center justify-center'
+              const indicatorLabel = isCompleted ? '\u2713' : String(index + 1)
 
               return (
                 <motion.div
@@ -193,8 +201,8 @@ export default function TopicPage() {
                 >
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 rounded-lg bg-luxury-gold/20 text-luxury-gold flex items-center justify-center">
-                        <span className="text-lg font-bold">{index + 1}</span>
+                      <div className={indicatorClasses}>
+                        <span className="text-lg font-bold">{indicatorLabel}</span>
                       </div>
                       <div>
                         <h3 className={`text-xl font-playfair font-semibold ${isUnlocked ? 'text-luxury-text' : 'text-luxury-text-muted'}`}>

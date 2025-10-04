@@ -1,15 +1,71 @@
-﻿import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { useLanguageStore } from './language'
 import { UI_COPY } from './translations'
 
+interface AssistantCommand {
+  command: string
+  labels?: Record<string, string>
+}
+
 interface Message {
   role: 'user' | 'assistant'
   content: string
+  command?: AssistantCommand
 }
 
 interface UseChatOptions {
   enabled?: boolean
+}
+
+function parseAssistantPayload(raw: unknown): { content: string; command?: AssistantCommand } {
+  if (typeof raw !== 'string') {
+    return { content: '' }
+  }
+
+  const trimmed = raw.replace(/\s+$/, '')
+  const segments = trimmed.split(/\r?\n/)
+  let command: AssistantCommand | undefined
+  let content = trimmed
+
+  if (segments.length > 0) {
+    const candidate = segments[segments.length - 1].trim()
+    if (candidate.startsWith('{') && candidate.endsWith('}')) {
+      try {
+        const parsed = JSON.parse(candidate) as Record<string, unknown>
+        if (parsed && typeof parsed.command === 'string') {
+          command = { command: parsed.command }
+
+          if (parsed.labels && typeof parsed.labels === 'object' && parsed.labels !== null) {
+            const entries = Object.entries(parsed.labels as Record<string, unknown>).filter((entry): entry is [string, string] => {
+              const [key, value] = entry
+              return typeof key === 'string' && typeof value === 'string'
+            })
+            if (entries.length > 0) {
+              command.labels = Object.fromEntries(entries)
+            }
+          }
+
+          segments.pop()
+          content = segments.join('\n').replace(/\s+$/, '')
+        }
+      } catch (error) {
+        console.debug('Unable to parse assistant command payload:', error)
+      }
+    }
+  }
+
+  return {
+    content,
+    command,
+  }
+}
+
+function mapHistoryForRequest(history: Message[]): Array<{ role: Message['role']; content: string }> {
+  return history.map((entry) => ({
+    role: entry.role,
+    content: entry.content,
+  }))
 }
 
 export function useChat(topicId: string, sessionId: string, options?: UseChatOptions) {
@@ -58,10 +114,12 @@ export function useChat(topicId: string, sessionId: string, options?: UseChatOpt
       const data = await response.json()
       const isFallback = data.fallback === true
 
+      const parsed = parseAssistantPayload(data.message)
       setMessages([
         {
           role: 'assistant',
-          content: data.message,
+          content: parsed.content,
+          command: parsed.command,
         },
       ])
 
@@ -99,7 +157,7 @@ export function useChat(topicId: string, sessionId: string, options?: UseChatOpt
           sessionId,
           action: 'message',
           message: content,
-          messages: [...messages, userMessage],
+          messages: mapHistoryForRequest([...messages, userMessage]),
           language,
         }),
       })
@@ -110,12 +168,14 @@ export function useChat(topicId: string, sessionId: string, options?: UseChatOpt
 
       const data = await response.json()
       const isFallback = data.fallback === true
+      const parsed = parseAssistantPayload(data.message)
 
       setMessages((prev) => [
         ...prev,
         {
           role: 'assistant',
-          content: data.message,
+          content: parsed.content,
+          command: parsed.command,
         },
       ])
 

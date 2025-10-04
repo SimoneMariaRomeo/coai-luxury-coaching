@@ -20,7 +20,7 @@
         {
           "id": "explain-situational-leadership",
           "title": "Explain Situational Leadership",
-          "type": "Socratic",
+          "type": "Coaching",
           "file": "explain-situational-leadership.txt"
         },
         {
@@ -32,7 +32,7 @@
         {
           "id": "explore-leadership-styles",
           "title": "Explore Leadership Styles",
-          "type": "Socratic",
+          "type": "Coaching",
           "file": "explore-leadership-styles.txt"
         },
         {
@@ -44,7 +44,7 @@
         {
           "id": "establish-partnership",
           "title": "Establish Partnership with Team",
-          "type": "Socratic",
+          "type": "Coaching",
           "file": "establish-partnership.txt"
         },
         {
@@ -73,7 +73,7 @@
         {
           "id": "rules-radical-candor",
           "title": "Rules of Radical Candor",
-          "type": "Socratic",
+          "type": "Coaching",
           "file": "rules-radical-candor.txt"
         },
         {
@@ -85,7 +85,7 @@
         {
           "id": "facts-vs-judgments",
           "title": "Facts vs Judgments",
-          "type": "Socratic",
+          "type": "Coaching",
           "file": "facts-vs-judgments.txt"
         },
         {
@@ -97,7 +97,7 @@
         {
           "id": "learn-sbi-model",
           "title": "Learn the SBI Model",
-          "type": "Socratic",
+          "type": "Coaching",
           "file": "learn-sbi-model.txt"
         },
         {
@@ -109,7 +109,7 @@
         {
           "id": "gear-shifting",
           "title": "Gear Shifting Techniques",
-          "type": "Socratic",
+          "type": "Coaching",
           "file": "gear-shifting.txt"
         },
         {
