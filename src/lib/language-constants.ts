@@ -1,4 +1,4 @@
-export type Language = 'en' | 'zh'
+﻿export type Language = 'en' | 'zh'
 
 export const LANGUAGE_LABELS: Record<Language, string> = {
   en: 'English',
@@ -19,3 +19,5 @@ export const LANGUAGE_LOCALES: Record<Language, string> = {
   en: 'en-US',
   zh: 'zh-CN',
 }
+
+

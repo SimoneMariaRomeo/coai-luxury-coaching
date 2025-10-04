@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
@@ -11,7 +11,26 @@ interface SupabaseProviderProps {
 }
 
 export function SupabaseProvider({ children, initialSession }: SupabaseProviderProps) {
-  const [supabaseClient] = useState(() => createClientComponentClient())
+  const hasSupabaseEnv = Boolean(
+    process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  )
+
+  const [supabaseClient] = useState(() => {
+    if (!hasSupabaseEnv) {
+      return null
+    }
+
+    try {
+      return createClientComponentClient()
+    } catch (error) {
+      console.warn('Supabase client initialization skipped:', error)
+      return null
+    }
+  })
+
+  if (!supabaseClient) {
+    return <>{children}</>
+  }
 
   return (
     <SessionContextProvider supabaseClient={supabaseClient} initialSession={initialSession}>

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import './globals.css'
 import type { ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
@@ -38,3 +38,5 @@ export default function RootLayout({
     </html>
   )
 }
+
+

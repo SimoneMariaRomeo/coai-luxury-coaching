@@ -1,4 +1,4 @@
-'use client'
+ï»¿'use client'
 
 import { useEffect, useRef, useMemo } from 'react'
 import { useParams, useRouter } from 'next/navigation'
@@ -109,11 +109,11 @@ export default function SessionPage() {
             <Link href="/" className="text-luxury-gold hover:text-luxury-gold-light transition-colors">
               {copy.common.home}
             </Link>
-            <span className="mx-2 text-luxury-text-muted">›</span>
+            <span className="mx-2 text-luxury-text-muted">â€º</span>
             <Link href={`/topics/${topicId}`} className="text-luxury-gold hover:text-luxury-gold-light transition-colors">
               {topic.title}
             </Link>
-            <span className="mx-2 text-luxury-text-muted">›</span>
+            <span className="mx-2 text-luxury-text-muted">â€º</span>
             <span className="text-luxury-text-light">{session.title}</span>
           </nav>
 
@@ -254,3 +254,4 @@ export default function SessionPage() {
     </div>
   )
 }
+

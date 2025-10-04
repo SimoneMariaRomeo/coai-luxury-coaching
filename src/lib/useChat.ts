@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { useLanguageStore } from './language'
 import { UI_COPY } from './translations'
@@ -136,4 +136,6 @@ export function useChat(topicId: string, sessionId: string, options?: UseChatOpt
     isLoading,
   }
 }
+
+
 

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useEffect } from 'react'
 import { useLanguageStore, LANGUAGE_HTML_TAG } from '@/lib/language'
@@ -19,3 +19,5 @@ export function LanguageHydrator() {
 }
 
 export default LanguageHydrator
+
+

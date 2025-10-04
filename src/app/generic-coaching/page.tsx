@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useSession } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/navigation'
@@ -39,7 +39,7 @@ export default function GenericCoachingPage() {
             <Link href="/" className="text-luxury-gold hover:text-luxury-gold-light transition-colors">
               {copy.common.home}
             </Link>
-            <span className="mx-2 text-luxury-text-muted">�</span>
+            <span className="mx-2 text-luxury-text-muted">›</span>
             <span className="text-luxury-text-light">{copy.generic.title}</span>
           </nav>
 
@@ -164,4 +164,6 @@ export default function GenericCoachingPage() {
     </div>
   )
 }
+
+
 

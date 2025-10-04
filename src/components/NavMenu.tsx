@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect, useRef, useMemo } from 'react'
 import Link from 'next/link'
@@ -235,3 +235,5 @@ export function NavMenu() {
 }
 
 export default NavMenu
+
+

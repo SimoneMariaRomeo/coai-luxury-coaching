@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useMemo } from 'react'
 import { useParams } from 'next/navigation'
@@ -72,7 +72,7 @@ export default function TopicPage() {
           <Link href="/" className="text-luxury-gold hover:text-luxury-gold-light transition-colors">
             {copy.common.home}
           </Link>
-          <span className="mx-2 text-luxury-text-muted">�</span>
+          <span className="mx-2 text-luxury-text-muted">›</span>
           <span className="text-luxury-text-light">{topic.title}</span>
         </nav>
       </div>
@@ -231,3 +231,4 @@ export default function TopicPage() {
     </div>
   )
 }
+
