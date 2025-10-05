@@ -1,64 +1,32 @@
-**Session: Spot Your Stakeholders**
+**Session topic:**
+Map Stakeholders and Critical Work
 
-Now that you understand the Situational Leadership model, let's apply it to your real-world situation. Today, we're going to identify and assess your key stakeholders.
+**Positioning:**
+You now see how development levels shift by task. Today we will map the people and work where your leadership presence matters most so you know where to apply situational leadership deliberately.
 
-**Who Are Your Stakeholders?**
-Your stakeholders are the people whose success you influence and who influence your success. This includes:
-- Direct reports
-- Peers and colleagues
-- Your manager
-- Key clients or customers
-- Cross-functional partners
+**Opening Reflection:**
+List the individuals or groups who rely on you (direct reports, peers, partners, clients). For each, what mission-critical outcomes sit on your shoulders together?
 
-**The Assessment Process:**
-For each stakeholder, we need to determine their development level on the tasks that matter most to your working relationship.
+**Sample Questions:**
+1. Expand the stakeholder map
+- Who depends on your guidance, decisions, or influence in the next 3–6 months?
+- Which stakeholders have been overlooked because they are quiet, distant, or highly capable?
 
-**Key Questions to Ask:**
-1. **Competence**: How skilled are they at the specific tasks they need to perform?
-2. **Commitment**: How motivated and confident are they about these tasks?
-3. **Context**: What's their experience level with similar challenges?
+2. Surface the work that matters most
+- For each stakeholder, what are the top one or two deliverables, projects, or behaviors that determine success right now?
+- Which outcomes are slipping or at risk if you do not engage differently?
 
-**The Development Level Indicators:**
+3. Connect to development levels
+- Based on those tasks, where would you place each stakeholder on the D1–D4 spectrum today?
+- What signals make you confident in each placement? What evidence is missing?
 
-**D1 - Enthusiastic Beginner:**
-- New to the role or task
-- Eager to learn but needs guidance
-- Asks many questions
-- May overestimate their abilities
+4. Prioritize where to lead differently
+- Where is the gap between what the task demands and how you currently lead them?
+- Which stakeholder-task pair will create the biggest ripple effect if you adjust your approach?
 
-**D2 - Disillusioned Learner:**
-- Has some experience but hit obstacles
-- Confidence has been shaken
-- May be frustrated or disengaged
-- Needs both direction and encouragement
+5. Commit to visibility
+- How will you keep this map visible (dashboard, notebook, shared doc) so you revisit it weekly?
+- Who can pressure-test your map to ensure blind spots are named?
 
-**D3 - Capable but Cautious:**
-- Has the skills but lacks confidence
-- May second-guess themselves
-- Needs reassurance and support
-- Ready to take more ownership
-
-**D4 - Self-Reliant Achiever:**
-- Experienced and confident
-- Takes initiative and ownership
-- Can work independently
-- Ready for delegation
-
-**Your Assessment Challenge:**
-Think about your most important stakeholders. For each person, consider:
-- What are the key tasks or responsibilities they have?
-- What's their competence level for these tasks?
-- What's their commitment level?
-- What development level does this suggest?
-
-**The Insight:**
-Remember, the same person can be at different development levels for different tasks. A marketing manager might be D4 for campaign strategy but D1 for budget management.
-
-**Your Reflection:**
-Which stakeholders are you most confident about assessing? Which ones are more challenging to evaluate? What additional information might you need?
-
-**The Next Step:**
-Once you've identified their development levels, you'll be ready to choose the most appropriate leadership style for each relationship.
-
-Let's start with your direct reports. Who are they, and what's your assessment of their current development level?
-
+**Aha-moment:**
+Leadership leverage comes from matching your effort to the few people and tasks that move the system. A living stakeholder-task map keeps situational leadership focused on the work that matters most, not just the loudest request.
