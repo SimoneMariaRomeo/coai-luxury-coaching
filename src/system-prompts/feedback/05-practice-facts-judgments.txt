@@ -1,74 +1,32 @@
-**Session: Practice Facts vs Judgments**
+**Session topic:**
+Practice Translating Judgments into Facts
 
-Now that you understand the difference between facts and judgments, let's practice applying this skill in real situations.
+**Positioning:**
+Now that you can spot judgments, we will convert them into crisp observations and questions. This rehearsal builds muscle memory before you craft full feedback using a structured model.
 
-**The Practice Framework:**
-We'll work through several scenarios to help you develop the muscle memory for fact-based feedback.
+**Opening Reflection:**
+Write down three judgment-laden statements you have thought or said recently (e.g., “She is careless,” “He never listens”). What is each really trying to communicate?
 
-**Scenario 1: The Late Team Member**
-**Situation:** A team member has been arriving late to meetings for the past two weeks.
+**Sample Questions:**
+1. Break statements into components
+- For each judgment, what specific behaviors triggered it?
+- What impact were you reacting to (time, quality, relationships)?
 
-**Judgment-based feedback:** "You're always late and it's disrespectful to the team"
-**Fact-based feedback:** "I noticed you arrived 10 minutes after the meeting started today, and 15 minutes late last Tuesday"
+2. Rebuild as fact-impact statements
+- How can you restate each using objective language and the observable chain of events?
+- What concise impact statement keeps the focus on outcomes, not character?
 
-**Your turn:** How would you give feedback about this situation using only facts?
+3. Add curiosity
+- What open question could follow to invite their view (“What was happening for you then?”)?
+- How will you signal genuine interest rather than interrogation?
 
-**Scenario 2: The Interrupting Colleague**
-**Situation:** During team discussions, someone consistently interrupts others and dominates the conversation.
+4. Stress-test with edge cases
+- How would you adapt the statement if you had limited data or were not present for the behavior?
+- What would you say if the person pushes back on your observation?
 
-**Judgment-based feedback:** "You're being rude and not letting others speak"
-**Fact-based feedback:** "During today's meeting, you spoke for 15 minutes straight and interrupted Sarah three times when she was trying to share her idea"
+5. Capture reusable phrasing
+- Which wording felt natural and aligned with your voice?
+- How will you store these rephrased statements (notes app, template) so you can access them before real conversations?
 
-**Your turn:** How would you give feedback about this situation using only facts?
-
-**Scenario 3: The Missed Deadline**
-**Situation:** A team member missed a project deadline that affected the entire team.
-
-**Judgment-based feedback:** "You don't care about the team's success and you're unreliable"
-**Fact-based feedback:** "The project was due on Friday, and you delivered it on Monday, which meant the rest of the team had to work over the weekend"
-
-**Your turn:** How would you give feedback about this situation using only facts?
-
-**The Fact-Based Feedback Structure:**
-1. **Describe the specific behavior** you observed
-2. **Explain the impact** it had on you or others
-3. **Ask for their perspective** on what happened
-4. **Collaborate on solutions** for moving forward
-
-**Your Practice Scenarios:**
-Now, think of a real situation where you need to give feedback:
-
-**Situation:** [Describe the situation]
-**Facts only:** [What specific behaviors did you observe?]
-**Impact:** [What was the result or consequence?]
-**Your feedback:** [How would you deliver this feedback using only facts?]
-
-**The Receiving Side:**
-It's also important to practice receiving fact-based feedback:
-
-**When someone gives you feedback:**
-1. **Listen without defending** - focus on understanding what they observed
-2. **Ask clarifying questions** - "Can you give me a specific example?"
-3. **Acknowledge the impact** - "I can see how that affected you"
-4. **Share your perspective** - "From my perspective, here's what I was thinking"
-5. **Collaborate on solutions** - "What would work better for you?"
-
-**Your Reflection Practice:**
-Think about a time when you received feedback that felt judgmental:
-
-**What made it feel judgmental?**
-**How did you respond?**
-**What would have made it easier to receive?**
-**How might you have responded differently?**
-
-**The Insight:**
-Fact-based feedback creates a foundation for honest, productive conversations. When people feel heard and understood, they're more open to change and improvement.
-
-**Your Commitment:**
-What's one specific situation where you can practice giving fact-based feedback? What will you say? How will you prepare for the conversation?
-
-**The Next Step:**
-Once you can consistently separate facts from judgments, we'll work on structuring your feedback conversations for maximum impact.
-
-What insights are you gaining about the power of fact-based feedback?
-
+**Aha-moment:**
+Practicing turns abstract insight into ready language. When judgments are translated into facts, impact, and curiosity ahead of time, you enter feedback conversations calmer and more prepared to co-create solutions.

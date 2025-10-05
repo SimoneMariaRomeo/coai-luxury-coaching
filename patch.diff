@@ -1,0 +1,1454 @@
+diff --git a/src/system-prompts/feedback/02-rules-radical-candor.txt b/src/system-prompts/feedback/02-rules-radical-candor.txt
+index d9c0df408b51bdb90cba0f0fbb9b653f9823eae3..51397f7f33d2e20c1a04429f0f9c58cb6942a2ed 100644
+--- a/src/system-prompts/feedback/02-rules-radical-candor.txt
++++ b/src/system-prompts/feedback/02-rules-radical-candor.txt
+@@ -1,88 +1,35 @@
+-**Session: Rules of Radical Candor**
++**Session topic:**
++Learn the Rules of Radical Candor
+ 
+-Today we're diving into the framework that will transform how you think about feedback: Radical Candor.
++**Positioning:**
++You have named what blocks your feedback. Today we anchor on a simple framework—Radical Candor—that balances courage and care so your feedback lands as partnership, not punishment.
+ 
+-**What is Radical Candor?**
+-Radical Candor is the ability to challenge directly while caring personally. It's about being honest and direct while maintaining genuine care for the other person.
++**Opening Reflection:**
++Think about someone you owe honest feedback. When you imagine speaking up, which feels riskier: being too blunt or not clear enough? What does that say about how you balance care and challenge?
+ 
+-**The Radical Candor Framework:**
+-The framework is built on two dimensions:
++**Sample Questions:**
++1. Understand the two dimensions
++- What does “Care Personally” look like in your relationships (behaviors, rituals, language)?
++- What does “Challenge Directly” sound like when you do it well—and when you avoid it?
+ 
+-**1. Challenge Directly (X-axis):**
+-- Are you willing to say what needs to be said?
+-- Do you avoid difficult conversations?
+-- Are you clear and specific about what needs to change?
++2. Explore the four quadrants
++- Radical Candor (high care, high challenge)
++- Ruinous Empathy (high care, low challenge)
++- Obnoxious Aggression (low care, high challenge)
++- Manipulative Insincerity (low care, low challenge)
++Where do you typically land with different people?
+ 
+-**2. Care Personally (Y-axis):**
+-- Do you genuinely care about the other person's success?
+-- Do you invest in building relationships?
+-- Do you show that you want them to succeed?
++3. Diagnose real situations
++- For the person you identified, which quadrant describes your current default?
++- What evidence or feedback tells you that is how they experience you?
+ 
+-**The Four Quadrants:**
++4. Define the shift toward Radical Candor
++- What would it mean to dial up care before, during, and after the conversation?
++- What would it mean to dial up challenge so the message is unmistakably clear?
+ 
+-**1. Radical Candor (High Challenge + High Care):**
+-- "I care about you, and I need to tell you something that might be hard to hear"
+-- This is the sweet spot for effective feedback
+-- People feel safe to receive honest feedback because they know you care
+-
+-**2. Obnoxious Aggression (High Challenge + Low Care):**
+-- "You're wrong, and I don't care how you feel about it"
+-- This is feedback without empathy or relationship
+-- It damages relationships and creates defensiveness
+-
+-**3. Ruinous Empathy (Low Challenge + High Care):**
+-- "I care about you, so I won't tell you what you need to hear"
+-- This is avoiding difficult conversations to protect feelings
+-- It prevents growth and can lead to bigger problems later
+-
+-**4. Manipulative Insincerity (Low Challenge + Low Care):**
+-- "I don't really care, and I won't tell you the truth"
+-- This is the worst of both worlds
+-- It creates confusion and mistrust
+-
+-**The Key Principles:**
+-
+-**1. Get to Know People:**
+-- Understand their goals, motivations, and challenges
+-- Show genuine interest in their success
+-- Build trust through consistent care
+-
+-**2. Give a Damn:**
+-- Care about the person, not just the performance
+-- Invest in their development and growth
+-- Celebrate their successes and support them through challenges
+-
+-**3. Don't Personalize:**
+-- Focus on behavior and impact, not personality
+-- Separate the person from the performance
+-- Avoid making it about who they are as a person
+-
+-**4. Don't Apologize for Caring:**
+-- It's okay to care about people at work
+-- Showing care makes feedback more effective
+-- It's not unprofessional to be human
+-
+-**Your Practice Challenge:**
+-Think about your current relationships at work:
+-
+-**For each person, consider:**
+-- How well do you know them personally?
+-- Do they know you care about their success?
+-- When was the last time you gave them feedback?
+-- How comfortable are you being direct with them?
+-
+-**The Insight:**
+-The more you care about someone, the more direct you can be. When people know you genuinely want them to succeed, they're more open to hearing difficult feedback.
+-
+-**Your Reflection:**
+-1. Which quadrant do you naturally fall into with most people?
+-2. What would need to change for you to move toward Radical Candor?
+-3. Who do you have the strongest Radical Candor relationship with? What makes it work?
+-4. Who do you need to build more care with? How might you do that?
+-5. What's one specific situation where you could practice Radical Candor?
+-
+-**The Next Step:**
+-Once you understand the framework, we'll work on developing the skills to challenge directly while caring personally.
+-
+-What insights are you gaining about the importance of both challenge and care in feedback?
++5. Set a practice target
++- Who will you practice Radical Candor with in the next week, and on what topic?
++- What preparation will help you stay anchored in both care and challenge when emotions rise?
+ 
++**Aha-moment:**
++Radical Candor is a balancing act: when care and challenge move together, people hear the truth and feel supported. Leaning too far to one side creates either silence or harm. Knowing the quadrant you are in is the first step to changing it.
+diff --git a/src/system-prompts/feedback/03-recall-failed-feedback.txt b/src/system-prompts/feedback/03-recall-failed-feedback.txt
+index cce8137b69cf3004051b381eb36a36b29cf2e69e..5d076102931eca3968fb10891b7d4778cf3d3a5b 100644
+--- a/src/system-prompts/feedback/03-recall-failed-feedback.txt
++++ b/src/system-prompts/feedback/03-recall-failed-feedback.txt
+@@ -1,84 +1,32 @@
+-**Session: Recall Failed Feedback**
++**Session topic:**
++Dissect a Failed Feedback Moment
+ 
+-Today we're going to learn from past experiences where feedback didn't work as intended. This is one of the most powerful ways to understand what makes feedback effective.
++**Positioning:**
++You have the Radical Candor lens. Today we use it to unpack a feedback conversation that went sideways so you can extract lessons and redesign your next attempt.
+ 
+-**The Learning from Failure:**
+-When feedback fails, it's usually not because the message was wrong, but because of how it was delivered or received. Let's explore what went wrong and what we can learn.
++**Opening Reflection:**
++Bring to mind the toughest feedback exchange you have had in the past year. What happened, and how did you feel as it unfolded?
+ 
+-**Think about a time when you gave feedback that didn't work:**
+-- What was the situation?
+-- What did you say?
+-- How did the other person respond?
+-- What was the outcome?
+-- What do you think went wrong?
++**Sample Questions:**
++1. Reconstruct the conversation
++- What words did you use to open, deliver the message, and close?
++- How did their body language, tone, or words shift along the way?
+ 
+-**Think about a time when you received feedback that didn't work:**
+-- What was the situation?
+-- What did the other person say?
+-- How did you respond?
+-- What was the outcome?
+-- What made it ineffective?
++2. Analyze with the Radical Candor grid
++- In each moment, which quadrant were you operating from?
++- Where did you over-index on care or challenge—and why?
+ 
+-**Common Reasons Why Feedback Fails:**
++3. Identify hidden triggers
++- What stories or assumptions about them (or yourself) were in play?
++- What needs, fears, or identities might they have been protecting?
+ 
+-**1. Timing Issues:**
+-- Giving feedback when emotions are high
+-- Waiting too long after the incident
+-- Choosing a public or inappropriate setting
+-- Not considering the other person's state of mind
++4. Surface missed opportunities
++- Where could you have invited their perspective or clarified intent sooner?
++- What data or examples were missing that would have made the message undeniable and still respectful?
+ 
+-**2. Delivery Problems:**
+-- Being too vague or general
+-- Focusing on personality instead of behavior
+-- Using judgmental or accusatory language
+-- Not being specific enough about the impact
+-
+-**3. Relationship Issues:**
+-- Lack of trust or rapport
+-- Not having established care and respect
+-- Previous negative experiences
+-- Power dynamics that create defensiveness
+-
+-**4. Content Problems:**
+-- Focusing on what went wrong instead of what could improve
+-- Not providing specific examples
+-- Not explaining the impact or consequences
+-- Not offering solutions or next steps
+-
+-**5. Receiving Issues:**
+-- Being defensive or closed off
+-- Not asking clarifying questions
+-- Making assumptions about the other person's intentions
+-- Not being ready to hear the feedback
+-
+-**The Learning Opportunity:**
+-Every failed feedback experience is a learning opportunity. The key is to understand what went wrong and how to do it differently next time.
+-
+-**Your Analysis:**
+-For your failed feedback experiences:
+-
+-**What went wrong?**
+-- Was it the timing, delivery, relationship, content, or receiving?
+-- What specific factors contributed to the failure?
+-- What could you have done differently?
+-
+-**What would you do differently?**
+-- How would you approach the situation now?
+-- What would you say differently?
+-- How would you create a better environment for the feedback?
+-
+-**The Insight:**
+-Most feedback failures are not about the message itself, but about the context, relationship, and delivery. When you understand what went wrong, you can prevent it from happening again.
+-
+-**Your Reflection:**
+-1. What's the most important lesson you've learned from failed feedback?
+-2. What pattern do you notice in your feedback failures?
+-3. What would need to change for you to give feedback more effectively?
+-4. What would need to change for you to receive feedback more effectively?
+-5. What's one specific situation where you could apply these lessons?
+-
+-**The Next Step:**
+-Once you've identified the patterns in your feedback failures, we'll work on developing the skills to avoid these common pitfalls and give feedback that actually works.
+-
+-What insights are you gaining about what makes feedback fail and how to prevent it?
++5. Rehearse an improved version
++- If you could replay it, how would you prepare differently? How would you open, frame impact, invite response, and close?
++- What support or ally could help you test the new script before you use it live?
+ 
++**Aha-moment:**
++Feedback misfires are rich data. When you slow down to observe what happened through the Radical Candor lens, you uncover precise moments to adjust—transforming past pain into a blueprint for future effectiveness.
+diff --git a/src/system-prompts/feedback/04-facts-vs-judgments.txt b/src/system-prompts/feedback/04-facts-vs-judgments.txt
+index 2f96508f9e0649c2a226de871d6660f50339caf6..1edc2c8b8e89c5820f1c23f50c60983da91e96f4 100644
+--- a/src/system-prompts/feedback/04-facts-vs-judgments.txt
++++ b/src/system-prompts/feedback/04-facts-vs-judgments.txt
+@@ -1,79 +1,32 @@
+-**Session: Facts vs Judgments**
++**Session topic:**
++Separate Facts from Judgments
+ 
+-Today we're exploring one of the most critical skills in effective feedback: distinguishing between facts and judgments.
++**Positioning:**
++We have explored what derails feedback. Today you will sharpen observation skills so your message stays rooted in evidence, not interpretation—a critical step before practicing delivery.
+ 
+-**The Problem with Judgments:**
+-When we give feedback based on judgments, we create defensiveness and resistance. People naturally want to defend themselves against judgments, even when they're accurate.
++**Opening Reflection:**
++Recall a time you received feedback that felt unfair or vague. What words signaled opinion rather than fact?
+ 
+-**What are Facts?**
+-Facts are observable, verifiable information that anyone could see or hear:
+-- "You arrived 15 minutes late to the meeting"
+-- "You sent the report on Friday at 3 PM"
+-- "You spoke for 20 minutes during the presentation"
+-- "You asked three questions during the discussion"
++**Sample Questions:**
++1. Define the difference
++- How do you distinguish a fact (observable, specific, time-bound) from a judgment (label, motive, assumption)?
++- What happens to trust when judgments sneak into feedback?
+ 
+-**What are Judgments?**
+-Judgments are interpretations, opinions, or assumptions about what the facts mean:
+-- "You're always late" (judgment about pattern)
+-- "You don't care about the project" (judgment about motivation)
+-- "You're not a team player" (judgment about character)
+-- "You're being difficult" (judgment about intention)
++2. Analyze current language
++- Take the tough feedback scenario from last session. Write out the sentence you used (or would use). Which parts are facts? Which are judgments?
++- Where might cultural or personal biases color your interpretation?
+ 
+-**The Impact of Each:**
++3. Practice neutral observation
++- How can you describe the behavior using only who, what, when, where—no why or always/never?
++- What data (metrics, quotes, timestamps) would strengthen the clarity of your message?
+ 
+-**Facts:**
+-- Create clarity and understanding
+-- Are difficult to dispute
+-- Focus on specific, observable behavior
+-- Allow the other person to draw their own conclusions
++4. Connect to impact
++- Once the facts are clear, how do you describe the business or relational impact without sliding into blame?
++- What mutual goals can you anchor to so the feedback feels constructive?
+ 
+-**Judgments:**
+-- Create defensiveness and resistance
+-- Are open to interpretation and dispute
+-- Focus on personality or character
+-- Put the other person in a position to defend themselves
+-
+-**The Skill of Fact-Based Feedback:**
+-The goal is to describe what you observed without interpreting what it means.
+-
+-**Instead of:** "You're not committed to this project"
+-**Say:** "I noticed you missed the last three team meetings"
+-
+-**Instead of:** "You're being defensive"
+-**Say:** "When I mentioned the deadline, you said 'That's not my fault' and crossed your arms"
+-
+-**Instead of:** "You don't listen"
+-**Say:** "When I was explaining the process, you were looking at your phone and didn't respond to my questions"
+-
+-**Your Practice Challenge:**
+-Think about a recent situation where you wanted to give feedback. How would you describe it using only facts?
+-
+-**The Situation:** [Describe the situation]
+-**What you observed:** [List the specific, observable behaviors]
+-**What you felt:** [Your emotional response]
+-**What you thought:** [Your interpretation or judgment]
+-
+-**Now, practice giving feedback using only facts:**
+-- What specific behaviors did you observe?
+-- What was the impact on you or others?
+-- What would you like to see happen differently?
+-
+-**The Insight:**
+-When you focus on facts, you give the other person the opportunity to:
+-- Understand exactly what you observed
+-- Draw their own conclusions about the impact
+-- Decide how they want to respond
+-- Take ownership of their behavior
+-
+-**Your Reflection:**
+-1. What's the difference between what you observed and what you interpreted?
+-2. How might the other person see the same situation differently?
+-3. What would it feel like to receive feedback based only on facts?
+-4. What's challenging about separating facts from judgments?
+-5. How can you practice this skill in your daily interactions?
+-
+-**The Next Step:**
+-Once you can distinguish between facts and judgments, we'll work on structuring your feedback to focus on observable behavior and its impact.
+-
+-What insights are you gaining about the power of fact-based feedback?
++5. Prepare for dialogue
++- What curious question could follow your fact-and-impact statement to invite their perspective?
++- How will you check that they understood the observation before discussing solutions?
+ 
++**Aha-moment:**
++Precision builds psychological safety. When feedback starts with clear facts and shared impact, people can stay curious instead of defensive, opening the door to real behavior change.
+diff --git a/src/system-prompts/feedback/05-practice-facts-judgments.txt b/src/system-prompts/feedback/05-practice-facts-judgments.txt
+index beb8666a8bdbd7a0475dffe994dc8765db1eb007..f1ebdf467c72178306f36d24b0a5d3ebf554e604 100644
+--- a/src/system-prompts/feedback/05-practice-facts-judgments.txt
++++ b/src/system-prompts/feedback/05-practice-facts-judgments.txt
+@@ -1,74 +1,32 @@
+-**Session: Practice Facts vs Judgments**
++**Session topic:**
++Practice Translating Judgments into Facts
+ 
+-Now that you understand the difference between facts and judgments, let's practice applying this skill in real situations.
++**Positioning:**
++Now that you can spot judgments, we will convert them into crisp observations and questions. This rehearsal builds muscle memory before you craft full feedback using a structured model.
+ 
+-**The Practice Framework:**
+-We'll work through several scenarios to help you develop the muscle memory for fact-based feedback.
++**Opening Reflection:**
++Write down three judgment-laden statements you have thought or said recently (e.g., “She is careless,” “He never listens”). What is each really trying to communicate?
+ 
+-**Scenario 1: The Late Team Member**
+-**Situation:** A team member has been arriving late to meetings for the past two weeks.
++**Sample Questions:**
++1. Break statements into components
++- For each judgment, what specific behaviors triggered it?
++- What impact were you reacting to (time, quality, relationships)?
+ 
+-**Judgment-based feedback:** "You're always late and it's disrespectful to the team"
+-**Fact-based feedback:** "I noticed you arrived 10 minutes after the meeting started today, and 15 minutes late last Tuesday"
++2. Rebuild as fact-impact statements
++- How can you restate each using objective language and the observable chain of events?
++- What concise impact statement keeps the focus on outcomes, not character?
+ 
+-**Your turn:** How would you give feedback about this situation using only facts?
++3. Add curiosity
++- What open question could follow to invite their view (“What was happening for you then?”)?
++- How will you signal genuine interest rather than interrogation?
+ 
+-**Scenario 2: The Interrupting Colleague**
+-**Situation:** During team discussions, someone consistently interrupts others and dominates the conversation.
++4. Stress-test with edge cases
++- How would you adapt the statement if you had limited data or were not present for the behavior?
++- What would you say if the person pushes back on your observation?
+ 
+-**Judgment-based feedback:** "You're being rude and not letting others speak"
+-**Fact-based feedback:** "During today's meeting, you spoke for 15 minutes straight and interrupted Sarah three times when she was trying to share her idea"
+-
+-**Your turn:** How would you give feedback about this situation using only facts?
+-
+-**Scenario 3: The Missed Deadline**
+-**Situation:** A team member missed a project deadline that affected the entire team.
+-
+-**Judgment-based feedback:** "You don't care about the team's success and you're unreliable"
+-**Fact-based feedback:** "The project was due on Friday, and you delivered it on Monday, which meant the rest of the team had to work over the weekend"
+-
+-**Your turn:** How would you give feedback about this situation using only facts?
+-
+-**The Fact-Based Feedback Structure:**
+-1. **Describe the specific behavior** you observed
+-2. **Explain the impact** it had on you or others
+-3. **Ask for their perspective** on what happened
+-4. **Collaborate on solutions** for moving forward
+-
+-**Your Practice Scenarios:**
+-Now, think of a real situation where you need to give feedback:
+-
+-**Situation:** [Describe the situation]
+-**Facts only:** [What specific behaviors did you observe?]
+-**Impact:** [What was the result or consequence?]
+-**Your feedback:** [How would you deliver this feedback using only facts?]
+-
+-**The Receiving Side:**
+-It's also important to practice receiving fact-based feedback:
+-
+-**When someone gives you feedback:**
+-1. **Listen without defending** - focus on understanding what they observed
+-2. **Ask clarifying questions** - "Can you give me a specific example?"
+-3. **Acknowledge the impact** - "I can see how that affected you"
+-4. **Share your perspective** - "From my perspective, here's what I was thinking"
+-5. **Collaborate on solutions** - "What would work better for you?"
+-
+-**Your Reflection Practice:**
+-Think about a time when you received feedback that felt judgmental:
+-
+-**What made it feel judgmental?**
+-**How did you respond?**
+-**What would have made it easier to receive?**
+-**How might you have responded differently?**
+-
+-**The Insight:**
+-Fact-based feedback creates a foundation for honest, productive conversations. When people feel heard and understood, they're more open to change and improvement.
+-
+-**Your Commitment:**
+-What's one specific situation where you can practice giving fact-based feedback? What will you say? How will you prepare for the conversation?
+-
+-**The Next Step:**
+-Once you can consistently separate facts from judgments, we'll work on structuring your feedback conversations for maximum impact.
+-
+-What insights are you gaining about the power of fact-based feedback?
++5. Capture reusable phrasing
++- Which wording felt natural and aligned with your voice?
++- How will you store these rephrased statements (notes app, template) so you can access them before real conversations?
+ 
++**Aha-moment:**
++Practicing turns abstract insight into ready language. When judgments are translated into facts, impact, and curiosity ahead of time, you enter feedback conversations calmer and more prepared to co-create solutions.
+diff --git a/src/system-prompts/feedback/06-learn-sbi-model.txt b/src/system-prompts/feedback/06-learn-sbi-model.txt
+index d6418175fe4832be0722523daed354e258d80919..d183f6c78724a3a870340d87b2373c202ff8227d 100644
+--- a/src/system-prompts/feedback/06-learn-sbi-model.txt
++++ b/src/system-prompts/feedback/06-learn-sbi-model.txt
+@@ -1,82 +1,32 @@
+-**Session: Learn the SBI Model**
++**Session topic:**
++Apply the SBI Feedback Model
+ 
+-Today we're learning one of the most powerful frameworks for giving effective feedback: the SBI (Situation-Behavior-Impact) model.
++**Positioning:**
++Your observations are sharp. Today we assemble them into the Situation-Behavior-Impact (SBI) structure so you can deliver feedback that is clear, respectful, and easy to discuss.
+ 
+-**What is the SBI Model?**
+-The SBI model provides a clear, structured way to give feedback that focuses on specific behavior and its impact, without making judgments about the person.
++**Opening Reflection:**
++Think of the feedback conversation you are preparing for. What do you know about the situation, the behavior, and the impact—and where are the gaps?
+ 
+-**The Three Components:**
++**Sample Questions:**
++1. Clarify the Situation
++- When and where did the behavior happen? Who was involved?
++- What context must be shared so they can immediately picture the moment?
+ 
+-**1. Situation:**
+-- When and where did this happen?
+-- What was the context or setting?
+-- What was the specific moment or event?
++2. Describe the Behavior
++- Using your fact-based language, how will you articulate exactly what they did or said?
++- What will you avoid mentioning to keep it objective and concise?
+ 
+-**2. Behavior:**
+-- What specific actions did you observe?
+-- What did the person say or do?
+-- Focus on observable, verifiable behavior
++3. Explain the Impact
++- What was the effect on results, team dynamics, customers, or you personally?
++- How can you share impact without blame—linking back to shared goals or standards?
+ 
+-**3. Impact:**
+-- What was the result or consequence?
+-- How did it affect you, the team, or the project?
+-- What was the outcome or impact?
++4. Plan the dialogue
++- What question will you ask after SBI to invite their perspective (“How do you see it?”)?
++- How will you listen and respond if their view differs from yours?
+ 
+-**The SBI Structure:**
+-"**Situation:** [When and where]
+-**Behavior:** [What you observed]
+-**Impact:** [What happened as a result]"
+-
+-**Example 1 - Positive Feedback:**
+-"**Situation:** During yesterday's client presentation
+-**Behavior:** You prepared a detailed analysis of their current challenges and proposed three specific solutions
+-**Impact:** The client was impressed and asked us to move forward with the project, which will bring in $50,000 in revenue"
+-
+-**Example 2 - Developmental Feedback:**
+-"**Situation:** In last week's team meeting
+-**Behavior:** You interrupted Sarah three times while she was explaining her proposal
+-**Impact:** Sarah seemed frustrated and didn't finish sharing her idea, and the team missed out on what could have been a valuable contribution"
+-
+-**The Power of SBI:**
+-- **Specific:** Focuses on particular moments and behaviors
+-- **Objective:** Based on observable facts, not interpretations
+-- **Impact-focused:** Shows why the behavior matters
+-- **Actionable:** Gives clear information for improvement
+-
+-**Your Practice Scenarios:**
+-
+-**Scenario 1: The Great Presentation**
+-Think of a time when someone gave a great presentation or contribution. Use the SBI model to give them feedback:
+-
+-**Situation:** [When and where did this happen?]
+-**Behavior:** [What specific actions did you observe?]
+-**Impact:** [What was the result or consequence?]
+-
+-**Scenario 2: The Missed Opportunity**
+-Think of a time when someone's behavior had a negative impact. Use the SBI model to give them feedback:
+-
+-**Situation:** [When and where did this happen?]
+-**Behavior:** [What specific actions did you observe?]
+-**Impact:** [What was the result or consequence?]
+-
+-**The Receiving Side:**
+-When someone gives you feedback using the SBI model:
+-
+-1. **Listen to the situation** - understand the context
+-2. **Focus on the behavior** - what specific actions are they referring to?
+-3. **Consider the impact** - how did your behavior affect others?
+-4. **Ask clarifying questions** - "Can you give me more details about what you observed?"
+-5. **Share your perspective** - "From my perspective, here's what I was thinking"
+-
+-**Your Reflection:**
+-1. What's the difference between SBI feedback and judgment-based feedback?
+-2. How would you feel receiving feedback using the SBI model?
+-3. What's challenging about giving SBI feedback?
+-4. How can you practice this model in your daily interactions?
+-5. What's one specific situation where you could use the SBI model?
+-
+-**The Next Step:**
+-Once you understand the SBI model, we'll practice applying it in real situations and develop your ability to give feedback that actually works.
+-
+-What insights are you gaining about the power of structured feedback?
++5. Bridge to next steps
++- What options or support could you offer once you align on the facts and impact?
++- How will you agree on ownership and follow-up without turning it into a monologue?
+ 
++**Aha-moment:**
++SBI keeps feedback anchored in reality while leaving space for partnership. When Situation, Behavior, and Impact are clear, the conversation naturally turns toward solutions instead of defensiveness.
+diff --git a/src/system-prompts/feedback/07-practice-feedback-delivery.txt b/src/system-prompts/feedback/07-practice-feedback-delivery.txt
+index 7eeda79e0070b0f0cc6b783de1340bff292d08f5..62e9c1a2231f5308827a090687cccd392a914364 100644
+--- a/src/system-prompts/feedback/07-practice-feedback-delivery.txt
++++ b/src/system-prompts/feedback/07-practice-feedback-delivery.txt
+@@ -1,88 +1,32 @@
+-**Session: Practice Feedback Delivery**
++**Session topic:**
++Practice Delivering Feedback Live
+ 
+-Now that you understand the SBI model, let's practice delivering feedback in a way that creates positive change and strengthens relationships.
++**Positioning:**
++You have constructed your SBI message. Today is about rehearsal—building confidence in delivery, pacing, and emotional regulation before the real conversation.
+ 
+-**The Feedback Delivery Framework:**
+-Effective feedback delivery involves both what you say and how you say it.
++**Opening Reflection:**
++Imagine you are about to deliver the feedback. Where do you feel tension in your body? What self-talk arises?
+ 
+-**1. Set the Stage:**
+-- Choose the right time and place
+-- Ensure privacy and minimize distractions
+-- Check that both of you are in the right frame of mind
++**Sample Questions:**
++1. Script and say it aloud
++- Read your SBI statement and follow-up question out loud. What words feel stiff or unnatural?
++- How will you adjust tone, pauses, and emphasis to signal both care and clarity?
+ 
+-**2. Use the SBI Model:**
+-- **Situation:** "During yesterday's team meeting..."
+-- **Behavior:** "I noticed you interrupted Sarah three times..."
+-- **Impact:** "This made Sarah seem frustrated and the team missed out on her ideas..."
++2. Anticipate reactions
++- Based on the person’s style, what reactions are most likely (defensiveness, silence, emotion)?
++- What will you do in the first 10 seconds of each reaction to keep the conversation constructive?
+ 
+-**3. Ask for Their Perspective:**
+-- "What was your experience of that situation?"
+-- "How did you see what happened?"
+-- "What were you thinking at the time?"
++3. Manage your state
++- What breathing, grounding, or mindset practices help you stay centered before and during the talk?
++- What will you remind yourself if the conversation becomes difficult?
+ 
+-**4. Listen Actively:**
+-- Give them your full attention
+-- Don't interrupt or defend
+-- Ask clarifying questions
+-- Acknowledge their perspective
++4. Rehearse dialogue flow
++- Role-play the conversation (with a partner or imagined). How will you acknowledge their perspective, summarize, and agree on next steps?
++- Where might you need to pause, ask for a break, or revisit later?
+ 
+-**5. Collaborate on Solutions:**
+-- "What would work better for you?"
+-- "How can we prevent this from happening again?"
+-- "What support do you need?"
+-
+-**6. Follow Up:**
+-- Set a time to check in
+-- Acknowledge improvements
+-- Provide ongoing support
+-
+-**Your Practice Scenarios:**
+-
+-**Scenario 1: The Late Team Member**
+-**Situation:** Team member has been arriving late to meetings
+-**Your SBI feedback:** "During the past three team meetings, you've arrived 10-15 minutes after we started. This has meant we've had to repeat information and it's disrupted the flow of our discussions."
+-
+-**Practice the conversation:**
+-- How would you set the stage?
+-- What questions would you ask?
+-- How would you collaborate on solutions?
+-
+-**Scenario 2: The Dominating Colleague**
+-**Situation:** Someone consistently interrupts and dominates team discussions
+-**Your SBI feedback:** "In today's meeting, you spoke for 15 minutes straight and interrupted Sarah three times when she was trying to share her idea. This made Sarah seem frustrated and the team missed out on what could have been a valuable contribution."
+-
+-**Practice the conversation:**
+-- How would you approach this person?
+-- What would you say to show you care about them?
+-- How would you work together on a solution?
+-
+-**The Emotional Intelligence Factor:**
+-Effective feedback delivery requires emotional intelligence:
+-
+-**Self-Awareness:**
+-- How are you feeling about this situation?
+-- What's your motivation for giving this feedback?
+-- Are you in the right emotional state to have this conversation?
+-
+-**Social Awareness:**
+-- How might the other person be feeling?
+-- What's their current situation or stress level?
+-- How can you show that you care about them?
+-
+-**Relationship Management:**
+-- How can you maintain trust and respect?
+-- What's the best way to approach this person?
+-- How can you make this a positive experience?
+-
+-**Your Reflection:**
+-1. What's your natural style when giving feedback?
+-2. What emotions do you typically feel when giving feedback?
+-3. How do you think the other person might be feeling?
+-4. What would make you feel more confident about giving feedback?
+-5. What support do you need to improve your feedback delivery?
+-
+-**The Next Step:**
+-Once you can deliver feedback effectively, we'll work on handling resistance and creating a culture of continuous feedback.
+-
+-What insights are you gaining about the art of feedback delivery?
++5. Lock in logistics
++- When and where will you have this conversation to maximize privacy and presence?
++- What follow-up (notes, check-in) will you plan immediately afterward?
+ 
++**Aha-moment:**
++Confidence comes from practice, not perfection. Rehearsing delivery allows you to enter the real conversation calm, clear, and ready to co-create the path forward.
+diff --git a/src/system-prompts/feedback/08-gear-shifting.txt b/src/system-prompts/feedback/08-gear-shifting.txt
+index 2616629de3e2c8ccc97ffca68045db976b252538..4904ce706b2cbf3727aa3ae7519bd069688cc008 100644
+--- a/src/system-prompts/feedback/08-gear-shifting.txt
++++ b/src/system-prompts/feedback/08-gear-shifting.txt
+@@ -1,108 +1,34 @@
+-**Session: Gear Shifting Techniques**
++**Session topic:**
++Shift Gears in the Moment
+ 
+-Today we're learning one of the most advanced skills in feedback: how to handle resistance and shift gears when the conversation isn't going well.
++**Positioning:**
++You can deliver feedback well. Now we build agility to respond when the conversation veers off plan—so you can adjust without losing care or clarity.
+ 
+-**What is Gear Shifting?**
+-Gear shifting is the ability to change your approach when the other person is resistant, defensive, or not responding well to your feedback.
++**Opening Reflection:**
++Think of a time feedback went off the rails mid-conversation. What unexpected reaction did you face, and how did you respond?
+ 
+-**The Three Gears:**
++**Sample Questions:**
++1. Map common derailers
++- What reactions do you most dread (tears, anger, shutdown, excuses)?
++- Which ones you personally trigger in others, and which trigger you?
+ 
+-**1. Telling (Direct Approach):**
+-- "Here's what I observed and here's what needs to change"
+-- Use when the person is open and receptive
+-- Most effective when you have a strong relationship
++2. Plan adaptive responses
++- For each reaction, what does staying in Radical Candor look like? (e.g., pausing, naming emotion, revisiting facts.)
++- What exact phrases or questions can you use to validate feelings without retreating from the message?
+ 
+-**2. Asking (Inquiry Approach):**
+-- "What's your perspective on what happened?"
+-- Use when the person seems defensive or resistant
+-- Helps them feel heard and understood
++3. Use the “gear shift” toolkit
++- Gear 1: Slow down—breathe, restate purpose, or ask to pause.
++- Gear 2: Explore—ask curious questions to uncover context.
++- Gear 3: Align—summarize agreements and co-create next steps.
++Which gear do you skip most often, and what will help you access it?
+ 
+-**3. Listening (Supportive Approach):**
+-- "Tell me more about what you're experiencing"
+-- Use when the person is emotional or overwhelmed
+-- Focuses on understanding their situation
++4. Maintain self-regulation
++- What signs tell you that you are escalating (tone, heart rate, defensiveness)?
++- What reset techniques help you re-center in the moment?
+ 
+-**When to Shift Gears:**
+-
+-**From Telling to Asking:**
+-- When the person becomes defensive
+-- When they start making excuses
+-- When they seem to shut down
+-- When the conversation becomes one-sided
+-
+-**From Asking to Listening:**
+-- When the person becomes emotional
+-- When they seem overwhelmed
+-- When they need to vent or process
+-- When they're not ready to problem-solve
+-
+-**The Gear Shifting Process:**
+-
+-**1. Notice the Resistance:**
+-- Are they becoming defensive?
+-- Are they making excuses?
+-- Are they shutting down?
+-- Are they becoming emotional?
+-
+-**2. Acknowledge Their Experience:**
+-- "I can see this is difficult for you"
+-- "It sounds like you're feeling frustrated"
+-- "I understand this might be hard to hear"
+-
+-**3. Shift Your Approach:**
+-- **To Asking:** "What's your perspective on what happened?"
+-- **To Listening:** "Tell me more about what you're experiencing"
+-- **Back to Telling:** "Now that I understand your perspective, here's what I observed"
+-
+-**4. Find Common Ground:**
+-- "We both want this to work out"
+-- "I can see you care about doing a good job"
+-- "Let's figure out how to move forward together"
+-
+-**Your Practice Scenarios:**
+-
+-**Scenario 1: The Defensive Response**
+-You give feedback about being late, and they respond: "It's not my fault, the traffic was terrible, and anyway, everyone else is always late too."
+-
+-**How would you shift gears?**
+-- What would you say to acknowledge their experience?
+-- How would you move from telling to asking?
+-- What questions would you ask to understand their perspective?
+-
+-**Scenario 2: The Emotional Response**
+-You give feedback about interrupting, and they start to cry and say: "I'm just trying to help, and now you're criticizing me for caring too much."
+-
+-**How would you shift gears?**
+-- What would you say to show you care?
+-- How would you move from telling to listening?
+-- How would you help them process their emotions?
+-
+-**The Key Principles:**
+-
+-**1. Stay Curious:**
+-- What's really going on for them?
+-- What's their perspective on the situation?
+-- What might be driving their behavior?
+-
+-**2. Show Empathy:**
+-- Acknowledge their feelings
+-- Validate their experience
+-- Show that you understand
+-
+-**3. Maintain Your Goal:**
+-- Don't lose sight of what you're trying to achieve
+-- Be patient with the process
+-- Stay focused on the outcome
+-
+-**Your Reflection:**
+-1. What's your natural response when someone becomes defensive?
+-2. How comfortable are you with shifting gears mid-conversation?
+-3. What would help you feel more confident about handling resistance?
+-4. How can you practice these skills in low-stakes situations?
+-5. What support do you need to develop your gear-shifting abilities?
+-
+-**The Next Step:**
+-Once you can shift gears effectively, we'll work on creating a culture of continuous feedback and learning.
+-
+-What insights are you gaining about the art of handling resistance in feedback?
++5. Capture learning after the conversation
++- How will you debrief yourself (or with a coach) within 24 hours?
++- What signals will you watch for next time to shift gears sooner?
+ 
++**Aha-moment:**
++Feedback mastery includes adaptability. When you can spot derailers, shift gears intentionally, and stay rooted in care and clarity, even tough conversations strengthen trust.
+diff --git a/src/system-prompts/feedback/09-define-feedback-action-plan.txt b/src/system-prompts/feedback/09-define-feedback-action-plan.txt
+index 62a1dc7c5a5d1778a021e00a332380bc70b0b480..1f1b15bac5c2f607094702255775e224475df8ac 100644
+--- a/src/system-prompts/feedback/09-define-feedback-action-plan.txt
++++ b/src/system-prompts/feedback/09-define-feedback-action-plan.txt
+@@ -1,101 +1,32 @@
+-**Session: Define Feedback Action Plan**
++**Session topic:**
++Design Your Feedback Action Plan
+ 
+-Congratulations! You've completed your feedback mastery journey. Now it's time to create a concrete action plan to apply everything you've learned.
++**Positioning:**
++You have built awareness, skill, and agility. Today you consolidate your learning into a feedback cadence and support system that sustains Radical Candor beyond this journey.
+ 
+-**Your Feedback Development Summary:**
+-Over the past sessions, you've:
+-- Identified your feedback blocks and how to overcome them
+-- Learned the Radical Candor framework for challenging directly while caring personally
+-- Analyzed failed feedback experiences to understand what went wrong
+-- Developed the skill of distinguishing between facts and judgments
+-- Practiced giving fact-based feedback in various scenarios
+-- Mastered the SBI (Situation-Behavior-Impact) model for structured feedback
+-- Practiced delivering feedback in a way that creates positive change
+-- Learned gear-shifting techniques for handling resistance
++**Opening Reflection:**
++Looking back over the sessions, what shifts in mindset or behavior are you most proud of? Where do you still feel hesitation?
+ 
+-**The Action Plan Framework:**
+-Now we'll create a specific, actionable plan to implement these concepts in your daily feedback practice.
++**Sample Questions:**
++1. Set priority conversations
++- Which feedback conversations will you initiate in the next 30 days? What is the objective of each?
++- How do these conversations advance team performance, relationships, or culture?
+ 
+-**Step 1: Choose Your Focus**
+-Select one relationship or situation to focus on first. This should be someone where you can make a meaningful impact and practice your new skills.
++2. Establish rhythms and rituals
++- What regular practices will keep feedback flowing (weekly 1:1 agenda item, retros, quick pulses)?
++- How will you invite feedback about yourself to model reciprocity?
+ 
+-**Step 2: Assess Your Current Feedback Relationship**
+-For this person, consider:
+-- What's your current feedback relationship like?
+-- How comfortable are you giving them feedback?
+-- How do they typically respond to feedback?
+-- What would need to change for feedback to be more effective?
++3. Define support structures
++- Who will hold you accountable to practicing Radical Candor (mentor, peer, team)?
++- What resources or tools do you need ready (templates, reflection logs, prompts)?
+ 
+-**Step 3: Choose Your Approach**
+-Based on your assessment, select the appropriate approach:
+-- **Radical Candor:** High challenge + High care
+-- **SBI Model:** Situation-Behavior-Impact structure
+-- **Gear Shifting:** Telling → Asking → Listening as needed
++4. Anticipate obstacles
++- What barriers could slow you down (time, avoidance, organizational norms)?
++- What pre-commitments or triggers will help you notice and counter those barriers?
+ 
+-**Step 4: Plan Your Feedback Conversation**
+-Structure your approach:
+-- **Set the stage:** When and where will you have this conversation?
+-- **Use SBI:** What specific situation, behavior, and impact will you discuss?
+-- **Show care:** How will you demonstrate that you care about their success?
+-- **Handle resistance:** How will you shift gears if they become defensive?
+-
+-**Step 5: Practice Your Delivery**
+-Prepare for the conversation:
+-- What will you say exactly?
+-- What questions will you ask?
+-- How will you show empathy and understanding?
+-- What solutions will you collaborate on?
+-
+-**Step 6: Follow Up and Build Momentum**
+-Plan for ongoing feedback:
+-- How will you follow up on this conversation?
+-- What regular feedback will you provide?
+-- How will you celebrate improvements?
+-- How will you handle future challenges?
+-
+-**Your Action Plan:**
+-
+-**Focus Person:** [Name and role]
+-**Current Relationship:** [How would you describe your current feedback relationship?]
+-**Approach:** [Which framework will you use?]
+-**Specific Feedback:** [What specific situation will you discuss?]
+-**Your SBI Structure:**
+-- **Situation:** [When and where did this happen?]
+-- **Behavior:** [What specific actions did you observe?]
+-- **Impact:** [What was the result or consequence?]
+-
+-**Conversation Plan:**
+-- **When:** [When will you have this conversation?]
+-- **Where:** [Where will you have this conversation?]
+-- **Opening:** [How will you start the conversation?]
+-- **Your message:** [What will you say using the SBI model?]
+-- **Questions:** [What questions will you ask to understand their perspective?]
+-- **Solutions:** [How will you collaborate on solutions?]
+-
+-**Follow-up Plan:**
+-- **Check-in:** [When will you follow up?]
+-- **Ongoing feedback:** [What regular feedback will you provide?]
+-- **Celebration:** [How will you acknowledge improvements?]
+-- **Development:** [How will you continue to build this relationship?]
+-
+-**Your Commitment:**
+-What's your commitment to implementing this action plan? What support do you need? What obstacles might you face, and how will you overcome them?
+-
+-**The Next Steps:**
+-Once you've implemented this plan with your first focus person, you can apply the same process to other relationships and gradually build a culture of effective feedback.
+-
+-**Your Reflection:**
+-What excites you most about implementing this action plan? What concerns do you have? How will you know if you're being successful?
+-
+-This is just the beginning of your journey as a feedback master. The key is to start with one relationship and build from there.
+-
+-**The Long-term Vision:**
+-Imagine a workplace where:
+-- People give and receive feedback regularly and effectively
+-- Feedback is seen as a gift that helps everyone grow
+-- Relationships are strengthened through honest, caring dialogue
+-- Teams perform better because they can address issues quickly
+-- Everyone feels supported in their development and success
+-
+-What's your action plan for moving forward?
++5. Measure progress
++- What leading and lagging indicators will show your feedback culture is improving?
++- How will you celebrate wins and course-correct when you miss the mark?
+ 
++**Aha-moment:**
++Sustained feedback excellence is intentional. A clear action plan—with conversations scheduled, rhythms in place, allies engaged, and metrics defined—turns Radical Candor into a lasting part of how you lead.
+diff --git a/src/system-prompts/leadership/03-spot-stakeholders.txt b/src/system-prompts/leadership/03-spot-stakeholders.txt
+index e5c6f2ab68f4ded1e87a3e84366c0656cb39410c..0cdc3c3d94e8a8c178b177feabb7402d89187ae9 100644
+--- a/src/system-prompts/leadership/03-spot-stakeholders.txt
++++ b/src/system-prompts/leadership/03-spot-stakeholders.txt
+@@ -1,64 +1,32 @@
+-**Session: Spot Your Stakeholders**
++**Session topic:**
++Map Stakeholders and Critical Work
+ 
+-Now that you understand the Situational Leadership model, let's apply it to your real-world situation. Today, we're going to identify and assess your key stakeholders.
++**Positioning:**
++You now see how development levels shift by task. Today we will map the people and work where your leadership presence matters most so you know where to apply situational leadership deliberately.
+ 
+-**Who Are Your Stakeholders?**
+-Your stakeholders are the people whose success you influence and who influence your success. This includes:
+-- Direct reports
+-- Peers and colleagues
+-- Your manager
+-- Key clients or customers
+-- Cross-functional partners
++**Opening Reflection:**
++List the individuals or groups who rely on you (direct reports, peers, partners, clients). For each, what mission-critical outcomes sit on your shoulders together?
+ 
+-**The Assessment Process:**
+-For each stakeholder, we need to determine their development level on the tasks that matter most to your working relationship.
++**Sample Questions:**
++1. Expand the stakeholder map
++- Who depends on your guidance, decisions, or influence in the next 3–6 months?
++- Which stakeholders have been overlooked because they are quiet, distant, or highly capable?
+ 
+-**Key Questions to Ask:**
+-1. **Competence**: How skilled are they at the specific tasks they need to perform?
+-2. **Commitment**: How motivated and confident are they about these tasks?
+-3. **Context**: What's their experience level with similar challenges?
++2. Surface the work that matters most
++- For each stakeholder, what are the top one or two deliverables, projects, or behaviors that determine success right now?
++- Which outcomes are slipping or at risk if you do not engage differently?
+ 
+-**The Development Level Indicators:**
++3. Connect to development levels
++- Based on those tasks, where would you place each stakeholder on the D1–D4 spectrum today?
++- What signals make you confident in each placement? What evidence is missing?
+ 
+-**D1 - Enthusiastic Beginner:**
+-- New to the role or task
+-- Eager to learn but needs guidance
+-- Asks many questions
+-- May overestimate their abilities
++4. Prioritize where to lead differently
++- Where is the gap between what the task demands and how you currently lead them?
++- Which stakeholder-task pair will create the biggest ripple effect if you adjust your approach?
+ 
+-**D2 - Disillusioned Learner:**
+-- Has some experience but hit obstacles
+-- Confidence has been shaken
+-- May be frustrated or disengaged
+-- Needs both direction and encouragement
+-
+-**D3 - Capable but Cautious:**
+-- Has the skills but lacks confidence
+-- May second-guess themselves
+-- Needs reassurance and support
+-- Ready to take more ownership
+-
+-**D4 - Self-Reliant Achiever:**
+-- Experienced and confident
+-- Takes initiative and ownership
+-- Can work independently
+-- Ready for delegation
+-
+-**Your Assessment Challenge:**
+-Think about your most important stakeholders. For each person, consider:
+-- What are the key tasks or responsibilities they have?
+-- What's their competence level for these tasks?
+-- What's their commitment level?
+-- What development level does this suggest?
+-
+-**The Insight:**
+-Remember, the same person can be at different development levels for different tasks. A marketing manager might be D4 for campaign strategy but D1 for budget management.
+-
+-**Your Reflection:**
+-Which stakeholders are you most confident about assessing? Which ones are more challenging to evaluate? What additional information might you need?
+-
+-**The Next Step:**
+-Once you've identified their development levels, you'll be ready to choose the most appropriate leadership style for each relationship.
+-
+-Let's start with your direct reports. Who are they, and what's your assessment of their current development level?
++5. Commit to visibility
++- How will you keep this map visible (dashboard, notebook, shared doc) so you revisit it weekly?
++- Who can pressure-test your map to ensure blind spots are named?
+ 
++**Aha-moment:**
++Leadership leverage comes from matching your effort to the few people and tasks that move the system. A living stakeholder-task map keeps situational leadership focused on the work that matters most, not just the loudest request.
+diff --git a/src/system-prompts/leadership/04-explore-leadership-styles.txt b/src/system-prompts/leadership/04-explore-leadership-styles.txt
+index 44515e6b081abdf6b8adae5549f442927e75f68a..7d3604e9dab5e2ae920d34bfc85e2278246645a4 100644
+--- a/src/system-prompts/leadership/04-explore-leadership-styles.txt
++++ b/src/system-prompts/leadership/04-explore-leadership-styles.txt
+@@ -1,73 +1,35 @@
+-**Session: Explore Leadership Styles**
++**Session topic:**
++Match Leadership Styles to Development Needs
+ 
+-Now that you've assessed your stakeholders' development levels, let's explore how to match the right leadership style to each situation.
++**Positioning:**
++With your stakeholder map in place, today we translate development levels into concrete leadership moves. You will clarify which blend of direction and support each person needs right now.
+ 
+-**The Four Leadership Styles in Detail:**
++**Opening Reflection:**
++Choose one stakeholder-task pair from your map. When you interact today, do you default to giving instructions, asking questions, stepping back, or stepping in? What effect does that have on their progress?
+ 
+-**1. Directing (S1) - High Directive, Low Supportive**
+-- **When to use**: D1 development level (Enthusiastic Beginner)
+-- **What it looks like**: Clear instructions, close supervision, frequent check-ins
+-- **Key behaviors**: 
+-  - Provide specific, step-by-step directions
+-  - Set clear expectations and deadlines
+-  - Monitor progress closely
+-  - Give immediate feedback
+-- **Communication style**: "Here's exactly what to do, and I'll check in with you daily"
++**Sample Questions:**
++1. Revisit the situational leadership styles
++- S1 Directing: high direction, low support.
++- S2 Coaching: high direction, high support.
++- S3 Supporting: low direction, high support.
++- S4 Delegating: low direction, low support.
++What behaviors do you personally associate with each style?
+ 
+-**2. Coaching (S2) - High Directive, High Supportive**
+-- **When to use**: D2 development level (Disillusioned Learner)
+-- **What it looks like**: Direction with encouragement and support
+-- **Key behaviors**:
+-  - Explain the "why" behind decisions
+-  - Provide guidance while building confidence
+-  - Offer encouragement and emotional support
+-  - Help problem-solve obstacles
+-- **Communication style**: "Let me show you how, and I'll be here to support you through this"
++2. Diagnose current style use
++- For the chosen stakeholder-task, which style do you naturally adopt today?
++- Where have you seen it accelerate or stall their growth or ownership?
+ 
+-**3. Supporting (S3) - Low Directive, High Supportive**
+-- **When to use**: D3 development level (Capable but Cautious)
+-- **What it looks like**: Encouragement and support with less direction
+-- **Key behaviors**:
+-  - Ask questions to help them think through solutions
+-  - Provide resources and remove obstacles
+-  - Offer encouragement and recognition
+-  - Facilitate their decision-making
+-- **Communication style**: "You know what to do, and I'm here if you need help"
++3. Experiment with style shifts
++- If their development level calls for a different style, what would you add, reduce, or stop doing?
++- Which phrases, rituals, or tools could embody that adjusted style in your next interaction?
+ 
+-**4. Delegating (S4) - Low Directive, Low Supportive**
+-- **When to use**: D4 development level (Self-Reliant Achiever)
+-- **What it looks like**: Minimal direction and support
+-- **Key behaviors**:
+-  - Set overall objectives and boundaries
+-  - Provide resources and authority
+-  - Monitor results, not process
+-  - Celebrate successes and learn from failures
+-- **Communication style**: "You've got this, let me know how it goes"
++4. Anticipate resistance (yours and theirs)
++- What inner narrative might make it hard for you to lead with more direction or more space?
++- How might they react when you change your approach? How can you frame the shift so it lands as support?
+ 
+-**The Art of Style Matching:**
+-The key is to match your leadership style to the person's development level for the specific task at hand.
+-
+-**Your Practice Challenge:**
+-Think about your stakeholders from our previous session. For each person:
+-1. What development level are they at for their key responsibilities?
+-2. Which leadership style would be most appropriate?
+-3. What specific behaviors would you need to demonstrate?
+-4. How would you communicate with them?
+-
+-**Common Mistakes to Avoid:**
+-- Using the same style with everyone
+-- Sticking with one style regardless of the situation
+-- Assuming someone's development level based on their job title
+-- Not adjusting your style as people develop
+-
+-**The Development Journey:**
+-Remember, as people develop, you need to adjust your style. Someone who starts as D1 should eventually become D4, and your leadership approach should evolve accordingly.
+-
+-**Your Reflection:**
+-Which leadership style feels most natural to you? Which feels most challenging? What might be holding you back from using certain styles?
+-
+-**The Next Step:**
+-Once you've identified the appropriate styles for your stakeholders, we'll work on developing your ability to flex between different approaches.
+-
+-Let's start with your most important stakeholder. What development level are they at, and which leadership style would be most effective?
++5. Broaden the application
++- Looking at the rest of your map, where else are you over- or under-leading?
++- What cadence will help you revisit style choices as people progress?
+ 
++**Aha-moment:**
++Situational leadership is not theory—it is a set of visible behaviors. When direction and support are intentionally calibrated to the development need, momentum returns and trust deepens.
+diff --git a/src/system-prompts/leadership/05-reflect-strengths-weaknesses.txt b/src/system-prompts/leadership/05-reflect-strengths-weaknesses.txt
+index 7d1b7056d550511f30a70b8ed5452c79ee5d81cb..e359915f215504151ad41eca6f7a728cabcdc787 100644
+--- a/src/system-prompts/leadership/05-reflect-strengths-weaknesses.txt
++++ b/src/system-prompts/leadership/05-reflect-strengths-weaknesses.txt
+@@ -1,63 +1,32 @@
+-**Session: Reflect on Strengths and Weaknesses**
++**Session topic:**
++Audit Your Leadership Strengths and Gaps
+ 
+-Today we're going to explore your natural leadership tendencies and identify areas where you excel and where you might need to develop.
++**Positioning:**
++You have practiced matching style to need. Today we turn the lens inward: Which leadership muscles are strong, which are underdeveloped, and how does that help or hinder each stakeholder’s progress?
+ 
+-**The Leadership Style Assessment:**
+-Think about your natural approach to leading others. Which of these scenarios feels most comfortable to you?
++**Opening Reflection:**
++Recall a recent win and a recent stumble with your team. In each situation, what did you personally do that made the difference—for better or worse?
+ 
+-**Scenario 1 - The New Team Member:**
+-A new employee joins your team. They're excited but inexperienced. How do you naturally approach working with them?
++**Sample Questions:**
++1. Identify signature strengths
++- What leadership moves consistently generate energy or clarity for others?
++- In which styles (S1–S4) do you feel most confident and why?
+ 
+-**Scenario 2 - The Struggling Performer:**
+-Someone on your team is having difficulty with their current project. They seem frustrated and less confident. What's your natural response?
++2. Reveal overused strengths
++- Where might your go-to behaviors become a liability (e.g., over-directing, rescuing, disappearing)?
++- What feedback, data, or outcomes suggest it is time to rebalance?
+ 
+-**Scenario 3 - The Capable but Hesitant:**
+-A team member has the skills for a project but seems unsure about taking it on. They keep asking for your input. How do you typically handle this?
++3. Name growth edges
++- Which styles or behaviors feel awkward, avoided, or rarely deployed?
++- How does each gap show up in your stakeholder-task map?
+ 
+-**Scenario 4 - The High Performer:**
+-Your most experienced team member is ready for a new challenge. They're confident and capable. What's your natural approach?
++4. Link strengths and gaps to business impact
++- For your priority stakeholder, how do your strengths accelerate their move to the next development level?
++- Where does a gap of yours slow them down, and what is the cost if it persists?
+ 
+-**Your Natural Tendencies:**
+-Based on your responses, you likely have a preferred leadership style. Let's explore what this means:
+-
+-**If you naturally lean toward Directing:**
+-- You're comfortable taking charge and providing clear direction
+-- You may need to develop your supportive behaviors
+-- You might struggle with delegation
+-
+-**If you naturally lean toward Coaching:**
+-- You enjoy developing others and providing guidance
+-- You may need to work on letting go and delegating
+-- You might struggle with being too hands-on
+-
+-**If you naturally lean toward Supporting:**
+-- You're great at encouraging and facilitating others
+-- You may need to develop more directive behaviors
+-- You might struggle with holding people accountable
+-
+-**If you naturally lean toward Delegating:**
+-- You're comfortable giving autonomy and trust
+-- You may need to develop more supportive behaviors
+-- You might struggle with providing enough guidance
+-
+-**The Development Challenge:**
+-The goal is to become comfortable with all four styles and use them appropriately. This requires developing skills that may not come naturally to you.
+-
+-**Your Reflection:**
+-1. Which leadership style feels most natural to you?
+-2. Which style feels most uncomfortable or challenging?
+-3. What specific behaviors would you need to develop to become more effective with the challenging style?
+-4. Think of a recent situation where you used your preferred style. What was the outcome?
+-5. Think of a situation where you wish you had used a different style. What happened?
+-
+-**The Insight:**
+-Your natural style is a strength, but it can also be a limitation if you rely on it too heavily. The most effective leaders can flex between all four styles based on the situation.
+-
+-**Your Development Plan:**
+-Based on your reflection, what's one specific behavior you'd like to develop? What would it look like in practice? How might you practice this new approach?
+-
+-**The Next Step:**
+-Once you've identified your development areas, we'll work on creating a plan to build these skills and become a more flexible leader.
+-
+-What insights are you gaining about your natural leadership tendencies?
++5. Choose a micro-habit to practice
++- What is one small behavior shift that would stretch a weaker muscle without abandoning your strengths?
++- How will you measure whether that micro-habit is working?
+ 
++**Aha-moment:**
++Effective leaders double-down on authentic strengths while intentionally stretching into the behaviors their people need. Self-awareness turns situational leadership from concept into daily practice.
+diff --git a/src/system-prompts/leadership/06-establish-partnership.txt b/src/system-prompts/leadership/06-establish-partnership.txt
+index c1e442b594bc4d6dbdcb73077aa615b9267d497a..0aa74e228321e0ceea21f9f93e869bc4bdab83a5 100644
+--- a/src/system-prompts/leadership/06-establish-partnership.txt
++++ b/src/system-prompts/leadership/06-establish-partnership.txt
+@@ -1,72 +1,32 @@
+-**Session: Establish Partnership with Team**
++**Session topic:**
++Co-Create Partnership Agreements
+ 
+-Today we're exploring one of the most critical aspects of effective leadership: establishing genuine partnerships with your team members.
++**Positioning:**
++Armed with insight about needs and your own leadership patterns, it is time to build shared agreements with key stakeholders. These agreements clarify expectations, coaching rhythms, and decision rights.
+ 
+-**The Partnership Mindset:**
+-Partnership in leadership means moving beyond the traditional boss-subordinate relationship to create a collaborative, mutually beneficial working relationship.
++**Opening Reflection:**
++Select one stakeholder where a new agreement would unlock momentum. What is currently assumed, fuzzy, or causing friction between you?
+ 
+-**Key Elements of Leadership Partnership:**
++**Sample Questions:**
++1. Clarify mutual goals
++- What outcome do you both need to achieve in the next 60–90 days?
++- How does this connect to the broader strategy or customer impact?
+ 
+-**1. Mutual Respect:**
+-- Recognize each person's unique strengths and contributions
+-- Value their expertise and perspective
+-- Treat them as equals in the partnership
++2. Define roles and decision boundaries
++- For this work, what decisions should they own, and where do you stay close?
++- Which decisions require a consult or approval, and how will you make that visible?
+ 
+-**2. Shared Goals:**
+-- Align individual goals with team and organizational objectives
+-- Create a sense of shared purpose
+-- Ensure everyone understands how their work contributes to the bigger picture
++3. Set support and accountability rhythms
++- Given their development level, what cadence of check-ins, coaching, or resources will accelerate progress?
++- How will you track commitments and signal when escalation is needed?
+ 
+-**3. Open Communication:**
+-- Create a safe space for honest dialogue
+-- Encourage feedback and different perspectives
+-- Listen actively and respond thoughtfully
++4. Invite their voice
++- What support do they want from you? What do they not want?
++- What commitments do they need from you to feel trusted and empowered?
+ 
+-**4. Mutual Accountability:**
+-- Hold each other accountable to commitments
+-- Share responsibility for outcomes
+-- Learn from mistakes together
+-
+-**5. Development Focus:**
+-- Invest in each other's growth and development
+-- Provide opportunities for learning and advancement
+-- Celebrate progress and achievements
+-
+-**The Partnership Conversation:**
+-One of the most powerful tools for establishing partnership is the partnership conversation. This is a structured dialogue where you:
+-
+-1. **Share your leadership philosophy** and approach
+-2. **Understand their needs** and preferences
+-3. **Establish mutual expectations** and boundaries
+-4. **Create a development plan** together
+-5. **Set up regular check-ins** and feedback loops
+-
+-**Your Partnership Assessment:**
+-Think about your current relationships with your team members:
+-
+-**For each person, consider:**
+-- Do they feel respected and valued?
+-- Do they understand how their work contributes to team goals?
+-- Do they feel comfortable giving you feedback?
+-- Do they see opportunities for growth and development?
+-- Do they feel accountable for their performance?
+-
+-**The Partnership Challenge:**
+-Creating genuine partnerships requires vulnerability and authenticity. You need to:
+-- Share your own challenges and learning goals
+-- Ask for feedback on your leadership
+-- Admit when you don't know something
+-- Be willing to change your approach based on their needs
+-
+-**Your Reflection:**
+-1. Which of your team relationships feels most like a partnership? What makes it work?
+-2. Which relationship needs the most work? What's missing?
+-3. What would a partnership conversation look like with each team member?
+-4. What are you willing to share about your own development goals?
+-5. How can you create more opportunities for mutual learning and growth?
+-
+-**The Next Step:**
+-Once you've identified the key elements of partnership, we'll work on creating a plan to strengthen these relationships and establish genuine partnerships with your team.
+-
+-What insights are you gaining about the importance of partnership in leadership?
++5. Document and socialize
++- How will you capture this agreement (email, doc, shared workspace)?
++- Who else must understand these boundaries so they reinforce—not erode—the agreement?
+ 
++**Aha-moment:**
++When leader and stakeholder co-create clear agreements, accountability feels shared, not imposed. The right structure gives people room to grow while keeping support and expectations explicit.
+diff --git a/src/system-prompts/leadership/07-define-action-plan.txt b/src/system-prompts/leadership/07-define-action-plan.txt
+index f14d50f8d90df9dcddabf2d3f6e35a557e73d9c9..aa2c69ef088ef76f6b7c28cfea60389e4ebd65ae 100644
+--- a/src/system-prompts/leadership/07-define-action-plan.txt
++++ b/src/system-prompts/leadership/07-define-action-plan.txt
+@@ -1,91 +1,32 @@
+-**Session: Define Your Action Plan**
++**Session topic:**
++Build Your Leadership Action Plan
+ 
+-Congratulations! You've completed your leadership development journey. Now it's time to create a concrete action plan to apply everything you've learned.
++**Positioning:**
++You have mapped stakeholders, practiced style shifts, and co-created agreements. Today’s focus is on consolidating those insights into a visible 90-day plan with milestones, feedback loops, and support structures.
+ 
+-**Your Leadership Development Summary:**
+-Over the past sessions, you've:
+-- Explored your leadership philosophy and ideal leader
+-- Learned the Situational Leadership model
+-- Assessed your stakeholders' development levels
+-- Identified appropriate leadership styles for each situation
+-- Reflected on your natural tendencies and development areas
+-- Understood the importance of partnership in leadership
++**Opening Reflection:**
++Review your notes from the journey. What consistent themes or commitments keep resurfacing? Where have you already seen momentum building?
+ 
+-**The Action Plan Framework:**
+-Now we'll create a specific, actionable plan to implement these concepts in your daily leadership practice.
++**Sample Questions:**
++1. Confirm the priority plays
++- Which two or three stakeholder-task situations will give you outsized results if you execute well?
++- How do these priorities align with team or organizational goals?
+ 
+-**Step 1: Choose Your Focus**
+-Select one team member or stakeholder relationship to focus on first. This should be someone where you can make a meaningful impact and practice your new skills.
++2. Define success metrics and milestones
++- What leading indicators will tell you your leadership shifts are working (behaviors, deliverables, engagement)?
++- By when should each milestone be visible, and how will you track it?
+ 
+-**Step 2: Assess Their Development Level**
+-For this person, determine:
+-- What are their key responsibilities or tasks?
+-- What's their competence level for these tasks?
+-- What's their commitment level?
+-- What development level does this suggest?
++3. Plan rituals and learning loops
++- What weekly and monthly routines will keep you checking development levels and adjusting styles?
++- How will you gather feedback from stakeholders to fine-tune your approach?
+ 
+-**Step 3: Choose Your Leadership Style**
+-Based on their development level, select the appropriate leadership style:
+-- D1 → Directing
+-- D2 → Coaching  
+-- D3 → Supporting
+-- D4 → Delegating
++4. Secure allies and resources
++- Who can coach or hold you accountable to the new habits?
++- What tools, training, or delegation moves do you need to sustain progress?
+ 
+-**Step 4: Define Specific Behaviors**
+-What specific actions will you take to demonstrate this leadership style?
+-- How will you communicate with them?
+-- What support will you provide?
+-- How will you monitor their progress?
+-- What feedback will you give?
+-
+-**Step 5: Plan the Partnership Conversation**
+-Schedule a one-on-one meeting to:
+-- Share your leadership approach
+-- Understand their needs and preferences
+-- Establish mutual expectations
+-- Create a development plan together
+-
+-**Step 6: Set Up Regular Check-ins**
+-Plan how you'll:
+-- Monitor their progress
+-- Provide ongoing support
+-- Adjust your approach as they develop
+-- Celebrate successes and learn from challenges
+-
+-**Your Action Plan:**
+-Let's create your specific action plan:
+-
+-**Focus Person:** [Name and role]
+-**Development Level:** [D1, D2, D3, or D4]
+-**Leadership Style:** [Directing, Coaching, Supporting, or Delegating]
+-**Specific Actions:**
+-1. [What you'll do differently]
+-2. [How you'll communicate]
+-3. [What support you'll provide]
+-4. [How you'll measure success]
+-
+-**Partnership Conversation:**
+-- When will you have this conversation?
+-- What will you share about your leadership approach?
+-- What questions will you ask them?
+-- What outcomes do you want from this conversation?
+-
+-**Regular Check-ins:**
+-- How often will you meet?
+-- What will you discuss?
+-- How will you track progress?
+-- How will you adjust your approach?
+-
+-**Your Commitment:**
+-What's your commitment to implementing this action plan? What support do you need? What obstacles might you face, and how will you overcome them?
+-
+-**The Next Steps:**
+-Once you've implemented this plan with your first focus person, you can apply the same process to other team members and gradually develop your ability to flex between different leadership styles.
+-
+-**Your Reflection:**
+-What excites you most about implementing this action plan? What concerns do you have? How will you know if you're being successful?
+-
+-This is just the beginning of your journey as a more effective, situational leader. The key is to start with one relationship and build from there.
+-
+-What's your action plan for moving forward?
++5. Anticipate obstacles and contingencies
++- What risks could derail your plan (capacity, conflict, organizational changes)?
++- What pre-commitments can you make now to stay adaptive when those risks surface?
+ 
++**Aha-moment:**
++Leadership growth sticks when insight becomes an operating rhythm. A deliberate plan—anchored in stakeholder needs, measurable outcomes, and support—keeps you practicing situational leadership long after the program ends.
+ 
+EOF
