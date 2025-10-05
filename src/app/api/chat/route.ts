@@ -4,12 +4,35 @@ import { join } from 'path'
 import OpenAI from 'openai'
 import { LANGUAGE_PROMPT_LABELS, type Language } from '@/lib/language-constants'
 import { UI_COPY } from '@/lib/translations'
+import config from '@/lib/config.json'
 
 let cachedApiKey: string | null | undefined
 const RETRYABLE_ERROR_CODES = new Set(['ETIMEDOUT', 'ECONNRESET', 'EAI_AGAIN'])
 const MAX_COMPLETION_RETRIES = 2
 const RETRY_DELAY_MS = 600
 
+
+function resolveSessionFile(topicId: string, sessionId: string): string | null {
+  const topic = (config.topics as Record<string, any>)[topicId]
+  if (!topic) {
+    return null
+  }
+
+  const sessionEntry = Array.isArray(topic.sessions)
+    ? (topic.sessions as Array<{ id: string; file?: string }>).find((entry) => entry.id === sessionId)
+    : null
+
+  if (!sessionEntry) {
+    return null
+  }
+
+  const fileName = sessionEntry.file?.trim()
+  if (fileName && fileName.length > 0) {
+    return fileName
+  }
+
+  return `${sessionId}.txt`
+}
 const DEFAULT_CHAT_MODEL = process.env.OPENAI_CHAT_MODEL?.trim()
   || process.env.OPENAI_MODEL?.trim()
   || process.env.NEXT_PUBLIC_OPENAI_CHAT_MODEL?.trim()
@@ -170,7 +193,11 @@ export async function POST(request: NextRequest) {
       if (topicId === 'generic-coaching') {
         sessionPromptPath = join(process.cwd(), 'src', 'system-prompts', 'general-coaching.txt')
       } else {
-        sessionPromptPath = join(process.cwd(), 'src', 'system-prompts', topicId, `${sessionId}.txt`)
+        const sessionFile = resolveSessionFile(topicId, sessionId)
+        if (!sessionFile) {
+          return NextResponse.json({ error: 'Session prompt not found' }, { status: 404 })
+        }
+        sessionPromptPath = join(process.cwd(), 'src', 'system-prompts', topicId, sessionFile)
       }
       const stylePromptPath = join(process.cwd(), 'src', 'styles', 'coaching.txt') // Default to coaching
       
@@ -217,7 +244,11 @@ export async function POST(request: NextRequest) {
       if (topicId === 'generic-coaching') {
         sessionPromptPath = join(process.cwd(), 'src', 'system-prompts', 'general-coaching.txt')
       } else {
-        sessionPromptPath = join(process.cwd(), 'src', 'system-prompts', topicId, `${sessionId}.txt`)
+        const sessionFile = resolveSessionFile(topicId, sessionId)
+        if (!sessionFile) {
+          return NextResponse.json({ error: 'Session prompt not found' }, { status: 404 })
+        }
+        sessionPromptPath = join(process.cwd(), 'src', 'system-prompts', topicId, sessionFile)
       }
       const stylePromptPath = join(process.cwd(), 'src', 'styles', 'coaching.txt')
       
