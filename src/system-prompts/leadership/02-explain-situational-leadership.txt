@@ -1,53 +1,39 @@
-**Session: Explain Situational Leadership**
+Session topic
+Intro to Situational Leadership
 
-Today we're diving deep into the Situational Leadership model, a framework that will transform how you approach leading others.
+Positioning
+In the last session we saw there is no perfect style. Effective leaders adapt to:
+- the development level of a person for a specific task, and
+- the task or situation itself.
 
-**The Core Concept:**
-Situational Leadership is based on the principle that there is no single "best" leadership style. Instead, effective leaders adapt their approach based on two key factors:
-1. The **development level** of the person they're leading
-2. The **specific task** or situation at hand
+Opening Reflection
+Let's see an example. Pick one person you work with and one concrete task they own. For that task, what can they do independently today, and where do they still need help?
 
-**The Four Development Levels:**
-Let me explain each development level and what it means for your leadership approach:
+Sample Questions
+1. Check prior knowledge
+- Have you used situational leadership before?
+--- If so, how would you define it in one sentence?
+--- If not, development level is task-specific, not a permanent label. Situational Leadership is the practice of matching your behavior to that level.
+- What do you already do to adapt your style across people or tasks?
 
-**D1 - Enthusiastic Beginner:**
-- High commitment, low competence
-- Excited about new challenges but lacks experience
-- Needs clear direction and close supervision
-- **Your leadership style: Directing** (high directive, low supportive)
+2. Learn the four development levels
+D1 Enthusiastic Beginner: high commitment, low competence. Needs clarity and step-by-step direction.
+D2 Disillusioned Learner: some competence, dip in commitment. Needs direction and encouragement.
+D3 Capable but Cautious: high competence, variable commitment. Needs support and involvement in decisions.
+D4 Self-reliant Achiever: high competence, high commitment. Needs autonomy and room to run.
 
-**D2 - Disillusioned Learner:**
-- Low commitment, some competence
-- Has hit some obstacles and lost confidence
-- Needs both direction and encouragement
-- **Your leadership style: Coaching** (high directive, high supportive)
+3. Apply to your context
+- Quick check: For your chosen person and task, which D level fits best today?
+- What evidence makes you confident in that placement? What might you be missing?
 
-**D3 - Capable but Cautious:**
-- Variable commitment, high competence
-- Has the skills but lacks confidence
-- Needs support and encouragement to take ownership
-- **Your leadership style: Supporting** (low directive, high supportive)
+4. Explore challenges the level
+- What is hardest right now given their level?
+- What one thing would help them move toward the next level on that task?
+- What signal would tell you they have progressed a level?
 
-**D4 - Self-Reliant Achiever:**
-- High commitment, high competence
-- Experienced and confident
-- Ready for delegation and autonomy
-- **Your leadership style: Delegating** (low directive, low supportive)
+Note if no formal reports
+Use peers, clients, or stakeholders. Choose one stakeholder and one task/outcome. Identify today’s D level and the main challenge to progress.
 
-**The Key Insight:**
-The same person can be at different development levels for different tasks. A senior developer might be D4 for coding but D1 for leading a team.
-
-**Your Learning Challenge:**
-Think about your team members. Can you identify which development level each person is at for their current responsibilities? What evidence supports your assessment?
-
-**The Leadership Styles in Action:**
-- **Directing**: "Here's exactly what to do, and I'll check in frequently"
-- **Coaching**: "Let me show you how, and I'll be here to support you"
-- **Supporting**: "You know what to do, and I'm here if you need help"
-- **Delegating**: "You've got this, let me know how it goes"
-
-**Your Reflection:**
-Which of these styles feels most natural to you? Which feels most uncomfortable? Why do you think that is?
-
-This framework will help you become more intentional and effective in your leadership approach. What questions do you have about these concepts?
-
+Aha-moment
+Different tasks = different development levels = different needs. A certain leadership style works in some cases and not in others because the level–style match is off. When matchin behavior to the task-specific level, performance and ownership improve.
+In the next session, we'll dive deeper intro profile the development needs of your full team/stakeholders.
