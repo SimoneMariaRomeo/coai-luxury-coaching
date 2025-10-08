@@ -119,6 +119,116 @@
           "file": "09-define-feedback-action-plan.txt"
         }
       ]
+    },
+    "adaptability-resilience": {
+      "title": "Adaptability & Resilience",
+      "intro": "Bend, adapt, and bounce back stronger.",
+      "objectives": [
+        "Embrace change with a flexible mindset, seeing uncertainty as an opportunity rather than a threat",
+        "Develop personal resilience by cultivating optimism, support networks, and self-belief to overcome setbacks",
+        "Maintain balance under pressure through healthy coping strategies and emotional awareness"
+      ],
+      "sessions": []
+    },
+    "networking-personal-branding": {
+      "title": "Networking & Personal Branding",
+      "intro": "Connections and reputation accelerate your career.",
+      "objectives": [
+        "Understand that performance alone isn't enough for success; actively manage your image and exposure in the organization",
+        "Develop a personal brand founded on credibility, reciprocity, and a robust professional network",
+        "Learn strategies to expand your visibility and influence through genuine relationships and value exchange"
+      ],
+      "sessions": []
+    },
+    "interpersonal-communication-influence": {
+      "title": "Interpersonal Communication & Influence",
+      "intro": "Connect with anyone and influence outcomes respectfully.",
+      "objectives": [
+        "Recognize diverse communication styles and personality types to better understand colleagues and clients",
+        "Adapt your own communication to build rapport with different social styles",
+        "Apply persuasive communication techniques and handle objections gracefully to achieve win-win solutions"
+      ],
+      "sessions": []
+    },
+    "emotional-intelligence-empathy": {
+      "title": "Emotional Intelligence & Empathy",
+      "intro": "Understand emotions, strengthen relationships, lead wisely.",
+      "objectives": [
+        "Increase self-awareness of your emotions, triggers, and habits to better navigate your emotional landscape",
+        "Practice self-regulation and stress management techniques to stay composed and positive even under pressure",
+        "Strengthen social awareness and empathy to respond to others' feelings appropriately and foster teamwork"
+      ],
+      "sessions": []
+    },
+    "conflict-resolution-skills": {
+      "title": "Conflict Resolution Skills",
+      "intro": "Turn clashes into collaboration and progress.",
+      "objectives": [
+        "Reframe conflict as a constructive force and understand different conflict styles or approaches",
+        "Develop strategies to uncover underlying needs and craft win-win solutions in disagreements",
+        "Learn techniques to de-escalate tensions, manage difficult personalities, and communicate effectively during conflict"
+      ],
+      "sessions": []
+    },
+    "time-management-effectiveness": {
+      "title": "Time Management & Personal Effectiveness",
+      "intro": "Focus your energy where it matters most.",
+      "objectives": [
+        "Identify your personal productivity style and adjust habits to become more efficient and focused",
+        "Master prioritization and time management techniques to handle tasks strategically instead of reacting last-minute",
+        "Apply stress management and work-life balance practices that sustain high performance without burnout"
+      ],
+      "sessions": []
+    },
+    "sales-negotiation-skills": {
+      "title": "Sales & Negotiation Skills",
+      "intro": "Create value, handle objections, close confidently.",
+      "objectives": [
+        "Understand the end-to-end sales process and the consultative skills needed at each stage to build customer trust",
+        "Master techniques for uncovering true customer needs and addressing them with compelling solutions",
+        "Develop negotiation strategies and tactics that lead to mutually beneficial outcomes while protecting relationships"
+      ],
+      "sessions": []
+    },
+    "customer-experience-loyalty": {
+      "title": "Customer Experience & Loyalty",
+      "intro": "Delight customers and earn lasting advocacy.",
+      "objectives": [
+        "Learn to exceed customer expectations by adding unexpected value that differentiates you from competitors",
+        "Effectively engage customers through multiple channels with consistent, high-quality communication",
+        "Leverage personalization and empathy to build strong customer relationships that drive repeat business and referrals"
+      ],
+      "sessions": []
+    },
+    "personal-values-self-leadership": {
+      "title": "Personal Values & Self-Leadership",
+      "intro": "Align your work with your values and drive your own growth.",
+      "objectives": [
+        "Clarify personal values and purpose, and see how they connect with your role and company mission",
+        "Strengthen self-motivation by tapping into intrinsic motivators and finding flow in your work",
+        "Practice self-leadership habits like reflection, goal-setting, and authentic communication aligned with your values"
+      ],
+      "sessions": []
+    },
+    "inspiring-coaching-others": {
+      "title": "Inspiring & Coaching Others",
+      "intro": "Multiply your impact by modeling excellence and coaching people forward.",
+      "objectives": [
+        "Model the behavior you wish to see, using the power of example to influence and motivate those around you",
+        "Develop coaching and listening skills to support others' development without micromanaging or solving everything for them",
+        "Learn to ask powerful questions and guide others toward their own solutions and goals"
+      ],
+      "sessions": []
+    },
+    "accountability-growth-mindset": {
+      "title": "Accountability & Growth Mindset",
+      "intro": "Own outcomes, learn fast, and aim higher.",
+      "objectives": [
+        "Cultivate a mindset of ownership and proactivity, focusing on what you can do to make a difference rather than blaming circumstances",
+        "Embrace lifelong learning and a growth mindset, viewing effort and feedback as paths to mastery and improvement",
+        "Strengthen teamwork by building trust and a shared vision, understanding that more is achieved when we work interdependently toward clear goals"
+      ],
+      "sessions": []
     }
   }
 }
