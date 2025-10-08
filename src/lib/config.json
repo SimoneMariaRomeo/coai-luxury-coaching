@@ -128,7 +128,14 @@
         "Develop personal resilience by cultivating optimism, support networks, and self-belief to overcome setbacks",
         "Maintain balance under pressure through healthy coping strategies and emotional awareness"
       ],
-      "sessions": []
+      "sessions": [
+        { "id": "embracing-change", "title": "Embracing Change", "type": "Coaching", "file": "01-embracing-change.txt" },
+        { "id": "personal-change-story", "title": "Personal Change Story (Reflection)", "type": "Coaching", "file": "02-personal-change-story.txt" },
+        { "id": "growth-mindset-in-action", "title": "Growth Mindset in Action", "type": "Coaching", "file": "03-growth-mindset-in-action.txt" },
+        { "id": "resilience-toolbox", "title": "Resilience Toolbox", "type": "Coaching", "file": "04-resilience-toolbox.txt" },
+        { "id": "coping-and-balance", "title": "Coping and Balance", "type": "Coaching", "file": "05-coping-and-balance.txt" },
+        { "id": "resilience-plan", "title": "Resilience Plan (Reflection)", "type": "Coaching", "file": "06-resilience-plan.txt" }
+      ]
     },
     "networking-personal-branding": {
       "title": "Networking & Personal Branding",
@@ -138,7 +145,15 @@
         "Develop a personal brand founded on credibility, reciprocity, and a robust professional network",
         "Learn strategies to expand your visibility and influence through genuine relationships and value exchange"
       ],
-      "sessions": []
+      "sessions": [
+        { "id": "pie-of-career-success", "title": "The PIE of Career Success", "type": "Coaching", "file": "01-pie-of-career-success.txt" },
+        { "id": "building-trust-performance", "title": "Building Trust through Performance", "type": "Coaching", "file": "02-building-trust-through-performance.txt" },
+        { "id": "crafting-personal-brand", "title": "Crafting Your Personal Brand", "type": "Coaching", "file": "03-crafting-your-personal-brand.txt" },
+        { "id": "growing-your-network", "title": "Growing Your Network", "type": "Coaching", "file": "04-growing-your-network.txt" },
+        { "id": "visibility-and-exposure", "title": "Visibility and Exposure", "type": "Coaching", "file": "05-visibility-and-exposure.txt" },
+        { "id": "networking-reflection", "title": "Networking Reflection", "type": "Coaching", "file": "06-networking-reflection.txt" },
+        { "id": "personal-brand-action-plan", "title": "Personal Brand Action Plan", "type": "Coaching", "file": "07-personal-brand-action-plan.txt" }
+      ]
     },
     "interpersonal-communication-influence": {
       "title": "Interpersonal Communication & Influence",
@@ -148,7 +163,14 @@
         "Adapt your own communication to build rapport with different social styles",
         "Apply persuasive communication techniques and handle objections gracefully to achieve win-win solutions"
       ],
-      "sessions": []
+      "sessions": [
+        { "id": "understanding-social-styles", "title": "Understanding Social Styles", "type": "Coaching", "file": "01-understanding-social-styles.txt" },
+        { "id": "versatility-adapting-approach", "title": "Versatility \u2013 Adapting Your Approach", "type": "Coaching", "file": "02-versatility-adapting-your-approach.txt" },
+        { "id": "persuasive-communication", "title": "Persuasive Communication", "type": "Coaching", "file": "03-persuasive-communication.txt" },
+        { "id": "handling-objections", "title": "Handling Objections", "type": "Coaching", "file": "04-handling-objections.txt" },
+        { "id": "know-your-style", "title": "Know Your Style (Reflection)", "type": "Coaching", "file": "05-know-your-style-reflection.txt" },
+        { "id": "persuasion-in-action", "title": "Persuasion in Action (Practice)", "type": "Coaching", "file": "06-persuasion-in-action-practice.txt" }
+      ]
     },
     "emotional-intelligence-empathy": {
       "title": "Emotional Intelligence & Empathy",
@@ -158,7 +180,15 @@
         "Practice self-regulation and stress management techniques to stay composed and positive even under pressure",
         "Strengthen social awareness and empathy to respond to others' feelings appropriately and foster teamwork"
       ],
-      "sessions": []
+      "sessions": [
+        { "id": "what-is-emotional-intelligence", "title": "What is Emotional Intelligence?", "type": "Coaching", "file": "01-what-is-emotional-intelligence.txt" },
+        { "id": "recognizing-emotions", "title": "Recognizing Emotions", "type": "Coaching", "file": "02-recognizing-emotions.txt" },
+        { "id": "managing-your-emotions", "title": "Managing Your Emotions", "type": "Coaching", "file": "03-managing-your-emotions.txt" },
+        { "id": "practicing-empathy", "title": "Practicing Empathy", "type": "Coaching", "file": "04-practicing-empathy.txt" },
+        { "id": "influencing-emotions-positively", "title": "Influencing Emotions Positively", "type": "Coaching", "file": "05-influencing-emotions-positively.txt" },
+        { "id": "emotion-check-in", "title": "Emotion Check-In (Reflection)", "type": "Coaching", "file": "06-emotion-check-in-reflection.txt" },
+        { "id": "empathy-in-action", "title": "Empathy in Action", "type": "Coaching", "file": "07-empathy-in-action.txt" }
+      ]
     },
     "conflict-resolution-skills": {
       "title": "Conflict Resolution Skills",
@@ -168,7 +198,15 @@
         "Develop strategies to uncover underlying needs and craft win-win solutions in disagreements",
         "Learn techniques to de-escalate tensions, manage difficult personalities, and communicate effectively during conflict"
       ],
-      "sessions": []
+      "sessions": [
+        { "id": "rethinking-conflict", "title": "Rethinking Conflict", "type": "Coaching", "file": "01-rethinking-conflict.txt" },
+        { "id": "perception-vs-reality", "title": "Perception vs. Reality", "type": "Coaching", "file": "02-perception-vs-reality.txt" },
+        { "id": "finding-win-win", "title": "Finding Win-Win", "type": "Coaching", "file": "03-finding-win-win.txt" },
+        { "id": "navigating-difficult-behaviors", "title": "Navigating Difficult Behaviors", "type": "Coaching", "file": "04-navigating-difficult-behaviors.txt" },
+        { "id": "meta-communication", "title": "Meta-Communication", "type": "Coaching", "file": "05-meta-communication.txt" },
+        { "id": "your-conflict-style", "title": "Your Conflict Style (Reflection)", "type": "Coaching", "file": "06-your-conflict-style-reflection.txt" },
+        { "id": "conflict-resolution-in-practice", "title": "Conflict Resolution in Practice", "type": "Coaching", "file": "07-conflict-resolution-in-practice.txt" }
+      ]
     },
     "time-management-effectiveness": {
       "title": "Time Management & Personal Effectiveness",
@@ -178,7 +216,15 @@
         "Master prioritization and time management techniques to handle tasks strategically instead of reacting last-minute",
         "Apply stress management and work-life balance practices that sustain high performance without burnout"
       ],
-      "sessions": []
+      "sessions": [
+        { "id": "knowing-productivity-style", "title": "Knowing Your Productivity Style", "type": "Coaching", "file": "01-knowing-your-productivity-style.txt" },
+        { "id": "prioritization-matrix", "title": "Prioritization Matrix", "type": "Coaching", "file": "02-prioritization-matrix.txt" },
+        { "id": "the-18-minute-plan", "title": "The 18-Minute Plan", "type": "Coaching", "file": "03-the-18-minute-plan.txt" },
+        { "id": "maintaining-focus", "title": "Maintaining Focus", "type": "Coaching", "file": "04-maintaining-focus.txt" },
+        { "id": "stress-to-strength", "title": "Stress to Strength", "type": "Coaching", "file": "05-stress-to-strength.txt" },
+        { "id": "wellness-and-balance", "title": "Wellness and Balance", "type": "Coaching", "file": "06-wellness-and-balance.txt" },
+        { "id": "personal-effectiveness-plan", "title": "Personal Effectiveness Plan (Reflection)", "type": "Coaching", "file": "07-personal-effectiveness-plan-reflection.txt" }
+      ]
     },
     "sales-negotiation-skills": {
       "title": "Sales & Negotiation Skills",
@@ -188,7 +234,15 @@
         "Master techniques for uncovering true customer needs and addressing them with compelling solutions",
         "Develop negotiation strategies and tactics that lead to mutually beneficial outcomes while protecting relationships"
       ],
-      "sessions": []
+      "sessions": [
+        { "id": "consultative-sales-process", "title": "The Consultative Sales Process", "type": "Coaching", "file": "01-consultative-sales-process.txt" },
+        { "id": "uncovering-needs-spin", "title": "Uncovering Needs (SPIN)", "type": "Coaching", "file": "02-uncovering-needs-spin.txt" },
+        { "id": "value-proposition-crafting", "title": "Value Proposition Crafting", "type": "Coaching", "file": "03-value-proposition-crafting.txt" },
+        { "id": "negotiation-prep-strategy", "title": "Negotiation Prep and Strategy", "type": "Coaching", "file": "04-negotiation-prep-and-strategy.txt" },
+        { "id": "tactics-counter-tactics", "title": "Tactics and Counter-tactics", "type": "Coaching", "file": "05-tactics-and-counter-tactics.txt" },
+        { "id": "closing-the-deal", "title": "Closing the Deal", "type": "Coaching", "file": "06-closing-the-deal.txt" },
+        { "id": "sales-self-reflection", "title": "Sales Self-Reflection", "type": "Coaching", "file": "07-sales-self-reflection.txt" }
+      ]
     },
     "customer-experience-loyalty": {
       "title": "Customer Experience & Loyalty",
@@ -198,7 +252,15 @@
         "Effectively engage customers through multiple channels with consistent, high-quality communication",
         "Leverage personalization and empathy to build strong customer relationships that drive repeat business and referrals"
       ],
-      "sessions": []
+      "sessions": [
+        { "id": "delivering-wow-factor", "title": "Delivering the Wow Factor", "type": "Coaching", "file": "01-delivering-the-wow-factor.txt" },
+        { "id": "seeing-through-customers-eyes", "title": "Seeing Through the Customer\u2019s Eyes", "type": "Coaching", "file": "02-seeing-through-the-customers-eyes.txt" },
+        { "id": "multichannel-mastery", "title": "Multichannel Mastery", "type": "Coaching", "file": "03-multichannel-mastery.txt" },
+        { "id": "personalizing-your-approach", "title": "Personalizing Your Approach", "type": "Coaching", "file": "04-personalizing-your-approach.txt" },
+        { "id": "turning-detractors-into-loyalists", "title": "Turning Detractors into Loyalists", "type": "Coaching", "file": "05-turning-detractors-into-loyalists.txt" },
+        { "id": "loyalty-and-follow-up", "title": "Loyalty and Follow-up", "type": "Coaching", "file": "06-loyalty-and-follow-up.txt" },
+        { "id": "customer-experience-reflection", "title": "Customer Experience Reflection", "type": "Coaching", "file": "07-customer-experience-reflection.txt" }
+      ]
     },
     "personal-values-self-leadership": {
       "title": "Personal Values & Self-Leadership",
@@ -208,7 +270,15 @@
         "Strengthen self-motivation by tapping into intrinsic motivators and finding flow in your work",
         "Practice self-leadership habits like reflection, goal-setting, and authentic communication aligned with your values"
       ],
-      "sessions": []
+      "sessions": [
+        { "id": "discovering-core-values", "title": "Discovering Your Core Values", "type": "Coaching", "file": "01-discovering-your-core-values.txt" },
+        { "id": "purpose-and-vision", "title": "Purpose and Vision", "type": "Coaching", "file": "02-purpose-and-vision.txt" },
+        { "id": "igniting-motivation", "title": "Igniting Motivation", "type": "Coaching", "file": "03-igniting-motivation.txt" },
+        { "id": "three-rs-self-leadership", "title": "The 3Rs of Self-Leadership", "type": "Coaching", "file": "04-the-3rs-of-self-leadership.txt" },
+        { "id": "authentic-communication", "title": "Authentic Communication", "type": "Coaching", "file": "05-authentic-communication.txt" },
+        { "id": "personal-leadership-reflection", "title": "Personal Leadership Reflection", "type": "Coaching", "file": "06-personal-leadership-reflection.txt" },
+        { "id": "commitment-to-self-action", "title": "Commitment to Self (Action)", "type": "Coaching", "file": "07-commitment-to-self-action.txt" }
+      ]
     },
     "inspiring-coaching-others": {
       "title": "Inspiring & Coaching Others",
@@ -218,7 +288,14 @@
         "Develop coaching and listening skills to support others' development without micromanaging or solving everything for them",
         "Learn to ask powerful questions and guide others toward their own solutions and goals"
       ],
-      "sessions": []
+      "sessions": [
+        { "id": "leading-by-example", "title": "Leading by Example", "type": "Coaching", "file": "01-leading-by-example.txt" },
+        { "id": "power-of-listening", "title": "The Power of Listening", "type": "Coaching", "file": "02-the-power-of-listening.txt" },
+        { "id": "supporting-vs-solving", "title": "Supporting vs. Solving", "type": "Coaching", "file": "03-supporting-vs-solving.txt" },
+        { "id": "asking-powerful-questions", "title": "Asking Powerful Questions", "type": "Coaching", "file": "04-asking-powerful-questions.txt" },
+        { "id": "coaching-in-action", "title": "Coaching in Action (Practice)", "type": "Coaching", "file": "05-coaching-in-action-practice.txt" },
+        { "id": "catalyst-reflection", "title": "Catalyst Reflection", "type": "Coaching", "file": "06-catalyst-reflection.txt" }
+      ]
     },
     "accountability-growth-mindset": {
       "title": "Accountability & Growth Mindset",
@@ -228,7 +305,15 @@
         "Embrace lifelong learning and a growth mindset, viewing effort and feedback as paths to mastery and improvement",
         "Strengthen teamwork by building trust and a shared vision, understanding that more is achieved when we work interdependently toward clear goals"
       ],
-      "sessions": []
+      "sessions": [
+        { "id": "taking-ownership", "title": "Taking Ownership", "type": "Coaching", "file": "01-taking-ownership.txt" },
+        { "id": "from-fixed-to-growth-mindset", "title": "From Fixed to Growth Mindset", "type": "Coaching", "file": "02-from-fixed-to-growth-mindset.txt" },
+        { "id": "learning-how-to-learn", "title": "Learning How to Learn", "type": "Coaching", "file": "03-learning-how-to-learn.txt" },
+        { "id": "trust-team-interdependence", "title": "Trust and Team Interdependence", "type": "Coaching", "file": "04-trust-and-team-interdependence.txt" },
+        { "id": "vision-goal-alignment", "title": "Vision and Goal Alignment", "type": "Coaching", "file": "05-vision-and-goal-alignment.txt" },
+        { "id": "accountability-in-action", "title": "Accountability in Action (Reflection)", "type": "Coaching", "file": "06-accountability-in-action-reflection.txt" },
+        { "id": "growth-plan-forward", "title": "Growth Plan Forward", "type": "Coaching", "file": "07-growth-plan-forward.txt" }
+      ]
     }
   }
 }
