@@ -194,6 +194,8 @@ interface UiCopy {
     getCoached: string
     explorePrefix: string
     signInToast: string
+    hoverHint: string
+    scrollHint: string
   }
   generic: {
     title: string
@@ -274,6 +276,8 @@ export const UI_COPY: Record<Language, UiCopy> = {
       getCoached: 'Get Coached',
       explorePrefix: 'Or explore',
       signInToast: 'Sign in to start a coaching session.',
+      hoverHint: 'Hover or scroll to unveil every journey',
+      scrollHint: 'Scroll to browse all journeys',
     },
     generic: {
       title: 'Generic Coaching Session',
@@ -394,6 +398,8 @@ export const UI_COPY: Record<Language, UiCopy> = {
       getCoached: '\u5f00\u59cb\u6559\u7ec3',
       explorePrefix: '\u6216\u63a2\u7d22',
       signInToast: '\u767b\u5f55\u540e\u5373\u53ef\u5f00\u59cb\u6559\u7ec3\u4f1a\u8bdd\u3002',
+      hoverHint: '\u60ac\u6d6e\u6216\u6eda\u52a8\u4ee5\u6f5c\u4f53\u6240\u6709\u5b66\u4e60\u65c5\u7a0b',
+      scrollHint: '\u5411\u4e0a\u5411\u4e0b\u6eda\u52a8\u6d4f\u89c8\u5168\u90e8\u65c5\u7a0b',
     },
     generic: {
       title: '\u901a\u7528\u6559\u7ec3\u4f1a\u8bdd',

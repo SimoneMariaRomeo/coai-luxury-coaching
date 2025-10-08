@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react'
-import type { PointerEventHandler, MouseEventHandler, WheelEventHandler } from 'react'
+import type { PointerEventHandler, MouseEventHandler } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useRouter } from 'next/navigation'
@@ -29,6 +29,7 @@ interface ManualState {
 export default function HomePage() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
+  const [listActivated, setListActivated] = useState(false)
   const manualRef = useRef<ManualState>({
     timeoutId: null,
     active: false,
@@ -49,6 +50,9 @@ export default function HomePage() {
       return {
         id: topicId,
         title: topic?.title ?? config.topics[topicId].title,
+        intro:
+          topic?.intro
+            ?? config.topics[topicId].intro,
       }
     })
   }, [language])
@@ -102,21 +106,6 @@ export default function HomePage() {
     router.push('/generic-coaching')
   }
 
-  const handleWheel: WheelEventHandler<HTMLDivElement> = (event) => {
-    if (heroTopics.length === 0) {
-      return
-    }
-    event.preventDefault()
-    if (!isPaused) {
-      setIsPaused(true)
-    }
-    if (event.deltaY > 0) {
-      cycleTopic(1)
-    } else if (event.deltaY < 0) {
-      cycleTopic(-1)
-    }
-  }
-
   const handleTopicPointerDown: PointerEventHandler<HTMLAnchorElement> = (event) => {
     if (event.pointerType === 'mouse') {
       return
@@ -128,6 +117,7 @@ export default function HomePage() {
     state.pointerId = event.pointerId
     state.lastY = event.clientY
     state.suppressClick = false
+    setListActivated(true)
     state.timeoutId = setTimeout(() => {
       state.active = true
       state.suppressClick = true
@@ -188,12 +178,19 @@ export default function HomePage() {
 
   return (
     <div
-      className="min-h-screen luxury-gradient text-luxury-text flex items-center justify-center px-6 relative overflow-hidden"
+      className="min-h-screen luxury-gradient text-luxury-text flex flex-col items-center px-6 relative overflow-hidden py-20"
       onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onWheel={handleWheel}
+      onMouseLeave={() => {
+        setIsPaused(false)
+      }}
     >
-      <main className="flex w-full max-w-xl flex-col items-center gap-12 text-center select-none">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-luxury-gold opacity-20 blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-luxury-gold opacity-20 blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-luxury-accent opacity-10 blur-3xl"></div>
+      </div>
+
+      <main className="relative z-10 flex w-full max-w-xl flex-col items-center gap-12 text-center select-none">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -207,13 +204,13 @@ export default function HomePage() {
           type="button"
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.96 }}
-          className="rounded-full border border-luxury-gold px-10 py-3 text-lg font-semibold text-luxury-dark bg-luxury-gold transition-colors hover:bg-luxury-gold-light"
+          className="rounded-full border border-luxury-gold px-12 py-4 text-lg font-semibold text-luxury-dark bg-luxury-gold transition-colors hover:bg-luxury-gold-light"
           onClick={handleGetCoached}
         >
           {copy.home.getCoached}
         </motion.button>
 
-        <div className="flex flex-col items-center gap-6">
+        <div className="relative flex w-full flex-col items-center gap-6">
           <span className="text-xs uppercase tracking-[0.35em] text-luxury-text-light">
             {copy.home.explorePrefix}
           </span>
@@ -230,17 +227,60 @@ export default function HomePage() {
                   href={`/topics/${currentTopic.id}`}
                   className="inline-block text-3xl font-playfair font-semibold text-luxury-text hover:text-luxury-gold transition-colors"
                   style={{ touchAction: 'none' }}
+                  data-topic-id={currentTopic.id}
                   onPointerDown={handleTopicPointerDown}
                   onPointerMove={handleTopicPointerMove}
                   onPointerUp={concludeManualInteraction}
                   onPointerCancel={concludeManualInteraction}
                   onClick={handleTopicClick}
+                  onMouseEnter={() => setListActivated(true)}
+                  onFocus={() => setListActivated(true)}
                 >
                   {currentTopic.title}
                 </Link>
               ) : null}
             </motion.div>
           </AnimatePresence>
+
+          <div className="mt-12 w-full max-w-2xl space-y-4" onMouseEnter={() => setListActivated(true)}>
+            <motion.p
+              className="text-center text-sm uppercase tracking-[0.3em] text-luxury-text-muted"
+              initial={{ opacity: 1, y: 0 }}
+              animate={{ opacity: listActivated ? 0 : 1, y: listActivated ? -10 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {copy.home.hoverHint}
+            </motion.p>
+            {heroTopics.map((topic, index) => (
+              <motion.div
+                key={topic.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{
+                  opacity: listActivated ? 1 : 0,
+                  y: listActivated ? 0 : 20,
+                }}
+                transition={{ duration: 0.45, delay: listActivated ? index * 0.08 : 0 }}
+              >
+                <Link
+                  href={`/topics/${topic.id}`}
+                  className="group block rounded-2xl border border-white/55 bg-white/90 px-6 py-5 text-left shadow-[0_12px_32px_rgba(15,23,42,0.12)] transition-all duration-200 hover:border-luxury-gold/60 hover:bg-luxury-gold/18 hover:shadow-[0_18px_40px_rgba(212,175,55,0.25)]"
+                  tabIndex={listActivated ? 0 : -1}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-base font-playfair font-semibold text-luxury-text">
+                      {topic.title}
+                    </span>
+                    <span className="text-sm text-luxury-gold/80 transition-transform duration-200 group-hover:translate-x-1">
+                      →
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm text-luxury-text-muted">
+                    {topic.intro}
+                  </p>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </main>
     </div>
