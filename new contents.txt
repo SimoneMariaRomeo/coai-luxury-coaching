@@ -1,4 +1,4 @@
- Adaptability & Resilience
+- Adaptability & Resilience
 
 
 Embracing Change | Discover the value of flexibility in a VUCA (volatile, uncertain, complex, ambiguous) world, recognizing what can be changed vs. what can’t.
@@ -15,7 +15,7 @@ Coping and Balance | Find your equilibrium by exploring coping mechanisms and th
 Resilience Plan (Reflection) | Create a personal action plan to apply one new coping strategy or resilience habit in your daily routine.
 
 
-Networking & Personal Branding
+- Networking & Personal Branding
 
 
 The PIE of Career Success | Discover the Performance-Image-Exposure model: doing great work is just the start – how you’re perceived and making yourself known are equally crucial
@@ -33,7 +33,7 @@ Networking Reflection | Map your current network and support system. Who are the
 
 Personal Brand Action Plan | Draft one or two concrete steps (like updating your online profile, seeking feedback on your image, or scheduling a networking coffee) to strengthen your reputation and relationships.
 
-Interpersonal Communication & Influence
+- Interpersonal Communication & Influence
 
 Understanding Social Styles | Explore different social styles (e.g. analytical, driver, amiable, expressive) and core traits like introversion vs. extroversion and assertiveness. The aha-moment: realizing not everyone thinks or communicates like you!
 
@@ -49,9 +49,7 @@ Persuasion in Action (Practice) | Plan and role-play a persuasive conversation f
 
 Emotional Intelligence & Empathy
 
-What is Emotional Intelligence? | Break down the four core EI domains – self-awareness, self-management, social awareness, and relationship management
-
-. Realize how these skills boost professional effectiveness (from decision-making to leadership).
+What is Emotional Intelligence? | Break down the four core EI domains – self-awareness, self-management, social awareness, and relationship management. Realize how these skills boost professional effectiveness (from decision-making to leadership).
 
 Recognizing Emotions | Identify your emotional triggers and the “why” behind your feelings. The revelation: emotions are data! Understanding the purpose of basic emotions (like anger, fear, joy) helps you respond rather than react.
 
@@ -65,7 +63,7 @@ Emotion Check-In (Reflection) | Take an emotional intelligence self-assessment. 
 
 Empathy in Action | Plan a small act of empathy: for instance, actively listen to a coworker this week without interrupting or advising. Note the impact on your understanding and the relationship.
 
-Conflict Resolution Skills
+- Conflict Resolution Skills
 
 Rethinking Conflict | Challenge the fear of conflict by recognizing its benefits. Learn about conflict types and the Thomas-Kilmann styles (from avoiding to collaborating), realizing that healthy debate can spur innovation and trust.
 
@@ -105,9 +103,7 @@ Uncovering Needs (SPIN) | Practice deep discovery using the SPIN questioning mod
 
 Value Proposition Crafting | Learn to formulate a clear Customer Value Proposition (CVP) that connects your product/service to the client’s specific needs. This lesson highlights how framing your solution in terms of customer benefits (not just features) makes it resonate.
 
-Negotiation Prep and Strategy | Before you negotiate, plan! Grasp concepts like BATNA (Best Alternative to a Negotiated Agreement) and ZOPA (Zone of Possible Agreement) to know your boundaries
-
-. Choose the right approach – collaborative (integrative) vs. competitive – based on the situation, aiming for win-win when possible.
+Negotiation Prep and Strategy | Before you negotiate, plan! Grasp concepts like BATNA (Best Alternative to a Negotiated Agreement) and ZOPA (Zone of Possible Agreement) to know your boundaries. Choose the right approach – collaborative (integrative) vs. competitive – based on the situation, aiming for win-win when possible.
 
 Tactics and Counter-tactics | Explore common negotiation tactics (e.g. silence, highball/lowball offers, “good cop/bad cop”) and how to respond without losing poise. Recognize games people play in bargaining, and learn to steer the negotiation back to interests and objective criteria instead of getting caught in ploys.
 
@@ -131,7 +127,7 @@ Loyalty and Follow-up | Examine strategies to cultivate loyalty over time: follo
 
 Customer Experience Reflection | Identify one aspect of your current customer interactions that you could improve (e.g., response time, personalization, after-service follow-up). Outline a change you will implement and how you expect it to impact the customer’s experience.
 
-Personal Values & Self-Leadership
+- Personal Values & Self-Leadership
 
 
 Discovering Your Core Values | Identify what truly matters to you (integrity, creativity, teamwork, etc.). The aha moment: recognizing how value alignment (or misalignment) with your job affects your satisfaction. Learn how to bridge personal values with organizational values to feel more engaged and authentic at work.
